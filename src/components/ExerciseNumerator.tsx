@@ -9,11 +9,11 @@ interface Props {
 }
 
 function ExerciseNumerator(props: Props) {
-  let setSelected = function(n: number){
+  let setSelected = function (n: number) {
 
-    console.log("sentence: " + n); 
-    
-    console.log("was: "+ props.excercise.selected)
+    console.log("sentence: " + n);
+
+    console.log("was: " + props.excercise.selected)
     props.onSetExercise(n);
 
   }
@@ -24,25 +24,27 @@ function ExerciseNumerator(props: Props) {
     let sign = <div></div>;
     let selected = ""
     if (props.excerciseNumber === sentence.number) {
-      btnClass += "btn-outline-primary " + styles.Selected;
+      btnClass += styles.Selected+" ";
     }
-    else {
-      switch (sentence.status) {
-        case 0: btnClass += "btn-outline-secondary"; break;
-        case 1: {
-          btnClass += "btn-outline-success";
-          sign = <i className="bi bi-check-lg"></i>; break;
-        }
-        case 2: {
-          btnClass += "btn-outline-danger";
-          sign = <i className="bi bi-x"></i>; break;
-        }
+
+    switch (sentence.status) {
+      case 0: 
+        if((props.excerciseNumber === sentence.number)) btnClass += "btn-outline-primary "
+        else btnClass += "btn-outline-secondary "; 
+        break;
+      case 1: {
+        btnClass += "btn-outline-success ";
+        sign = <i className="bi bi-check-lg"></i>; break;
+      }
+      case 2: {
+        btnClass += "btn-outline-danger ";
+        sign = <i className="bi bi-x"></i>; break;
       }
     }
     return (
       <div className={"col-auto " + styles['Step-btn']} key={sentence.number}>
         <div className={styles['ratio-1-1']}>
-          <button type="button" className={btnClass} onClick={()=>setSelected(sentence.number)}>{sentence.number + 1}
+          <button type="button" className={btnClass} onClick={() => setSelected(sentence.number)}>{sentence.number + 1}
             <div className={styles.FeedbackContainer}>{sign}</div>
 
           </button>

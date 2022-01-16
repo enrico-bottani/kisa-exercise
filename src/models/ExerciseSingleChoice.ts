@@ -6,7 +6,7 @@ export interface ExerciseSingleChoice {
 }
 export interface SingleChoiceSentence {
     number: number;
-    begin: 0,
+    begin: number,
     status: number,// 0 = not submitted, 1 = correct, 2 wrong
     refs: [
         String[],

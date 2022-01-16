@@ -28,7 +28,7 @@ function ExerciseComponent() {
 
             </div>
             <ExerciseNumerator excercise={excercise} excerciseNumber={excerciseNumber} onSetExercise={setExcerciseNumber}></ExerciseNumerator>
-            <ExerciseSentence></ExerciseSentence>
+            <ExerciseSentence singleChoiceSentence={excercise.sentences[excerciseNumber]}></ExerciseSentence>
             <div className="row gx-1">
 
                 <div className="col-auto">

@@ -5,12 +5,21 @@ class DummyExerciseProvider {
     stringValues: String[] = [
         "Amy is always full ", " energy."
     ]
-
+    stringValues1: String[] = [
+        " Australia they have kangoroo"
+    ]
     singleChoice: SingleChoiceAnswerable[] = [
         {
             index: 0,
             type: "singleChoice",
             choices: ["of", "on"]
+        }
+    ]
+    singleChoice1: SingleChoiceAnswerable[] = [
+        {
+            index: 0,
+            type: "singleChoice",
+            choices: ["In", "On"]
         }
     ]
 
@@ -21,6 +30,7 @@ class DummyExerciseProvider {
         }
     ]
 
+    
 
     singleChoiceSentence: SingleChoiceSentence = {
         number: 0,
@@ -35,10 +45,10 @@ class DummyExerciseProvider {
     singleChoiceSentence1: SingleChoiceSentence = {
         number: 1,
         status: 1,
-        begin: 0,
+        begin: 1,
         refs: [
-            this.stringValues,
-            this.singleChoice
+            this.stringValues1,
+            this.singleChoice1
         ],
         answers: this.answers,
     }
