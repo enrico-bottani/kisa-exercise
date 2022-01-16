@@ -32,14 +32,24 @@ class DummyExerciseProvider {
         ],
         answers: this.answers,
     }
+    singleChoiceSentence1: SingleChoiceSentence = {
+        number: 1,
+        status: 1,
+        begin: 0,
+        refs: [
+            this.stringValues,
+            this.singleChoice
+        ],
+        answers: this.answers,
+    }
 
 
-
-    a = {
-        "title": "Put in the correct preposition",
-        "id": 90987890,
-        "sentences": [
-            this.singleChoiceSentence
+    a:ExerciseSingleChoice = {
+        title: "Put in the correct preposition",
+        id: 90987890,
+        selected: 0,
+        sentences: [
+            this.singleChoiceSentence,this.singleChoiceSentence1
         ]
     };
     public getExercise(): ExerciseSingleChoice {

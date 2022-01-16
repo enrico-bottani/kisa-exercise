@@ -1,6 +1,7 @@
 export interface ExerciseSingleChoice {
     id: number;
     title: string;
+    selected: number;
     sentences: SingleChoiceSentence[];
 }
 export interface SingleChoiceSentence {

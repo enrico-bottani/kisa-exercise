@@ -12,18 +12,31 @@ function ExerciseNumerator(props: Props) {
 
 
   var listItems = props.excercise.sentences.map(function (sentence) {
-  
-    let btnClass = "btn btn-sm rounded-0 "
-    switch(sentence.status){
-      case 0: btnClass += "btn-outline-secondary";break;
-      case 1: btnClass += "btn-outline-success";break;
-      case 2: btnClass += "btn-outline-danger";break;
+
+    let btnClass = "btn btn-sm rounded-0 ";
+    let sign = <div></div>;
+    let selected = ""
+    if (props.excercise.selected === sentence.number) {
+      btnClass += "btn-outline-primary "+ styles.Selected;
+    }
+    else {
+      switch (sentence.status) {
+        case 0: btnClass += "btn-outline-secondary"; break;
+        case 1: {
+          btnClass += "btn-outline-success";
+          sign = <i className="bi bi-check-lg"></i>; break;
+        }
+        case 2: {
+          btnClass += "btn-outline-danger";
+          sign = <i className="bi bi-x"></i>; break;
+        }
+      }
     }
     return (
       <div className={"col-auto " + styles['Step-btn']} key={sentence.number}>
         <div className={styles['ratio-1-1']}>
           <button type="button" className={btnClass}>{sentence.number + 1}
-            <div className={styles.FeedbackContainer}><i className="bi bi-check-lg"></i></div>
+            <div className={styles.FeedbackContainer}>{sign}</div>
 
           </button>
         </div>

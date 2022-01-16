@@ -9,7 +9,7 @@ function ExerciseComponent() {
 
     const [excercise, setExcercise] = useState<ExerciseSingleChoice>(
         {
-            id: 0, title: "", sentences: []
+            id: 0, title: "", sentences: [], selected: 0
         });
     const [solutionGrid, setSolutionGrid] = useState<ExerciseSingleChoiceSolution[]>(
         [
