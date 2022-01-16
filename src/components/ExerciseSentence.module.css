@@ -1,0 +1,9 @@
+.TestSentence{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:1.25rem;
+    background-color: #f9fafb;
+}
+.Choice{
+    border-color: black;
+    color: black;
+  }
