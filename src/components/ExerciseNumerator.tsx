@@ -4,20 +4,27 @@ import { ExerciseSingleChoice } from '../models/ExerciseSingleChoice'
 import ExerciseSingleChoiceSolution from '../models/ExerciseSolutionsGrind'
 interface Props {
   excercise: ExerciseSingleChoice;
-  solutionGrid: ExerciseSingleChoiceSolution[];
+  excerciseNumber: number;
+  onSetExercise: any;
 }
 
 function ExerciseNumerator(props: Props) {
-  console.log("prop length: ", props.excercise.sentences);
+  let setSelected = function(n: number){
 
+    console.log("sentence: " + n); 
+    
+    console.log("was: "+ props.excercise.selected)
+    props.onSetExercise(n);
+
+  }
 
   var listItems = props.excercise.sentences.map(function (sentence) {
 
     let btnClass = "btn btn-sm rounded-0 ";
     let sign = <div></div>;
     let selected = ""
-    if (props.excercise.selected === sentence.number) {
-      btnClass += "btn-outline-primary "+ styles.Selected;
+    if (props.excerciseNumber === sentence.number) {
+      btnClass += "btn-outline-primary " + styles.Selected;
     }
     else {
       switch (sentence.status) {
@@ -35,7 +42,7 @@ function ExerciseNumerator(props: Props) {
     return (
       <div className={"col-auto " + styles['Step-btn']} key={sentence.number}>
         <div className={styles['ratio-1-1']}>
-          <button type="button" className={btnClass}>{sentence.number + 1}
+          <button type="button" className={btnClass} onClick={()=>setSelected(sentence.number)}>{sentence.number + 1}
             <div className={styles.FeedbackContainer}>{sign}</div>
 
           </button>

@@ -6,38 +6,28 @@ import DummyExerciseProvider from '../services/MockExerciseProvider';
 import ExerciseSingleChoiceSolution, { ExerciseSingleChoiceSolutionMap } from '../models/ExerciseSolutionsGrind';
 import { ExerciseSingleChoice } from '../models/ExerciseSingleChoice';
 function ExerciseComponent() {
-
-    const [excercise, setExcercise] = useState<ExerciseSingleChoice>(
-        {
-            id: 0, title: "", sentences: [], selected: 0
-        });
-    const [solutionGrid, setSolutionGrid] = useState<ExerciseSingleChoiceSolution[]>(
-        [
-            {
-                choiceId: 1, sentenceId: 1, exerciseId: 1, status: 0, choosenSolutionId: 0
-            },
-            {
-                choiceId: 1, sentenceId: 2, exerciseId: 1, status: 0, choosenSolutionId: 0
-            }]);
-
+    var e = new DummyExerciseProvider().getExercise();
+    console.log("getting again...")
+    const [excercise, setExcercise] = useState<ExerciseSingleChoice>(e);
+    const [excerciseNumber, setExcerciseNumber] = useState<number>(e.selected); 
+    console.log("exNum: "+excerciseNumber)
     useEffect(() => {
-        var e = new DummyExerciseProvider().getExercise();
-        setExcercise(e);
-    }, []);
-    var e = new ExerciseSingleChoiceSolutionMap(solutionGrid);
-    console.log("solution map: ", e);
-    console.log("get: ", e.get({ choiceId: 1, exerciseId: 1, sentenceId: 2 }))
+        console.log("rerendering")
+        //var e = new DummyExerciseProvider().getExercise();
+        //setExcercise(e);
+    }, [excerciseNumber]);
     return (<div>
+        
         <div className="container">
             <div className="row">
                 <div className="col">
 
-                    <h1 className='mb-3'>Put in the correct preposition</h1>
+                    <h1 className='mb-3'>Put in the correct preposition ({excerciseNumber})</h1>
 
                 </div>
 
             </div>
-            <ExerciseNumerator excercise={excercise} solutionGrid={solutionGrid}></ExerciseNumerator>
+            <ExerciseNumerator excercise={excercise} excerciseNumber={excerciseNumber} onSetExercise={setExcerciseNumber}></ExerciseNumerator>
             <ExerciseSentence></ExerciseSentence>
             <div className="row gx-1">
 
