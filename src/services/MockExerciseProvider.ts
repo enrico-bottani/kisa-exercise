@@ -1,65 +1,69 @@
-import { ExerciseSingleChoice, SingleChoiceSentence, SingleChoiceAnswerable, SingleChoiceAnswer, Answerable, RefCoord, Answer } from "../models/ExerciseSingleChoice";
+import { ExerciseSingleChoice, SingleChoiceSentence, SingleChoiceAnswerable, SingleChoiceAnswer, Answer, Assignable, StringConstant } from "../models/ExerciseSingleChoice";
 
 class DummyExerciseProvider {
 
-    stringValues: String[] = [
-        "Amy is always full ", " energy."
-    ]
-    stringValues1: String[] = [
-        " Australia they have kangoroo"
-    ]
-    singleChoice: SingleChoiceAnswerable[] = [
+
+    singleChoice: Assignable[] = [
+        {
+            index: 1,
+            type: "string",
+            value: "The act"
+        } as StringConstant,
         {
             index: 0,
             type: "singleChoice",
             choices: ["of", "on"]
-        }
+        } as SingleChoiceAnswerable,
+        {
+            index: 2,
+            type: "string",
+            value: "test"
+        } as StringConstant,
     ]
-    singleChoice1: SingleChoiceAnswerable[] = [
+    singleChoice1: Assignable[] = [
         {
             index: 0,
             type: "singleChoice",
             choices: ["In", "On"]
-        }
+        } as SingleChoiceAnswerable,
+        {
+            index: 1,
+            type: "string",
+            value: "Australia we have kangaroos."
+        } as StringConstant,
     ]
 
     answers: SingleChoiceAnswer[] = [
         {
             type: "singleChoice",
-            responseIndex: 0
+            responseIndex: 1
         }
     ]
 
-    
+
 
     singleChoiceSentence: SingleChoiceSentence = {
         number: 0,
         status: 0,
         begin: 0,
-        refs: [
-            this.stringValues,
-            this.singleChoice
-        ],
+        refs: this.singleChoice,
         answers: this.answers,
     }
     singleChoiceSentence1: SingleChoiceSentence = {
         number: 1,
         status: 1,
         begin: 1,
-        refs: [
-            this.stringValues1,
-            this.singleChoice1
-        ],
+        refs: this.singleChoice1,
         answers: this.answers,
     }
 
 
-    a:ExerciseSingleChoice = {
+    a: ExerciseSingleChoice = {
         title: "Put in the correct preposition",
         id: 90987890,
         selected: 0,
         sentences: [
-            this.singleChoiceSentence,this.singleChoiceSentence1
+            this.singleChoiceSentence, this.singleChoiceSentence1
         ]
     };
     public getExercise(): ExerciseSingleChoice {

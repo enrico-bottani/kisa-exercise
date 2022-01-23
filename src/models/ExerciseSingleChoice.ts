@@ -8,23 +8,21 @@ export interface SingleChoiceSentence {
     number: number;
     begin: number,
     status: number,// 0 = not submitted, 1 = correct, 2 wrong
-    refs: [
-        String[],
-        Answerable[]
-    ];
+    refs: Assignable[];
     answers: Answer[]
 }
 
-export interface RefCoord{
-    array: number;
+export interface Assignable{
     index: number;
-}
-
-export interface Answerable {
-    index: number,
     type: string;
 }
-export interface SingleChoiceAnswerable extends Answerable{
+
+export interface StringConstant extends Assignable{
+    value: string;
+}
+
+
+export interface SingleChoiceAnswerable extends Assignable{
     choices: String[]
 }
 

@@ -1,4 +1,4 @@
-import { SingleChoiceSentence } from '../models/ExerciseSingleChoice';
+import { SingleChoiceAnswer, SingleChoiceAnswerable, SingleChoiceSentence, StringConstant } from '../models/ExerciseSingleChoice';
 import styles from './ExerciseSentence.module.css'
 
 interface Props {
@@ -8,10 +8,27 @@ interface Props {
 function ExerciseSentence(props: Props) {
   let sCS = props.singleChoiceSentence;
   let begin: number = sCS.begin;
-  let totLen = sCS.refs[0].length + sCS.refs[1].length;
-  for (let i = 0; i < totLen; i++) {
-    console.log(sCS.refs[(i + begin) % 2][Math.floor(i / 2)])
-  }
+  console.log(sCS.refs);
+  const children = sCS.refs.map((val) => {
+    switch (val.type) {
+      case 'string':
+        return <p>{(val as StringConstant).value}</p>
+      case 'singleChoice':
+        let singleChoices = val as SingleChoiceAnswerable;
+        console.log(singleChoices)
+        return (<div className="row gx-0">
+          {singleChoices.choices.map((choice, i)=>{
+            let id = "SingleChoiceRatio"+i;
+            return(
+            <div className='col-auto'>
+              <input type="radio" className="btn-check" name="btnradio" id={id} autoComplete="off" />
+              <label className={"btn btn-outline-warning mb-2 me-2 " + styles.Choice} htmlFor={id}>{choice}</label>
+            </div>)
+          })}
+
+      </div>)
+    }
+  });
 
   return (<div>
     <div className="row mb-3">
@@ -24,24 +41,7 @@ function ExerciseSentence(props: Props) {
               </div>
             </div>
             <div className='col pt-2 ps-3 pe-4'>
-              <p>Amy is always full&nbsp;</p>
-              <div className="row gx-0">
-
-                <div className='col-auto'>
-                  <input type="radio" className="btn-check " name="btnradio" id="btnradio1" autoComplete="off" />
-                  <label className={"btn btn-outline-warning mb-2 me-2 " + styles.Choice} htmlFor="btnradio1">of</label>
-                </div>
-                <div className='col-auto'>
-                  <input type="radio" className="btn-check " name="btnradio" id="btnradio2" autoComplete="off" />
-                  <label className={"btn btn-outline-warning mb-2 me-2 " + styles.Choice} htmlFor="btnradio2">on</label>
-                </div>
-                <div className='col-auto'>
-                  <input type="radio" className="btn-check " name="btnradio" id="btnradio3" autoComplete="off" />
-                  <label className={"btn btn-outline-warning mb-2 me-2 " + styles.Choice} htmlFor="btnradio3">at</label>
-                </div>
-
-              </div>
-              <p>energy</p>
+              {children}
             </div>
           </div>
         </div>
