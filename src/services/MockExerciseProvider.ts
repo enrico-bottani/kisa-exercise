@@ -36,25 +36,30 @@ class DummyExerciseProvider {
     answers: SingleChoiceAnswer[] = [
         {
             type: "singleChoice",
-            responseIndex: 1
+            answerIndex: 1,
+            status: -1
         }
     ]
 
-
+    answers1: SingleChoiceAnswer[] = [
+        {
+            type: "singleChoice",
+            answerIndex: 0,
+            status: -1
+        }
+    ]
 
     singleChoiceSentence: SingleChoiceSentence = {
         number: 0,
-        status: 0,
         begin: 0,
         refs: this.singleChoice,
         answers: this.answers,
     }
     singleChoiceSentence1: SingleChoiceSentence = {
         number: 1,
-        status: 1,
         begin: 1,
         refs: this.singleChoice1,
-        answers: this.answers,
+        answers: this.answers1,
     }
 
 

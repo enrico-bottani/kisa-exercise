@@ -24,22 +24,26 @@ function ExerciseNumerator(props: Props) {
     let sign = <div></div>;
     let selected = ""
     if (props.excerciseNumber === sentence.number) {
-      btnClass += styles.Selected+" ";
+      btnClass += styles.Selected + " ";
     }
-
-    switch (sentence.status) {
-      case 0: 
-        if((props.excerciseNumber === sentence.number)) btnClass += "btn-outline-primary "
-        else btnClass += "btn-outline-secondary "; 
+    let nOfErrors = 0;
+    for (let i = 0; i < sentence.answers.length; i++) {
+      console.log("answer "+i+":"+sentence.answers[i].status)
+      if(sentence.answers[i].status<0){
+        nOfErrors = -1;
         break;
-      case 1: {
-        btnClass += "btn-outline-success ";
-        sign = <i className="bi bi-check-lg"></i>; break;
       }
-      case 2: {
-        btnClass += "btn-outline-danger ";
-        sign = <i className="bi bi-x"></i>; break;
-      }
+      nOfErrors += sentence.answers[i].status;
+    }
+    if (nOfErrors > 0) {
+      btnClass += "btn-outline-danger ";
+      sign = <i className="bi bi-x"></i>;
+    } else if (nOfErrors == -1) {
+      if ((props.excerciseNumber === sentence.number)) btnClass += "btn-outline-primary "
+      else btnClass += "btn-outline-secondary ";
+    } else if (nOfErrors == 0) {
+      btnClass += "btn-outline-success ";
+      sign = <i className="bi bi-check-lg"></i>;
     }
     return (
       <div className={"col-auto " + styles['Step-btn']} key={sentence.number}>

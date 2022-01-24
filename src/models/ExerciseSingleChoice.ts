@@ -7,7 +7,6 @@ export interface ExerciseSingleChoice {
 export interface SingleChoiceSentence {
     number: number;
     begin: number,
-    status: number,// 0 = not submitted, 1 = correct, 2 wrong
     refs: Assignable[];
     answers: Answer[]
 }
@@ -28,8 +27,8 @@ export interface SingleChoiceAnswerable extends Assignable{
 
 export interface Answer {
     type: string;
+    status: number; // 0 = not submitted, 1 = correct, 2 wrong
 }
-export interface SingleChoiceAnswer {
-    type: string;
-    responseIndex: number;
+export interface SingleChoiceAnswer extends Answer {
+    answerIndex: number;
 }
