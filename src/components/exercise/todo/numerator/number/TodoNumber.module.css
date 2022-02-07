@@ -1,0 +1,67 @@
+.TodoNumberButton{
+    width: calc(100%/28);
+    margin-bottom: 0.2rem;
+  }
+  
+  @media (max-width: 1400px) {
+    .TodoNumberButton{
+      width: calc(100%/24);
+    }}
+  @media (max-width: 1200px) {
+    .TodoNumberButton{
+      width: calc(100%/20);
+    }
+  }
+  @media (max-width: 991px) {
+    .TodoNumberButton{
+      width: calc(100%/15);
+    }
+  }
+  @media (max-width: 960px) {
+    .TodoNumberButton{
+      width: calc(100%/15);
+    }
+  }
+  @media (max-width: 768px) {
+    .TodoNumberButton{
+      width: calc(100%/12);
+    }
+  }
+  
+  @media (max-width: 540px) {
+    .TodoNumberButton{
+     width: calc(100%/10);
+    }
+  }
+  @media (max-width: 460px) {
+    .TodoNumberButton{
+     width: calc(100%/8);
+    }
+  }
+  @media (max-width: 380px) {
+    .TodoNumberButton{
+     width: calc(100%/7);
+    }
+  }
+  .TodoNumberButton .Ratio_1_1{
+    width: 100%;
+    padding-bottom: 90%;
+    position: relative;
+  }
+  .TodoNumberButton .Ratio_1_1 button{
+    position: absolute;
+    border-width: 0px 0px 4px 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .TodoNumberButton .Ratio_1_1 .Selected{
+    border-width: 1px 1px 4px 1px;
+  }
+  .TodoNumberButton .Ratio_1_1 .Current{
+    background-color: #002e70;
+    border: 1px solid #002e70;
+    color: white;
+  }

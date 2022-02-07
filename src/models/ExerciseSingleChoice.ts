@@ -6,8 +6,8 @@ export interface ExerciseSingleChoice {
 }
 export interface SingleChoiceSentence {
     number: number;
-    begin: number,
-    refs: Assignable[];
+    strings: StringConstant[];
+    answerables: SingleChoiceAnswerable[];
     answers: Answer[]
 }
 
