@@ -1,33 +1,39 @@
 
-import { RCAnswerable, RCSentence, StringConstant } from '../../../../models/ExerciseSingleChoice';
-import RadioAnswerableElement from '../assignable/RadioAnswerableElement';
+import { RCAnswerable, RCSentenceDTO, StringConstantDTO } from '../../../../dtos/DTOs';
+import ExerciseType from '../../../../models/ExerciseType';
+import RCOptions from '../assignable/RCOptions/RCOptions';
 import StringElement from '../assignable/StringElement';
 import styles from './RadioSentenceEditor.module.css'
 import RCChoicesEditor from './RCChoicesEditor';
 
 interface Props {
-    singleChoiceSentence: RCSentence;
-    onSingleChoiceAnswerableChange: (singleChoiceSentence: RCSentence, save: boolean) => boolean;
+    singleChoiceSentence: RCSentenceDTO;
+    onSingleChoiceAnswerableChange: (singleChoiceSentence: RCSentenceDTO, save: boolean) => boolean;
 }
 
-function RadioSentenceEditor(props: Props) {
+function RCEditor(props: Props) {
     var singleChoiceSentence = props.singleChoiceSentence;
 
     let children = (
         singleChoiceSentence.assignables.map(a => {
             switch (a.type) {
-                case "String":
+                case ExerciseType.String:
                     return (
-                        <StringElement stringConstant={(a as StringConstant)} editMode={1} ></StringElement>
+                        <StringElement
+                            stringConstant={(a as StringConstantDTO)}
+                            editMode={1} ></StringElement>
                     );
-                case "SingleChoiceAnswerable":
+                case ExerciseType.RCAnswerable:
                     return (
-                        <RadioAnswerableElement singleChoiceAnswerable={(a as RCAnswerable)} editMode={1}></RadioAnswerableElement>
+                        <RCOptions
+                            singleChoiceAnswerable={(a as RCAnswerable)}
+                            editMode={1}></RCOptions>
                     );
+                default: return <></>
             }
         })
     )
-    let a = props.onSingleChoiceAnswerableChange(singleChoiceSentence, false);
+    props.onSingleChoiceAnswerableChange(singleChoiceSentence, false);
     return (
         <div className={styles.EditorFrame}>
 
@@ -68,4 +74,4 @@ function RadioSentenceEditor(props: Props) {
             </div>
         </div>)
 }
-export default RadioSentenceEditor;
+export default RCEditor;

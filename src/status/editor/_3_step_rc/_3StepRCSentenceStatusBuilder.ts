@@ -1,6 +1,5 @@
 import RCSentenceModel from "../../../models/editor/RCSentence";
-import { AnswerIndexer, AnswerSheet, Assignable, RCAnswerable, StringConstant } from "../../../models/ExerciseSingleChoice";
-
+import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerable, StringConstantDTO } from "../../../dtos/DTOs";
 class StatusBuilderException {
     message: string;
     constructor(message: string) {
@@ -12,7 +11,7 @@ class _3StepRCSentenceStatusBuilder {
     bodyParseError = -1;
     step: number = 0;
     indexer: AnswerIndexer[] = [];
-    assigns: Assignable[] = [];
+    assigns: AssignableDTO[] = [];
     answerSheet: AnswerSheet[] = [];
     getStep(): number {
         return this.step;
@@ -43,7 +42,7 @@ class _3StepRCSentenceStatusBuilder {
         // Popolo assigns e answer. Attenzione che assigns non è completo. Verrà riservato il posto per
         // Scrivere le domande, ma queste verranno poi effettivamente scritte nello stato 2
         for (let i = 0; i < words.length; i++) {
-            let str: StringConstant = { type: "String", value: words[i] }
+            let str: StringConstantDTO = { type: "String", value: words[i] }
             if (skipFirstString) {
                 skipFirstString = false;
             }

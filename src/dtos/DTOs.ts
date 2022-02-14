@@ -1,27 +1,27 @@
-export interface RCExercise {
+export interface RCExerciseDTO {
     id: number;
     title: string;
     selected: number;
-    sentences: RCSentence[];
+    sentences: RCSentenceDTO[];
 }
-export interface RCSentence {
+export interface RCSentenceDTO {
     number: number;
-    assignables: Assignable[];
+    assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
     answerSheet: AnswerSheet[];
 }
 
 // ASSIGNABLES
-export interface Assignable {
+export interface AssignableDTO {
     type: string;
 }
 
-export interface StringConstant extends Assignable {
+export interface StringConstantDTO extends AssignableDTO {
     value: string;
 }
 
 
-export interface RCAnswerable extends Assignable {
+export interface RCAnswerable extends AssignableDTO {
     choices: string[]
 }
 

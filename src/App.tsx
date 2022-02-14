@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ExerciseElement from './components/exercise/ExerciseElement';
+import RCExerciseEditor from './components/exercise/RCExerciseEditor';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ExerciseElement></ExerciseElement>
+        <RCExerciseEditor></RCExerciseEditor>
       </header>
 
     </div>

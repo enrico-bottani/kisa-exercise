@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Assignable } from '../../../models/ExerciseSingleChoice';
+import { AssignableDTO } from '../../../dtos/DTOs';
 import _3StepRCSentenceStatusBuilder from './_3StepRCSentenceStatusBuilder';
 
 test('renders learn react link', () => {

@@ -1,41 +1,42 @@
-import { RCExercise, RCSentence, RCAnswerable, Assignable, StringConstant, AnswerSheet, AnswerIndexer, RCAnswerIndexer } from "../models/ExerciseSingleChoice";
+import { RCExerciseDTO, RCSentenceDTO, RCAnswerable, AssignableDTO, StringConstantDTO, RCAnswerIndexer } from "../dtos/DTOs";
+import ExerciseType from "../models/ExerciseType";
 
 class DummyExerciseProvider {
 
-    strings0: Assignable[] = [
+    strings0: AssignableDTO[] = [
         {
             id: 1,
-            type: "String",
+            type: ExerciseType.String,
             value: "We are "
-        } as StringConstant,
+        } as StringConstantDTO,
         {
             id: 0,
-            type: "SingleChoiceAnswerable",
+            type: ExerciseType.RCAnswerable,
             choices: ["in", "a"]
         } as RCAnswerable,
         {
             id: 2,
-            type: "String",
+            type: ExerciseType.String,
             value: " world"
-        } as StringConstant,
+        } as StringConstantDTO,
     ]
 
-    strings1: Assignable[] = [
+    strings1: AssignableDTO[] = [
         {
             id: 1,
-            type: "String",
+            type: ExerciseType.String,
             value: "We are "
-        } as StringConstant,
+        } as StringConstantDTO,
         {
             id: 0,
-            type: "SingleChoiceAnswerable",
+            type: ExerciseType.RCAnswerable,
             choices: ["the", "a"]
         } as RCAnswerable,
         {
             id: 2,
-            type: "String",
+            type: ExerciseType.String,
             value: " world"
-        } as StringConstant,
+        } as StringConstantDTO,
     ]
     answers: RCAnswerIndexer[] = [
         {
@@ -51,19 +52,19 @@ class DummyExerciseProvider {
         }
     ]
 
-    singleChoiceSentence0: RCSentence = {
+    singleChoiceSentence0: RCSentenceDTO = {
         number: 0,
         assignables: this.strings0,
         answerMap: this.answers,
         answerSheet: []
     }
-    singleChoiceSentence1: RCSentence = {
+    singleChoiceSentence1: RCSentenceDTO = {
         number: 1,
         assignables: this.strings1,
         answerMap: this.answers1,
         answerSheet: []
     }
-    a: RCExercise = {
+    a: RCExerciseDTO = {
         title: "Put in the correct preposition",
         id: 90987890,
         selected: 0,
@@ -71,7 +72,7 @@ class DummyExerciseProvider {
             this.singleChoiceSentence0, this.singleChoiceSentence1
         ]
     };
-    public getExercise(): RCExercise {
+    public getExercise(): RCExerciseDTO {
         return this.a;
     }
 }
