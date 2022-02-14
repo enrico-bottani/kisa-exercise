@@ -11,7 +11,7 @@ function Navigation() {
             <button type="button" className="btn btn-light rounded-0"><i className="bi bi-arrow-left-circle"></i></button>
         </div>
         <div className="col-auto">
-            <button type="button" className="btn btn-primary rounded-0">Check this</button>
+            <button type="button" className="btn btn-primary rounded-0">Check this | Rearrange</button>
         </div>
         <div className="col-auto">
             <button type="button" className="btn btn-light rounded-0"><i className="bi bi-arrow-right-circle"></i></button>

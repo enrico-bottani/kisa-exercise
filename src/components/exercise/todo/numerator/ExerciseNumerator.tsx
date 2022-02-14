@@ -1,10 +1,10 @@
 
 import styles from './ExerciseNumerator.module.css';
-import { ExerciseSingleChoice } from '../../../../models/ExerciseSingleChoice'
+import { RCExercise } from '../../../../models/ExerciseSingleChoice'
 import ExerciseSingleChoiceSolution from '../../../../models/ExerciseSolutionsGrind'
 import TodoNumber from './number/TodoNumber'
 interface Props {
-  excercise: ExerciseSingleChoice;
+  excercise: RCExercise;
   excerciseNumber: number;
   onSetExercise: any;
 }
