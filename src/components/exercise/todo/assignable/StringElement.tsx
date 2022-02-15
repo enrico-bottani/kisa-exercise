@@ -1,5 +1,4 @@
 import { StringConstantDTO } from "../../../../dtos/DTOs";
-import styles from './Assignables.module.css'
 interface Props {
     stringConstant: StringConstantDTO;
     editMode: number;
@@ -7,7 +6,7 @@ interface Props {
 function StringElement(props: Props) {
     let field;
     if (props.editMode === 1) {
-        field = <div className={'row ' + styles.RowBorder}>
+        field = <div className={'row'}>
             <div className="col d-flex align-items-center">
                 <p className="w-100 mt-1 mb-1">{props.stringConstant.value}</p>
             </div>

@@ -14,7 +14,7 @@ function RCOptions(props: Props) {
                 <RCOptionButton id={id} choice={choice} editMode={1}></RCOptionButton>
             </div>)
     }))
-    return (<div className={'row ' + styles.RowBorder}>
+    return (<div className={'row'}>
         <div className="col">
             <div className="row gx-1">
                 {child}

@@ -2,7 +2,7 @@ import { RCAnswerable, RCSentenceDTO, StringConstantDTO } from '../../../dtos/DT
 
 import StringElement from './assignable/StringElement';
 import styles from './SingleChoiceSentenceElement.module.css'
-import RCEditor from './radioSentence/RCSentenceEditor';
+import RCSentenceEditor from './editor/rc_editor/RCSentenceEditor';
 
 interface Props {
   singleChoiceSentence: RCSentenceDTO;

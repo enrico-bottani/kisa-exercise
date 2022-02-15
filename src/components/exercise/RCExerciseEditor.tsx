@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import DummyExerciseProvider from '../../services/MockExerciseProvider';
 import { RCExerciseDTO, RCSentenceDTO } from '../../dtos/DTOs';
 import Navigation from './nav/Navigation';
-import RCEditor from './todo/radioSentence/RCSentenceEditor';
+import RCSentenceEditor from './todo/editor/rc_editor/RCSentenceEditor';
 import ExerciseHeading from './heading/ExerciseHeading';
 
 
@@ -33,9 +33,9 @@ function Exercise() {
             </div>
             <div className="row mb-3">
                 <div className="col">
-                    <RCEditor
+                    <RCSentenceEditor
                         onSingleChoiceAnswerableChange={onSingleChoice}
-                        singleChoiceSentence={excercise.sentences[excerciseNumber]}></RCEditor>
+                        rcSentenceDTO={excercise.sentences[excerciseNumber]}></RCSentenceEditor>
                 </div>
             </div>
             <Navigation></Navigation>
