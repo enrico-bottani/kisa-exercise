@@ -24,6 +24,6 @@ function TodosPagination(props: Props) {
       onSetSelected={props.onSetExercise}></TodoPage>)
   });
 
-  return (<>{listItems}{add}</>)
+  return (<>{listItems} <div className="col-12">{add}</div></>)
 }
 export default TodosPagination;

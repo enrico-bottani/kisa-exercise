@@ -1,4 +1,4 @@
-
+import styles from './TodoNewSentenceButton.module.css';
 import { NewDraftAble } from '../../../../../models/editor/EditorExerciseControls';
 interface Props {
     text: string;
@@ -12,6 +12,6 @@ function TodoNewSentenceButton({ newDraft, text }: Props) {
             newDraft.newDraft();
     }
 
-    return (<button onClick={addNew}>{text}</button>)
+    return (<button className={'btn btn-outline-secondary border-4 rounded-0 w-100 ' + styles.AddNewButton} onClick={addNew}>{text}</button>)
 }
 export default TodoNewSentenceButton;
