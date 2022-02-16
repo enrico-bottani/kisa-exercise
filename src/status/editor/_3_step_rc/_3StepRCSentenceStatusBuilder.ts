@@ -1,4 +1,4 @@
-import RCSentenceModel from "../../../models/editor/RCSentence";
+import SubmittableRCSentenceDTO from "../../../models/editor/RCSentence";
 import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../../dtos/DTOs";
 class StatusBuilderException {
     message: string;
@@ -18,7 +18,7 @@ class _3StepRCSentenceStatusBuilder {
     }
 
     build() {
-        return RCSentenceModel.builder()
+        return SubmittableRCSentenceDTO.builder()
             .setAnswerMap(this.indexer)
             .setAssignables(this.assigns)
             .setAnswerSheet(this.answerSheet).build();

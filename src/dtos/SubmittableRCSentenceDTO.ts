@@ -28,13 +28,13 @@ class RCSentenceModelBuilder implements RCSentenceDTO {
         return this;
     }
 
-    build(): RCSentenceModel {
-        return new RCSentenceModel(this.number, this.assignables, this.answerMap, this.answerSheet);
+    build(): SubmittableRCSentenceDTO {
+        return new SubmittableRCSentenceDTO(this.number, this.assignables, this.answerMap, this.answerSheet);
     }
 }
 
 
-class RCSentenceModel implements RCSentenceDTO {
+class SubmittableRCSentenceDTO implements RCSentenceDTO {
 
     number: number;
 
@@ -73,4 +73,4 @@ class RCSentenceModel implements RCSentenceDTO {
         this.answerSheet = answerSheet;
     }
 }
-export default RCSentenceModel;
+export default SubmittableRCSentenceDTO;
