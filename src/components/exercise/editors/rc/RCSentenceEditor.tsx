@@ -3,7 +3,7 @@ import styles from './RCSentenceEditor.module.css'
 import { RCSentenceDTO } from '../../../../dtos/DTOs';
 import EditorStep from '../utils/EditorStep';
 import RCGapsEditor from './gaps/RCGapsEditor';
-import RCEditorPreviewWrapper from '../../todo/preview/RCEditorPreviewWrapper';
+import RCEditorPreviewWrapper from '../../common/todo/preview/RCEditorPreviewWrapper';
 
 interface Props {
     rcSentenceDTO: RCSentenceDTO;

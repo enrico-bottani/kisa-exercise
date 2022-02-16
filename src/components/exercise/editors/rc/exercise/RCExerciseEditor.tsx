@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
+import { NewDraftAble, NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
 import ExerciseHeading from "../../../common/heading/ExerciseHeading";
 import Navigation from "../../../common/nav/Navigation";
@@ -11,11 +12,19 @@ function Exercise() {
     var e = new DummyExerciseProvider().getExercise();
     const [excercise] = useState<RCExerciseDTO>(e);
     const [excerciseNumber, setExcerciseNumber] = useState<number>(e.selected);
+
     let onSingleChoice = function (s: RCSentenceDTO): boolean {
         return true;
     }
     useEffect(() => {
     }, [excerciseNumber]);
+
+    let f = function (): NewDraftResponse {
+        return { message: "ok", success: true };
+    }
+    let newDraft: NewDraftAble = {
+        newDraft: f
+    }
     return (<div>
         <div className="container">
             <div className="row">
@@ -25,7 +34,9 @@ function Exercise() {
             </div>
             <div>
                 <div className={"row mb-3 gx-1 align-baseline"}>
-                    <TodosPagination excercise={excercise}
+                    <TodosPagination
+                        newDraft={newDraft}
+                        excercise={excercise}
                         excerciseNumber={excerciseNumber}
                         onSetExercise={setExcerciseNumber}></TodosPagination>
                 </div>
