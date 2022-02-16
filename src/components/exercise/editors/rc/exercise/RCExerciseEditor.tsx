@@ -10,18 +10,24 @@ import styles from "./RCExerciseEditor.module.css"
 
 function Exercise() {
     var e = new DummyExerciseProvider().getExercise();
-    const [excercise] = useState<RCExerciseDTO>(e);
+    const [excercise, setExercise] = useState<RCExerciseDTO>(e);
     const [excerciseNumber, setExcerciseNumber] = useState<number>(e.selected);
 
     let onSingleChoice = function (s: RCSentenceDTO): boolean {
         return true;
     }
-    useEffect(() => {
-    }, [excerciseNumber]);
-
     let f = function (): NewDraftResponse {
+        console.log("Something here...")
+        let number = e.sentences[e.sentences.length - 1].number + 1;
+        setExcerciseNumber(number);
+        e.sentences.push({ number: number, assignables: [], answerMap: [], answerSheet: [] });
+        setExercise(e)
         return { message: "ok", success: true };
     }
+    useEffect(() => {
+    }, [excerciseNumber, excercise]);
+
+
     let newDraft: NewDraftAble = {
         newDraft: f
     }

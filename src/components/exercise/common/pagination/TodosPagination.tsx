@@ -3,6 +3,7 @@ import { RCExerciseDTO } from '../../../../dtos/DTOs';
 import { NewDraftAble } from '../../../../models/editor/EditorExerciseControls';
 import TodoNewSentenceButton from './editor/TodoNewSentenceButton';
 import TodoPage from './number/TodoPage'
+import TodoPageGenericButton from './number/TodoPageGenericButton';
 interface Props {
   excercise: RCExerciseDTO;
   excerciseNumber: number;
@@ -23,7 +24,8 @@ function TodosPagination(props: Props) {
       errorsNumber={-1}
       onSetSelected={props.onSetExercise}></TodoPage>)
   });
+  listItems.push(<TodoPageGenericButton<void> onClick={props.newDraft?.newDraft} label={'+'} btnClass={''} param={undefined} sign={undefined} id={''}></TodoPageGenericButton>)
 
-  return (<>{listItems} <div className="col-12">{add}</div></>)
+  return (<>{listItems}</>)
 }
 export default TodosPagination;
