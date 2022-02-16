@@ -1,5 +1,5 @@
 import RCSentenceModel from "../../../models/editor/RCSentence";
-import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerable, StringConstantDTO } from "../../../dtos/DTOs";
+import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../../dtos/DTOs";
 class StatusBuilderException {
     message: string;
     constructor(message: string) {
@@ -50,7 +50,7 @@ class _3StepRCSentenceStatusBuilder {
                 this.assigns.push(str)
             }
             if (i + 1 < words.length) {
-                let str: RCAnswerable = { type: "SingleChoiceAnswerable", choices: [] }
+                let str: RCAnswerableDTO = { type: "SingleChoiceAnswerable", choices: [] }
                 this.assigns.push(str)
                 this.indexer.push({ index: this.assigns.length - 1 } as AnswerIndexer)
             }
@@ -74,7 +74,7 @@ class _3StepRCSentenceStatusBuilder {
                 this.step = -2;
                 throw new StatusBuilderException(`Invalid number of choices. At least 2 options must be present`);
             }
-            (this.assigns[i] as RCAnswerable).choices = choices;
+            (this.assigns[i] as RCAnswerableDTO).choices = choices;
         })
 
 

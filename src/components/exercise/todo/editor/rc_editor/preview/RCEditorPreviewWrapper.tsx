@@ -1,4 +1,4 @@
-import { RCAnswerable, RCSentenceDTO, StringConstantDTO } from "../../../../../../dtos/DTOs";
+import { RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../../../../../dtos/DTOs";
 import ExerciseType from "../../../../../../models/ExerciseType";
 import RCOptions from "../../../assignable/RCOptions/RCOptions";
 import StringElement from "../../../assignable/StringElement";
@@ -24,7 +24,7 @@ function RCEditorPreviewWrapper(props: Props) {
                 case ExerciseType.RCAnswerable:
                     return (
                         <RCOptions
-                            singleChoiceAnswerable={(a as RCAnswerable)}
+                            singleChoiceAnswerable={(a as RCAnswerableDTO)}
                             editMode={1}></RCOptions>
                     );
                 default: return <></>

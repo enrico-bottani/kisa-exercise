@@ -1,9 +1,9 @@
-import { RCAnswerable } from "../../../../../dtos/DTOs";
+import { RCAnswerableDTO } from "../../../../../dtos/DTOs";
 import RCOptionButton from "./RCOptionButton";
 import styles from '../Assignables.module.css'
 import ExerciseType from "../../../../../models/ExerciseType";
 interface Props {
-    singleChoiceAnswerable: RCAnswerable;
+    singleChoiceAnswerable: RCAnswerableDTO;
     editMode: number;
 }
 function RCOptions(props: Props) {

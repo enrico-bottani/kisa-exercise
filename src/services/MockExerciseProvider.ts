@@ -1,4 +1,4 @@
-import { RCExerciseDTO, RCSentenceDTO, RCAnswerable, AssignableDTO, StringConstantDTO, RCAnswerIndexer } from "../dtos/DTOs";
+import { RCExerciseDTO, RCSentenceDTO, RCAnswerableDTO, AssignableDTO, StringConstantDTO, AnswerIndexer } from "../dtos/DTOs";
 import ExerciseType from "../models/ExerciseType";
 
 class DummyExerciseProvider {
@@ -13,7 +13,7 @@ class DummyExerciseProvider {
             id: 0,
             type: ExerciseType.RCAnswerable,
             choices: ["in", "a"]
-        } as RCAnswerable,
+        } as RCAnswerableDTO,
         {
             id: 2,
             type: ExerciseType.String,
@@ -31,24 +31,22 @@ class DummyExerciseProvider {
             id: 0,
             type: ExerciseType.RCAnswerable,
             choices: ["the", "a"]
-        } as RCAnswerable,
+        } as RCAnswerableDTO,
         {
             id: 2,
             type: ExerciseType.String,
             value: " world"
         } as StringConstantDTO,
     ]
-    answers: RCAnswerIndexer[] = [
+    answers: AnswerIndexer[] = [
         {
-            answerIndex: 1,
-            index: 0
+            index: 1,
         }
     ]
 
-    answers1: RCAnswerIndexer[] = [
+    answers1: AnswerIndexer[] = [
         {
-            answerIndex: 1,
-            index: 0
+            index: 1,
         }
     ]
 

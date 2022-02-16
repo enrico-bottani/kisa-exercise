@@ -1,4 +1,4 @@
-import { AnswerIndexer, AnswerSheet, AssignableDTO, RCExerciseDTO, RCAnswerable, RCSentenceDTO } from "../../dtos/DTOs";
+import { AnswerIndexer, AnswerSheet, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "../../dtos/DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
     number: number = 0;
@@ -62,8 +62,8 @@ class RCSentenceModel implements RCSentenceDTO {
         return this.answerMap.length;
     }
 
-    getAnswerableAt(i: number): RCAnswerable {
-        return this.assignables[this.answerMap[i].index] as RCAnswerable;
+    getAnswerableAt(i: number): RCAnswerableDTO {
+        return this.assignables[this.answerMap[i].index] as RCAnswerableDTO;
     }
 
     constructor(number: number, assignables: AssignableDTO[], answers: AnswerIndexer[], answerSheet: AnswerSheet[]) {

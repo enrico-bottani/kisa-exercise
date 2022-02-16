@@ -21,17 +21,12 @@ export interface StringConstantDTO extends AssignableDTO {
 }
 
 
-export interface RCAnswerable extends AssignableDTO {
+export interface RCAnswerableDTO extends AssignableDTO {
     choices: string[]
 }
 
-
-
 export interface AnswerIndexer {
     index: number;
-}
-export interface RCAnswerIndexer extends AnswerIndexer {
-    answerIndex: number;
 }
 
 export interface AnswerSheet {
