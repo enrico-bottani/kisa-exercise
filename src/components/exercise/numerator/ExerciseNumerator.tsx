@@ -1,6 +1,6 @@
 
+import { RCExerciseDTO } from '../../../dtos/DTOs';
 import styles from './ExerciseNumerator.module.css';
-import { RCExerciseDTO } from '../../../../dtos/DTOs'
 import TodoNumber from './number/TodoNumber'
 interface Props {
   excercise: RCExerciseDTO;

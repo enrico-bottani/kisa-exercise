@@ -1,11 +1,11 @@
-import ExerciseNumbers from './todo/numerator/ExerciseNumerator';
+import ExerciseNumbers from '../numerator/ExerciseNumerator';
 import styles from './RCExerciseEditor.module.css';
 import { useEffect, useState } from 'react';
-import DummyExerciseProvider from '../../services/MockExerciseProvider';
-import { RCExerciseDTO, RCSentenceDTO } from '../../dtos/DTOs';
-import Navigation from './nav/Navigation';
+import DummyExerciseProvider from '../../../services/MockExerciseProvider';
+import { RCExerciseDTO, RCSentenceDTO } from '../../../dtos/DTOs';
+import Navigation from '../nav/Navigation';
 import RCSentenceEditor from './todo/editor/rc_editor/RCSentenceEditor';
-import ExerciseHeading from './heading/ExerciseHeading';
+import ExerciseHeading from '../heading/ExerciseHeading';
 
 
 function Exercise() {
@@ -21,7 +21,7 @@ function Exercise() {
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <ExerciseHeading></ExerciseHeading>
+                    <ExerciseHeading>Put in the correct preposition</ExerciseHeading>
                 </div>
             </div>
             <div>

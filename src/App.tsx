@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import RCExerciseEditor from './components/exercise/RCExerciseEditor';
+import RCExerciseEditor from './components/exercise/editor/RCExerciseEditor';
 
 function App() {
   return (

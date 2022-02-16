@@ -1,4 +1,4 @@
-import { StringConstantDTO } from "../../../../dtos/DTOs";
+import { StringConstantDTO } from "../../../../../dtos/DTOs";
 interface Props {
     stringConstant: StringConstantDTO;
     editMode: number;

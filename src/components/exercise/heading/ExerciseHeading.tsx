@@ -1,5 +1,9 @@
-function ExerciseHeading() {
+interface Props {
+    children: any;
+}
 
-    return (<h1 className='mb-3'>Put in the correct preposition</h1>)
+function ExerciseHeading({ children }: Props) {
+
+    return (<h1 className='mb-3'>{children}</h1>)
 }
 export default ExerciseHeading;

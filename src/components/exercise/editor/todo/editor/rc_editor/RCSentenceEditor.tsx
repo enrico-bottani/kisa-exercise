@@ -1,13 +1,9 @@
 
-import { RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from '../../../../../dtos/DTOs';
-import ExerciseType from '../../../../../models/ExerciseType';
-import RCOptions from '../../assignable/RCOptions/RCOptions';
-import StringElement from '../../assignable/StringElement';
 import styles from './RCSentenceEditor.module.css'
-import RCChoicesEditor from './RCChoicesEditor';
 import EditorStep from '../utils/EditorStep';
 import RCEditorPreviewWrapper from './preview/RCEditorPreviewWrapper';
 import RCGapsEditor from './gaps_editor/RCGapsEditor';
+import { RCSentenceDTO } from '../../../../../../dtos/DTOs';
 
 interface Props {
     rcSentenceDTO: RCSentenceDTO;
