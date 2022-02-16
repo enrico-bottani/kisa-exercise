@@ -1,9 +1,9 @@
 
 import styles from './RCSentenceEditor.module.css'
+import { RCSentenceDTO } from '../../../../dtos/DTOs';
 import EditorStep from '../utils/EditorStep';
-import RCEditorPreviewWrapper from './preview/RCEditorPreviewWrapper';
-import RCGapsEditor from './gaps_editor/RCGapsEditor';
-import { RCSentenceDTO } from '../../../../../../dtos/DTOs';
+import RCGapsEditor from './gaps/RCGapsEditor';
+import RCEditorPreviewWrapper from '../../todo/preview/RCEditorPreviewWrapper';
 
 interface Props {
     rcSentenceDTO: RCSentenceDTO;

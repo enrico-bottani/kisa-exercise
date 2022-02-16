@@ -1,8 +1,8 @@
 
-import { RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../../../../../../dtos/DTOs";
-import ExerciseType from "../../../../../../../models/ExerciseType";
-import RCOptions from "../../../assignable/RCOptions/RCOptions";
-import StringElement from "../../../assignable/StringElement";
+import { RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../../../dtos/DTOs";
+import ExerciseType from "../../../../models/ExerciseType";
+import RCOptions from "../assignables/RCOptions/RCOptions";
+import StringElement from "../assignables/StringElement";
 
 import styles from "./RCEditorPreviewWrapper.module.css";
 

@@ -1,12 +1,11 @@
-import ExerciseNumbers from '../numerator/ExerciseNumerator';
-import styles from './RCExerciseEditor.module.css';
-import { useEffect, useState } from 'react';
-import DummyExerciseProvider from '../../../services/MockExerciseProvider';
-import { RCExerciseDTO, RCSentenceDTO } from '../../../dtos/DTOs';
-import Navigation from '../nav/Navigation';
-import RCSentenceEditor from './todo/editor/rc_editor/RCSentenceEditor';
-import ExerciseHeading from '../heading/ExerciseHeading';
-
+import { useEffect, useState } from "react";
+import { RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
+import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
+import ExerciseHeading from "../../../common/heading/ExerciseHeading";
+import Navigation from "../../../common/nav/Navigation";
+import TodosPagination from "../../../common/pagination/TodosPagination";
+import RCSentenceEditor from "../RCSentenceEditor";
+import styles from "./RCExerciseEditor.module.css"
 
 function Exercise() {
     var e = new DummyExerciseProvider().getExercise();
@@ -26,9 +25,9 @@ function Exercise() {
             </div>
             <div>
                 <div className={"row mb-3 gx-1 align-baseline"}>
-                    <ExerciseNumbers excercise={excercise}
+                    <TodosPagination excercise={excercise}
                         excerciseNumber={excerciseNumber}
-                        onSetExercise={setExcerciseNumber}></ExerciseNumbers>
+                        onSetExercise={setExcerciseNumber}></TodosPagination>
                 </div>
             </div>
             <div className="row mb-3">

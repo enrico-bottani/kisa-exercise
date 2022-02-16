@@ -1,7 +1,7 @@
-import { RCAnswerableDTO } from "../../../../../../dtos/DTOs";
-import RCOptionButton from "./RCOptionButton";
+import { RCAnswerableDTO } from "../../../../../dtos/DTOs";
 import styles from '../Assignables.module.css'
-import ExerciseType from "../../../../../../models/ExerciseType";
+import ExerciseType from "../../../../../models/ExerciseType";
+import RCOptionButton from "./rc_option_button/RCOptionButton";
 interface Props {
     singleChoiceAnswerable: RCAnswerableDTO;
     editMode: number;

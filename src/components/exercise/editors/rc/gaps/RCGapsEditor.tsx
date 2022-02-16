@@ -1,4 +1,5 @@
-import RCChoicesEditor from "../RCChoicesEditor";
+import RCChoicesEditor from "../choices/RCChoicesEditor";
+
 
 function RCGapsEditor() {
     return (<ol>

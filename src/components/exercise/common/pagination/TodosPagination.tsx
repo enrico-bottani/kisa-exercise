@@ -1,27 +1,26 @@
 
-import { RCExerciseDTO } from '../../../dtos/DTOs';
-import styles from './ExerciseNumerator.module.css';
-import TodoNumber from './number/TodoNumber'
+import { RCExerciseDTO } from '../../../../dtos/DTOs';
+import TodoPage from './number/TodoPage'
 interface Props {
   excercise: RCExerciseDTO;
   excerciseNumber: number;
   onSetExercise: any;
 }
 
-function ExerciseNumerator(props: Props) {
+function TodosPagination(props: Props) {
   let setSelected = function (n: number) {
     props.onSetExercise(n);
   }
 
   var listItems = props.excercise.sentences.map(function (sentence) {
-    return (<TodoNumber
+    return (<TodoPage
       key={sentence.number}
       representingTodoNumber={sentence.number}
       currentTodoNumber={props.excerciseNumber}
       errorsNumber={-1}
-      onSetSelected={props.onSetExercise}></TodoNumber>)
+      onSetSelected={props.onSetExercise}></TodoPage>)
   });
 
   return (<>{listItems}</>)
 }
-export default ExerciseNumerator;
+export default TodosPagination;

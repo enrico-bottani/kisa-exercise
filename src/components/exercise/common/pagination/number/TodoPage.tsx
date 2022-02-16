@@ -1,5 +1,5 @@
 
-import GenericTodoButton from './GenericTodoButton';
+import GenericTodoButton from './TodoPageGenericButton';
 import styles from './TodoNumber.module.css';
 interface Props {
     representingTodoNumber: number;
@@ -9,17 +9,17 @@ interface Props {
     key: any;
 }
 
-function TodoNumber(props: Props) {
+function TodoPage(props: Props) {
     let btnClass = "btn rounded-0 ";
     let sign = <div></div>;
 
     if (props.errorsNumber > 0) {
         btnClass += "btn-outline-danger ";
         sign = <i className="bi bi-x"></i>;
-    } else if (props.errorsNumber == -1) {
+    } else if (props.errorsNumber === -1) {
         if ((props.representingTodoNumber === props.currentTodoNumber)) btnClass += "btn-outline-primary " + styles.Selected + " "
         else btnClass += "btn-outline-secondary ";
-    } else if (props.errorsNumber == 0) {
+    } else if (props.errorsNumber === 0) {
         btnClass += "btn-outline-success ";
         sign = <i className="bi bi-check-lg"></i>;
     }
@@ -33,4 +33,4 @@ function TodoNumber(props: Props) {
         btnClass={btnClass}
         param={props.representingTodoNumber}></GenericTodoButton>
 }
-export default TodoNumber;
+export default TodoPage;
