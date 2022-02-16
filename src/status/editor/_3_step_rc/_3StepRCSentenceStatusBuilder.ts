@@ -1,4 +1,4 @@
-import SubmittableRCSentenceDTO from "../../../models/editor/RCSentence";
+import SubmittableRCSentenceDTO from "../../../dtos/SubmittableRCSentenceDTO";
 import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../../dtos/DTOs";
 class StatusBuilderException {
     message: string;

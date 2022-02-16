@@ -1,4 +1,4 @@
-import { AnswerIndexer, AnswerSheet, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "../../dtos/DTOs";
+import { AnswerIndexer, AnswerSheet, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
     number: number = 0;
