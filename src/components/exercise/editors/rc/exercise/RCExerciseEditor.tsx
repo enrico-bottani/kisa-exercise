@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
-import { NewDraftAble, NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
+import EditorExerciseControls, { NewDraftAble, NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
+import _3StepRCSentenceStatusBuilder from "../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
 import ExerciseHeading from "../../../common/heading/ExerciseHeading";
 import Navigation from "../../../common/nav/Navigation";
 import TodosPagination from "../../../common/pagination/TodosPagination";
@@ -9,28 +10,45 @@ import RCSentenceEditor from "../RCSentenceEditor";
 import styles from "./RCExerciseEditor.module.css"
 
 function Exercise() {
-    var e = new DummyExerciseProvider().getExercise();
-    const [excercise, setExercise] = useState<RCExerciseDTO>(e);
+
+    const [e, setExercise] = useState<RCExerciseDTO>(new DummyExerciseProvider().getExercise());
     const [excerciseNumber, setExcerciseNumber] = useState<number>(e.selected);
+
+
 
     let onSingleChoice = function (s: RCSentenceDTO): boolean {
         return true;
     }
-    let f = function (): NewDraftResponse {
-        console.log("Something here...")
+    function createNewDraft(): NewDraftResponse {
         let number = e.sentences[e.sentences.length - 1].number + 1;
         setExcerciseNumber(number);
         e.sentences.push({ number: number, assignables: [], answerMap: [], answerSheet: [] });
-        setExercise(e)
+        setExercise(e);
         return { message: "ok", success: true };
     }
-    useEffect(() => {
-    }, [excerciseNumber, excercise]);
 
-
-    let newDraft: NewDraftAble = {
-        newDraft: f
+    function onRCBodyEdit(sentenceId: number, body: string) {
+        setExercise(
+            oldEVal => {
+                var _3StepRCBuilder = new _3StepRCSentenceStatusBuilder();
+                let step = _3StepRCBuilder.parseBody(body).build();
+                oldEVal.sentences[sentenceId] = step;
+                console.log(oldEVal.sentences[sentenceId].assignables[2])
+                oldEVal = JSON.parse(JSON.stringify(oldEVal))
+                return oldEVal;
+            }
+        )
+        // Parse into components
     }
+
+    const [eeControls, setEEControls] = useState<EditorExerciseControls>({
+        newDraft: createNewDraft,
+        onRCBodyEdit: onRCBodyEdit
+    });
+
+    useEffect(() => {
+    })
+
     return (<div>
         <div className="container">
             <div className="row">
@@ -41,8 +59,8 @@ function Exercise() {
             <div>
                 <div className={"row mb-3 gx-1 align-baseline"}>
                     <TodosPagination
-                        newDraft={newDraft}
-                        excercise={excercise}
+                        newDraft={eeControls}
+                        excercise={e}
                         excerciseNumber={excerciseNumber}
                         onSetExercise={setExcerciseNumber}></TodosPagination>
                 </div>
@@ -50,8 +68,9 @@ function Exercise() {
             <div className="row mb-3">
                 <div className="col">
                     <RCSentenceEditor
+                        eeControls={eeControls}
                         onSingleChoiceAnswerableChange={onSingleChoice}
-                        rcSentenceDTO={excercise.sentences[excerciseNumber]}></RCSentenceEditor>
+                        rcSentenceDTO={e.sentences[excerciseNumber]}></RCSentenceEditor>
                 </div>
             </div>
             <Navigation></Navigation>

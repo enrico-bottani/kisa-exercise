@@ -1,5 +1,6 @@
 import SubmittableRCSentenceDTO from "../../../dtos/SubmittableRCSentenceDTO";
-import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../../dtos/DTOs";
+import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../../dtos/DTOs";
+import ExerciseType from "../../../models/ExerciseType";
 class StatusBuilderException {
     message: string;
     constructor(message: string) {
@@ -42,7 +43,7 @@ class _3StepRCSentenceStatusBuilder {
         // Popolo assigns e answer. Attenzione che assigns non è completo. Verrà riservato il posto per
         // Scrivere le domande, ma queste verranno poi effettivamente scritte nello stato 2
         for (let i = 0; i < words.length; i++) {
-            let str: StringConstantDTO = { type: "String", value: words[i] }
+            let str: StringConstantDTO = { type: ExerciseType.String, value: words[i] }
             if (skipFirstString) {
                 skipFirstString = false;
             }
@@ -50,7 +51,7 @@ class _3StepRCSentenceStatusBuilder {
                 this.assigns.push(str)
             }
             if (i + 1 < words.length) {
-                let str: RCAnswerableDTO = { type: "SingleChoiceAnswerable", choices: [] }
+                let str: RCAnswerableDTO = { type: ExerciseType.RCAnswerable, choices: [] }
                 this.assigns.push(str)
                 this.indexer.push({ index: this.assigns.length - 1 } as AnswerIndexer)
             }
@@ -87,6 +88,34 @@ class _3StepRCSentenceStatusBuilder {
 
         this.step = 3;
         return this;
+    }
+    static parseToStr(rSDTO: RCSentenceDTO): string {
+        console.log("rSDTO.assignables.length: ", rSDTO.assignables.length);
+        let parseResult = rSDTO.assignables.map((item) => {
+            if (item.type === ExerciseType.String) {
+                return (item as StringConstantDTO).value;
+            }
+            else if (item.type === ExerciseType.RCAnswerable) {
+                return "..";
+            }
+            else return "";
+        }).join('')
+
+        /*let parseResult = "";
+        for (let i = 0; i < rSDTO.assignables.length; i++) {
+            let item = rSDTO.assignables[i];
+            if (item.type === ExerciseType.String) {
+                parseResult += (item as StringConstantDTO).value;
+            }
+            else if (item.type === ExerciseType.RCAnswerable) {
+                parseResult += "...";
+            }
+            else parseResult += "";
+        }
+*/
+        console.log("Parse input", rSDTO)
+        console.log("parseResult: ", parseResult);
+        return parseResult;
     }
 }
 export default _3StepRCSentenceStatusBuilder;

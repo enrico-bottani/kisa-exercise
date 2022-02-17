@@ -1,21 +1,30 @@
 
 import styles from './RCSentenceEditor.module.css'
-import { RCSentenceDTO } from '../../../../dtos/DTOs';
+import { RCSentenceDTO, StringConstantDTO } from '../../../../dtos/DTOs';
 import EditorStep from '../utils/EditorStep';
 import RCGapsEditor from './gaps/RCGapsEditor';
 import RCEditorPreviewWrapper from '../../common/todo/preview/RCEditorPreviewWrapper';
+import ExerciseType from '../../../../models/ExerciseType';
+import RCBodyEditor from './body/RCBodyEditor';
+import EditorExerciseControls from '../../../../models/editor/EditorExerciseControls';
+import { useEffect } from 'react';
 
 interface Props {
+    eeControls: EditorExerciseControls;
     rcSentenceDTO: RCSentenceDTO;
     onSingleChoiceAnswerableChange: (singleChoiceSentence: RCSentenceDTO, save: boolean) => boolean;
 }
 
 
 
-function RCSentenceEditor({ rcSentenceDTO: singleChoiceSentence, onSingleChoiceAnswerableChange }: Props) {
-
-    onSingleChoiceAnswerableChange(singleChoiceSentence, false);
+function RCSentenceEditor({ eeControls, rcSentenceDTO, onSingleChoiceAnswerableChange }: Props) {
+    onSingleChoiceAnswerableChange(rcSentenceDTO, false);
     let marginTop = 3;
+
+
+    useEffect(() => {
+    })
+
     return (
         <div className={styles.EditorFrame}>
             <div className="container px-0">
@@ -27,17 +36,14 @@ function RCSentenceEditor({ rcSentenceDTO: singleChoiceSentence, onSingleChoiceA
                 </div>
             </div>
             <EditorStep number={1} title="Write the body:">
-                <input type="text"
-                    className={"form-control col rounded-0"}
-                    id="exampleFormControlTextarea1"
-                    value={"We are ... world."}></input>
+                <RCBodyEditor rcBodyEditable={eeControls} rcSentenceDTO={rcSentenceDTO}></RCBodyEditor>
             </EditorStep>
 
             <EditorStep number={2} title="Formulate the questions:" marginTop={marginTop}>
                 <RCGapsEditor></RCGapsEditor>
             </EditorStep>
             <EditorStep number={3} title="Solve it:" marginTop={marginTop}>
-                <RCEditorPreviewWrapper rcSentenceDTO={singleChoiceSentence} onSingleChoiceAnswerableChange={onSingleChoiceAnswerableChange}></RCEditorPreviewWrapper>
+                <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO} onSingleChoiceAnswerableChange={onSingleChoiceAnswerableChange}></RCEditorPreviewWrapper>
             </EditorStep>
             <EditorStep number={4} title="Save:" marginTop={marginTop}>
                 <>

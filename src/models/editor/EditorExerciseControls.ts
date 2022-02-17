@@ -9,8 +9,10 @@ export interface NewDraftAble {
     newDraft: () => NewDraftResponse;
 }
 
-interface EditorExerciseControls extends NewDraftAble {
-    pushExercise: (rcExerciseDTO: RCExerciseDTO) => number,
-    putExercise: (id: number, rcExerciseDTO: RCExerciseDTO) => number,
+export interface RCBodyEditable {
+    onRCBodyEdit: (sentenceId: number, body: string) => void;
+}
+
+interface EditorExerciseControls extends NewDraftAble, RCBodyEditable {
 }
 export default EditorExerciseControls;
