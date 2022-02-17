@@ -34,8 +34,10 @@ function RCEditorPreviewWrapper(props: Props) {
             }
         })
     )
-    return (<div className={"container " + styles.RCEditorPreviewWrapper}>
-        {children}
-    </div>)
+    return (
+        <>
+            {children}
+        </>
+    )
 }
 export default RCEditorPreviewWrapper;

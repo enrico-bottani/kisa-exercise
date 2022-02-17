@@ -7,7 +7,7 @@ function RCChoicesEditor() {
                 <RCChoiceEditor></RCChoiceEditor>
             </div>
             <div className="col-12">
-                <button className="btn btn-outline-secondary">+</button>
+                <button className="btn btn-outline-secondary rounded-0">+</button>
             </div>
         </div>
     </div>)

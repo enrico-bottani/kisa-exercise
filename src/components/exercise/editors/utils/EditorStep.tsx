@@ -15,8 +15,12 @@ interface Props extends _InnerProps {
 
 function EditorStepChildWrapper({ marginTop, children }: _InnerProps) {
     return (<div className={styles.EditorStepChildWrapper}>
-        {children}
-    </div>)
+        <div className="border-start border-2 w-100">
+            <div className='ms-3'>
+                {children}
+            </div>
+        </div>
+    </div >)
 }
 
 function EditorStep({ children, title, number, marginTop }: Props) {
@@ -25,9 +29,11 @@ function EditorStep({ children, title, number, marginTop }: Props) {
         <h6 className={styles.EditorStep}>
             <span className={styles.EditorStepNumber}>{number}</span>{title}
         </h6>
+
         <EditorStepChildWrapper marginTop={marginTop}>
             {children}
         </EditorStepChildWrapper>
+
     </div>)
 }
 export default EditorStep;

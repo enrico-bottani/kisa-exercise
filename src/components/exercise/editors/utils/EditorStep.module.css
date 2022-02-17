@@ -25,5 +25,6 @@
 }
 
 .EditorStepChildWrapper{
+    display: flex;
     margin-left: calc(var(--step-number-width)/2);
 }
