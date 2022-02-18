@@ -3,7 +3,7 @@ import ExerciseType from "../models/ExerciseType";
 
 class DummyExerciseProvider {
 
-    strings0: AssignableDTO[] = [
+    static strings0: AssignableDTO[] = [
         {
             id: 1,
             type: ExerciseType.String,
@@ -41,7 +41,7 @@ class DummyExerciseProvider {
         } as StringConstantDTO,
     ]
 
-    strings1: AssignableDTO[] = [
+    static strings1: AssignableDTO[] = [
         {
             id: 1,
             type: ExerciseType.String,
@@ -58,31 +58,31 @@ class DummyExerciseProvider {
             value: " world"
         } as StringConstantDTO,
     ]
-    answers: AnswerIndexer[] = [
+    static answers: AnswerIndexer[] = [
         {
             index: 1,
         }
     ]
 
-    answers1: AnswerIndexer[] = [
+    static answers1: AnswerIndexer[] = [
         {
             index: 1,
         }
     ]
 
-    singleChoiceSentence0: RCSentenceDTO = {
+    static singleChoiceSentence0: RCSentenceDTO = {
         number: 0,
         assignables: this.strings0,
         answerMap: this.answers,
         answerSheet: []
     }
-    singleChoiceSentence1: RCSentenceDTO = {
+    static singleChoiceSentence1: RCSentenceDTO = {
         number: 1,
         assignables: this.strings1,
         answerMap: this.answers1,
         answerSheet: []
     }
-    a: RCExerciseDTO = {
+    static exercise: RCExerciseDTO = {
         title: "Put in the correct preposition",
         id: 90987890,
         selected: 0,
@@ -90,8 +90,56 @@ class DummyExerciseProvider {
             this.singleChoiceSentence0, this.singleChoiceSentence1
         ]
     };
-    public getExercise(): RCExerciseDTO {
-        return this.a;
+
+    static exercises = [DummyExerciseProvider.exercise];
+
+    public putSentence(exerciseId: number, sentenceNumber: number, exercise: RCSentenceDTO): Promise<any> {
+        // Find the sentence to modify
+        let exercises = DummyExerciseProvider.exercises;
+        return new Promise<any>((resolve, reject) => {
+            setTimeout(function () {
+                for (let j = 0; j < exercises.length; j++) {
+                    if (exercises[j].id === exerciseId) {
+                        let sentences = exercises[j].sentences;
+                        for (let i = 0; i < sentences.length; i++) {
+                            if (sentences[i].number === sentenceNumber) {
+                                sentences[i] = exercise;
+                                resolve({ status: 200 }
+                                )  // Yay! Everything went well!
+                            }
+                            else reject({ status: 404 })
+                        }
+                    }
+                }
+                reject({ status: 404 })
+            }, 150)
+        })
+
+    }
+
+    privateGetExercise(exerciseID: number): RCExerciseDTO | null {
+        let exercises = DummyExerciseProvider.exercises;
+
+        for (let j = 0; j < exercises.length; j++) {
+            if (exercises[j].id === exerciseID) {
+                return (exercises[j])
+            }
+        }
+        return null;
+    }
+
+    public getExercise(exerciseID: number): Promise<RCExerciseDTO> {
+        let exercises = DummyExerciseProvider.exercises;
+
+        return new Promise<any>((resolve, reject) => {
+            setTimeout(() => {
+                let exercise = this.privateGetExercise(exerciseID);
+                if (exercise !== null)
+                    resolve(exercise);
+                resolve(null)
+            }
+            )
+        })
     }
 }
 export default DummyExerciseProvider;

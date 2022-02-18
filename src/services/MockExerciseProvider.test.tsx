@@ -1,0 +1,19 @@
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import DummyExerciseProvider from './MockExerciseProvider';
+
+test('get exercise', () => {
+    const d = new DummyExerciseProvider();
+    d.getExercise(90987890)
+});
+test('get modified exercise', () => {
+    const d = new DummyExerciseProvider();
+    return d.putSentence(90987890, 0, { number: 12, assignables: [], answerMap: [], answerSheet: [] })
+        .then(() => {
+            return new DummyExerciseProvider().getExercise(90987890)
+                .then(exercise => expect(exercise.sentences[0].number).toBe(12))
+        });
+});
+test('getting exercise will fail with an error', () => {
+    return expect(new DummyExerciseProvider().getExercise(-1)).resolves.toBe(null);
+});
