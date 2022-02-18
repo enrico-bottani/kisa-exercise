@@ -14,12 +14,15 @@ interface Props {
 function RCBodyEditor({ rcBodyEditable, rcSentenceDTO }: Props) {
 
     var [strSentence, setStrSentence] = useState(_3StepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
+    var [cursor, setCursor] = useState(0);
 
     useEffect(() => {
         setStrSentence(_3StepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
     }, [rcSentenceDTO])
 
     function onEdit(e: React.ChangeEvent<HTMLInputElement>) {
+        if (e.target.selectionStart != null)
+            setCursor(e.target.selectionStart);
         rcBodyEditable.onRCBodyEdit(rcSentenceDTO.number, e.target.value);
     }
     return (
@@ -27,6 +30,6 @@ function RCBodyEditor({ rcBodyEditable, rcSentenceDTO }: Props) {
             onChange={onEdit}
             className={"form-control col rounded-0"}
             id="exampleFormControlTextarea1"
-            value={strSentence}></input>)
+            defaultValue={strSentence}></input>)
 }
 export default RCBodyEditor;

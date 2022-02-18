@@ -40,7 +40,7 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO, onSingleChoiceAnswerableC
             </EditorStep>
 
             <EditorStep number={2} title="Formulate the questions:" marginTop={marginTop}>
-                <RCGapsEditor></RCGapsEditor>
+                <RCGapsEditor eeControls={eeControls} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
             </EditorStep>
             <EditorStep number={3} title="Solve it:" marginTop={marginTop}>
                 <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO} onSingleChoiceAnswerableChange={onSingleChoiceAnswerableChange}></RCEditorPreviewWrapper>

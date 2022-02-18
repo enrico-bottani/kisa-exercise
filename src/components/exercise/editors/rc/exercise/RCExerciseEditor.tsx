@@ -30,9 +30,23 @@ function Exercise() {
     function onRCBodyEdit(sentenceId: number, body: string) {
         setExercise(
             oldEVal => {
+
+                let sentenceToUpdate = oldEVal.sentences[sentenceId];
+                var prevQuestions = sentenceToUpdate.answerMap.map(indexer => {
+                    return (sentenceToUpdate.assignables[indexer.index])
+                })
+
                 var _3StepRCBuilder = new _3StepRCSentenceStatusBuilder();
-                let step = _3StepRCBuilder.parseBody(body).build();
-                oldEVal.sentences[sentenceId] = step;
+                let newSentence = _3StepRCBuilder.parseBody(body).build();
+
+                newSentence.answerMap.forEach((indexer, i) => {
+                    if (i < prevQuestions.length) {
+                        newSentence.assignables[indexer.index] = prevQuestions[i];
+                    }
+                    // TODO: Improve efficency when i>=pre.length
+                })
+
+                oldEVal.sentences[sentenceId] = newSentence;
                 console.log(oldEVal.sentences[sentenceId].assignables[2])
                 oldEVal = JSON.parse(JSON.stringify(oldEVal))
                 return oldEVal;
@@ -45,9 +59,6 @@ function Exercise() {
         newDraft: createNewDraft,
         onRCBodyEdit: onRCBodyEdit
     });
-
-    useEffect(() => {
-    })
 
     return (<div>
         <div className="container">

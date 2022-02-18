@@ -26,19 +26,19 @@ class _3StepRCSentenceStatusBuilder {
     }
 
     parseBody(body: string): _3StepRCSentenceStatusBuilder {
-        if (this.step != 0) return this;
+        if (this.step !== 0) return this;
 
 
         // Ricevo la stringa e la divido in più parole
         const words = body.split('..');
         // Ottengo il numero di domande da fare (e risposte)
         const nOfAnswers = words.length - 1;
-        if (nOfAnswers == 0) {
+        if (nOfAnswers === 0) {
             this.step = this.bodyParseError;
         }
         // Se la domanda è il primo elemento salto la stringa vuota
         let skipFirstString = false;
-        if (words[0] == "") skipFirstString = true;
+        if (words[0] === "") skipFirstString = true;
 
         // Popolo assigns e answer. Attenzione che assigns non è completo. Verrà riservato il posto per
         // Scrivere le domande, ma queste verranno poi effettivamente scritte nello stato 2
@@ -62,9 +62,9 @@ class _3StepRCSentenceStatusBuilder {
         return this;
     }
     setAnswers(answers: string[][]): _3StepRCSentenceStatusBuilder {
-        if (this.step != 1) return this;
+        if (this.step !== 1) return this;
 
-        if (answers.length != this.indexer.length) {
+        if (answers.length !== this.indexer.length) {
             throw new StatusBuilderException(`Inconsistent number of answer exception: 
             expected [${this.indexer.length}], given [${answers.length}]`)
         }
@@ -90,7 +90,6 @@ class _3StepRCSentenceStatusBuilder {
         return this;
     }
     static parseToStr(rSDTO: RCSentenceDTO): string {
-        console.log("rSDTO.assignables.length: ", rSDTO.assignables.length);
         let parseResult = rSDTO.assignables.map((item) => {
             if (item.type === ExerciseType.String) {
                 return (item as StringConstantDTO).value;
@@ -101,20 +100,6 @@ class _3StepRCSentenceStatusBuilder {
             else return "";
         }).join('')
 
-        /*let parseResult = "";
-        for (let i = 0; i < rSDTO.assignables.length; i++) {
-            let item = rSDTO.assignables[i];
-            if (item.type === ExerciseType.String) {
-                parseResult += (item as StringConstantDTO).value;
-            }
-            else if (item.type === ExerciseType.RCAnswerable) {
-                parseResult += "...";
-            }
-            else parseResult += "";
-        }
-*/
-        console.log("Parse input", rSDTO)
-        console.log("parseResult: ", parseResult);
         return parseResult;
     }
 }
