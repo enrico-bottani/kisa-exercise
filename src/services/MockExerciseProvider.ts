@@ -7,17 +7,37 @@ class DummyExerciseProvider {
         {
             id: 1,
             type: ExerciseType.String,
-            value: "We are "
+            value: "Lucy is arriving "
         } as StringConstantDTO,
         {
-            id: 0,
+            id: 2,
             type: ExerciseType.RCAnswerable,
-            choices: ["in", "a"]
+            choices: ["in", "on", "for"]
         } as RCAnswerableDTO,
         {
-            id: 2,
+            id: 3,
             type: ExerciseType.String,
-            value: " world"
+            value: " February the 13th "
+        } as StringConstantDTO,
+        {
+            id: 4,
+            type: ExerciseType.RCAnswerable,
+            choices: ["in", "on", "at"]
+        } as RCAnswerableDTO,
+        {
+            id: 5,
+            type: ExerciseType.String,
+            value: " eight o'clock "
+        } as StringConstantDTO,
+        {
+            id: 4,
+            type: ExerciseType.RCAnswerable,
+            choices: ["of", "on", "in"]
+        } as RCAnswerableDTO,
+        {
+            id: 5,
+            type: ExerciseType.String,
+            value: " the morning."
         } as StringConstantDTO,
     ]
 
