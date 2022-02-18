@@ -11,26 +11,23 @@ import styles from "./RCExerciseEditor.module.css"
 
 function Exercise() {
 
-    const [e, setExercise] = useState<RCExerciseDTO>({
+    // Setting STATES
+    // [Convention] Exercise with id == -1: uninitialized
+    const [exercise, setExercise] = useState<RCExerciseDTO>({
         id: -1,
         title: "",
         selected: 0,
         sentences: []
     });
-    const [excerciseNumber, setExcerciseNumber] = useState<number>(e.selected);
-    new DummyExerciseProvider().getExercise(90987890).then((e) => setExercise(e));
-    useEffect(() => {
-        console.log("Rendering")
-    }, [e])
+    const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
 
-    let onSingleChoice = function (s: RCSentenceDTO): boolean {
-        return true;
-    }
+    new DummyExerciseProvider().getExercise(90987890).then((e) => setExercise(e));
+
     function createNewDraft(): NewDraftResponse {
-        let number = e.sentences[e.sentences.length - 1].number + 1;
+        let number = exercise.sentences[exercise.sentences.length - 1].number + 1;
         setExcerciseNumber(number);
-        e.sentences.push({ number: number, assignables: [], answerMap: [], answerSheet: [] });
-        setExercise(e);
+        exercise.sentences.push({ number: number, assignables: [], answerMap: [], answerSheet: [] });
+        setExercise(exercise);
         return { message: "ok", success: true };
     }
 
@@ -73,9 +70,9 @@ function Exercise() {
         onRCAnswerableEdit: onRCAnswerableEdit,
     });
 
-    let rtn = <></>
+    let rtn = <div className="container"><div className="row"><div className="col"><h1>Loading...</h1></div></div></div>
 
-    if (e.id !== -1) {
+    if (exercise.id !== -1) {
         rtn = (<div>
             <div className="container">
                 <div className="row">
@@ -87,7 +84,7 @@ function Exercise() {
                     <div className={"row mb-3 gx-1 align-baseline"}>
                         <TodosPagination
                             newDraft={eeControls}
-                            excercise={e}
+                            excercise={exercise}
                             excerciseNumber={excerciseNumber}
                             onSetExercise={setExcerciseNumber}></TodosPagination>
                     </div>
@@ -96,8 +93,7 @@ function Exercise() {
                     <div className="col">
                         <RCSentenceEditor
                             eeControls={eeControls}
-                            onSingleChoiceAnswerableChange={onSingleChoice}
-                            rcSentenceDTO={e.sentences[excerciseNumber]}></RCSentenceEditor>
+                            rcSentenceDTO={exercise.sentences[excerciseNumber]}></RCSentenceEditor>
                     </div>
                 </div>
                 <Navigation></Navigation>

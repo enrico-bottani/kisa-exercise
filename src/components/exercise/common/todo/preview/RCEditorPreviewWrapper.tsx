@@ -8,7 +8,6 @@ import styles from "./RCEditorPreviewWrapper.module.css";
 
 interface Props {
     rcSentenceDTO: RCSentenceDTO;
-    onSingleChoiceAnswerableChange: (singleChoiceSentence: RCSentenceDTO, save: boolean) => boolean;
 }
 
 function RCEditorPreviewWrapper(props: Props) {

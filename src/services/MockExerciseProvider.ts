@@ -137,7 +137,7 @@ class DummyExerciseProvider {
                 if (exercise !== null)
                     resolve(exercise);
                 resolve(null)
-            }
+            }, 500
             )
         })
     }

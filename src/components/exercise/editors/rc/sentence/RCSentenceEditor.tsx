@@ -10,13 +10,11 @@ import styles from './RCSentenceEditor.module.css'
 interface Props {
     eeControls: EditorExerciseControls;
     rcSentenceDTO: RCSentenceDTO;
-    onSingleChoiceAnswerableChange: (singleChoiceSentence: RCSentenceDTO, save: boolean) => boolean;
 }
 
 
 
-function RCSentenceEditor({ eeControls, rcSentenceDTO, onSingleChoiceAnswerableChange }: Props) {
-    onSingleChoiceAnswerableChange(rcSentenceDTO, false);
+function RCSentenceEditor({ eeControls, rcSentenceDTO }: Props) {
     let marginTop = 3;
 
 
@@ -39,7 +37,7 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO, onSingleChoiceAnswerableC
                 <RCGapsEditor eeControls={eeControls} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
             </EditorStep>
             <EditorStep number={3} title="Solve it:" marginTop={marginTop}>
-                <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO} onSingleChoiceAnswerableChange={onSingleChoiceAnswerableChange}></RCEditorPreviewWrapper>
+                <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO}></RCEditorPreviewWrapper>
             </EditorStep>
             <EditorStep number={4} title="Save:" marginTop={marginTop}>
                 <>
