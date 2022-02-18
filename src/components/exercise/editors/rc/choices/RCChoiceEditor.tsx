@@ -1,11 +1,18 @@
+import { RCAnswerableEditable } from '../../../../../models/editor/EditorExerciseControls';
 import styles from './RCChoiceEditor.module.css'
 
 interface Props {
     text: string;
+    onTextChange: (text: string) => void
 }
-function RCChoiceEditor({ text }: Props) {
+function RCChoiceEditor({ text, onTextChange }: Props) {
+
+    function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+        onTextChange(event.target.value);
+    }
+
     return (<div className="input-group">
-        <input type="input" defaultValue={text} className={"form-control rounded-0 " + styles.RCChoiceEditor}></input>
+        <input type="input" defaultValue={text} className={"form-control rounded-0 " + styles.RCChoiceEditor} onChange={onChange}></input>
         <button className="btn btn-outline-secondary rounded-0" type="button" id="button-addon2"><i className="bi bi-trash3"></i></button>
     </div>)
 }

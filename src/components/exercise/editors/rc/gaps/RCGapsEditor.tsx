@@ -10,11 +10,11 @@ function RCGapsEditor({ rcSentenceDTO, eeControls }: Props) {
     var gaps: RCAnswerableDTO[] = rcSentenceDTO.answerMap.map(indexer => {
         return (rcSentenceDTO.assignables[indexer.index]) as RCAnswerableDTO;
     })
-    let gapsTSX = gaps.map(gap => {
+    let gapsTSX = gaps.map((rcAnswerableDto, i) => {
         return (<div className="row gx-1 mb-2">
             <div className="col-auto"><div className="btn btn-sm rounded-0 btn-secondary">a</div></div>
             <div className="col">
-                <RCChoicesEditor gap={gap} eeControls={eeControls}></RCChoicesEditor>
+                <RCChoicesEditor id={rcSentenceDTO.answerMap[i].index} rcAnswerableDto={rcAnswerableDto} eeControls={eeControls}></RCChoicesEditor>
             </div>
         </div>)
     })
@@ -22,7 +22,8 @@ function RCGapsEditor({ rcSentenceDTO, eeControls }: Props) {
         <>
             <div className="container px-0">
                 {gapsTSX}
-            </div></>
+            </div>
+        </>
     );
 }
 

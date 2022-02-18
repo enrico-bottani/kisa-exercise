@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RCSentenceDTO, StringConstantDTO } from "../../../../../dtos/DTOs";
 import { RCBodyEditable } from "../../../../../models/editor/EditorExerciseControls";
 import ExerciseType from "../../../../../models/ExerciseType";
-import _3StepRCSentenceStatusBuilder from "../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
+import ThreeStepRCSentenceStatusBuilder from "../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
 
 interface Props {
     rcSentenceDTO: RCSentenceDTO;
@@ -13,11 +13,11 @@ interface Props {
 
 function RCBodyEditor({ rcBodyEditable, rcSentenceDTO }: Props) {
 
-    var [strSentence, setStrSentence] = useState(_3StepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
+    var [strSentence, setStrSentence] = useState(ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
     var [cursor, setCursor] = useState(0);
 
     useEffect(() => {
-        setStrSentence(_3StepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
+        setStrSentence(ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
     }, [rcSentenceDTO])
 
     function onEdit(e: React.ChangeEvent<HTMLInputElement>) {

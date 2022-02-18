@@ -8,7 +8,7 @@ class StatusBuilderException {
     }
 }
 
-class _3StepRCSentenceStatusBuilder {
+class ThreeStepRCSentenceStatusBuilder {
     bodyParseError = -1;
     step: number = 0;
     indexer: AnswerIndexer[] = [];
@@ -25,7 +25,9 @@ class _3StepRCSentenceStatusBuilder {
             .setAnswerSheet(this.answerSheet).build();
     }
 
-    parseBody(body: string): _3StepRCSentenceStatusBuilder {
+
+
+    parseBody(body: string): ThreeStepRCSentenceStatusBuilder {
         if (this.step !== 0) return this;
 
 
@@ -61,7 +63,7 @@ class _3StepRCSentenceStatusBuilder {
         this.step = 1;
         return this;
     }
-    setAnswers(answers: string[][]): _3StepRCSentenceStatusBuilder {
+    setAnswers(answers: string[][]): ThreeStepRCSentenceStatusBuilder {
         if (this.step !== 1) return this;
 
         if (answers.length !== this.indexer.length) {
@@ -82,7 +84,7 @@ class _3StepRCSentenceStatusBuilder {
         this.step = 2;
         return this;
     }
-    setAnswerSheet(answerSheet: AnswerSheet[]): _3StepRCSentenceStatusBuilder {
+    setAnswerSheet(answerSheet: AnswerSheet[]): ThreeStepRCSentenceStatusBuilder {
         if (this.step != 2) return this;
         this.answerSheet = answerSheet;
 
@@ -103,4 +105,4 @@ class _3StepRCSentenceStatusBuilder {
         return parseResult;
     }
 }
-export default _3StepRCSentenceStatusBuilder;
+export default ThreeStepRCSentenceStatusBuilder;

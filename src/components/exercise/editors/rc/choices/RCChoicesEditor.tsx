@@ -2,14 +2,19 @@ import { AssignableDTO, RCAnswerableDTO } from "../../../../../dtos/DTOs";
 import EditorExerciseControls from "../../../../../models/editor/EditorExerciseControls";
 import RCChoiceEditor from "./RCChoiceEditor";
 interface Props {
-    gap: RCAnswerableDTO;
+    id: number;
+    rcAnswerableDto: RCAnswerableDTO;
     eeControls: EditorExerciseControls;
 }
-function RCChoicesEditor({ gap, eeControls }: Props) {
+function RCChoicesEditor({ rcAnswerableDto, eeControls, id }: Props) {
 
-    var choices = gap.choices.map(choice => {
+    function onTextChange(text: string) {
+        eeControls.onRCAnswerableEdit(id, rcAnswerableDto);
+    }
+
+    var choices = rcAnswerableDto.choices.map(choice => {
         return (<div className="col-12">
-            <RCChoiceEditor text={choice}></RCChoiceEditor>
+            <RCChoiceEditor text={choice} onTextChange={onTextChange}></RCChoiceEditor>
         </div>)
     })
 

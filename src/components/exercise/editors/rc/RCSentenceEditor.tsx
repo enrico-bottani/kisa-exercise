@@ -7,7 +7,6 @@ import RCEditorPreviewWrapper from '../../common/todo/preview/RCEditorPreviewWra
 import ExerciseType from '../../../../models/ExerciseType';
 import RCBodyEditor from './body/RCBodyEditor';
 import EditorExerciseControls from '../../../../models/editor/EditorExerciseControls';
-import { useEffect } from 'react';
 
 interface Props {
     eeControls: EditorExerciseControls;
@@ -22,8 +21,6 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO, onSingleChoiceAnswerableC
     let marginTop = 3;
 
 
-    useEffect(() => {
-    })
 
     return (
         <div className={styles.EditorFrame}>
