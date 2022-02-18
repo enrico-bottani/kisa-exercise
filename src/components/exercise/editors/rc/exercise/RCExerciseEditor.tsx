@@ -6,15 +6,22 @@ import ThreeStepRCSentenceStatusBuilder from "../../../../../status/editor/_3_st
 import ExerciseHeading from "../../../common/heading/ExerciseHeading";
 import Navigation from "../../../common/nav/Navigation";
 import TodosPagination from "../../../common/pagination/TodosPagination";
-import RCSentenceEditor from "../RCSentenceEditor";
+import RCSentenceEditor from "../sentence/RCSentenceEditor";
 import styles from "./RCExerciseEditor.module.css"
 
 function Exercise() {
 
-    const [e, setExercise] = useState<RCExerciseDTO>(new DummyExerciseProvider().getExercise());
+    const [e, setExercise] = useState<RCExerciseDTO>({
+        id: -1,
+        title: "",
+        selected: 0,
+        sentences: []
+    });
     const [excerciseNumber, setExcerciseNumber] = useState<number>(e.selected);
-
-
+    new DummyExerciseProvider().getExercise(90987890).then((e) => setExercise(e));
+    useEffect(() => {
+        console.log("Rendering")
+    }, [e])
 
     let onSingleChoice = function (s: RCSentenceDTO): boolean {
         return true;
@@ -60,42 +67,46 @@ function Exercise() {
         console.log("Editing answerable at index " + id + ": ", answerableDTO)
 
     }
-
-
     const [eeControls, setEEControls] = useState<EditorExerciseControls>({
         newDraft: createNewDraft,
         onRCBodyEdit: onRCBodyEdit,
         onRCAnswerableEdit: onRCAnswerableEdit,
     });
 
+    let rtn = <></>
 
-    return (<div>
-        <div className="container">
-            <div className="row">
-                <div className="col">
-                    <ExerciseHeading>Put in the correct preposition</ExerciseHeading>
+    if (e.id !== -1) {
+        rtn = (<div>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <ExerciseHeading>Put in the correct preposition</ExerciseHeading>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div className={"row mb-3 gx-1 align-baseline"}>
-                    <TodosPagination
-                        newDraft={eeControls}
-                        excercise={e}
-                        excerciseNumber={excerciseNumber}
-                        onSetExercise={setExcerciseNumber}></TodosPagination>
+                <div>
+                    <div className={"row mb-3 gx-1 align-baseline"}>
+                        <TodosPagination
+                            newDraft={eeControls}
+                            excercise={e}
+                            excerciseNumber={excerciseNumber}
+                            onSetExercise={setExcerciseNumber}></TodosPagination>
+                    </div>
                 </div>
-            </div>
-            <div className="row mb-3">
-                <div className="col">
-                    <RCSentenceEditor
-                        eeControls={eeControls}
-                        onSingleChoiceAnswerableChange={onSingleChoice}
-                        rcSentenceDTO={e.sentences[excerciseNumber]}></RCSentenceEditor>
+                <div className="row mb-3">
+                    <div className="col">
+                        <RCSentenceEditor
+                            eeControls={eeControls}
+                            onSingleChoiceAnswerableChange={onSingleChoice}
+                            rcSentenceDTO={e.sentences[excerciseNumber]}></RCSentenceEditor>
+                    </div>
                 </div>
+                <Navigation></Navigation>
+                <hr className={styles.SentenceBorderBottom}></hr>
             </div>
-            <Navigation></Navigation>
-            <hr className={styles.SentenceBorderBottom}></hr>
-        </div>
-    </div>)
+        </div>)
+    }
+
+
+    return (rtn)
 }
 export default Exercise;

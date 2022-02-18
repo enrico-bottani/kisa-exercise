@@ -1,12 +1,11 @@
 
+import { RCSentenceDTO } from '../../../../../dtos/DTOs';
+import EditorExerciseControls from '../../../../../models/editor/EditorExerciseControls';
+import RCEditorPreviewWrapper from '../../../common/todo/preview/RCEditorPreviewWrapper';
+import EditorStep from '../../utils/EditorStep';
+import RCBodyEditor from '../body/RCBodyEditor';
+import RCGapsEditor from '../gaps/RCGapsEditor';
 import styles from './RCSentenceEditor.module.css'
-import { RCSentenceDTO, StringConstantDTO } from '../../../../dtos/DTOs';
-import EditorStep from '../utils/EditorStep';
-import RCGapsEditor from './gaps/RCGapsEditor';
-import RCEditorPreviewWrapper from '../../common/todo/preview/RCEditorPreviewWrapper';
-import ExerciseType from '../../../../models/ExerciseType';
-import RCBodyEditor from './body/RCBodyEditor';
-import EditorExerciseControls from '../../../../models/editor/EditorExerciseControls';
 
 interface Props {
     eeControls: EditorExerciseControls;
