@@ -39,7 +39,7 @@ function RCSentenceEditor({ onRCSentenceEdit, rcSentenceDTO }: Props) {
                     })
                 .build();
 
-        onRCSentenceEdit(rcSentenceDTO.number, sentenceDTO)
+        onRCSentenceEdit(rcSentenceDTO.id, sentenceDTO)
         console.log("Body edited.")
 
     }
@@ -63,7 +63,7 @@ function RCSentenceEditor({ onRCSentenceEdit, rcSentenceDTO }: Props) {
             <EditorStep number={2} title="Formulate the questions:" marginTop={marginTop}>
                 <RCGapsEditor onRCSentenceEdit={onRCSentenceEdit} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
             </EditorStep>
-            <EditorStep number={3} title="Solve it:" marginTop={marginTop}>
+            <EditorStep number={3} title="Preview:" marginTop={marginTop}>
                 <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO}></RCEditorPreviewWrapper>
             </EditorStep>
             <EditorStep number={4} title="Save:" marginTop={marginTop}>

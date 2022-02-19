@@ -1,7 +1,7 @@
 import { AnswerIndexer, AnswerSheet, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
-    number: number = 0;
+    id: number = 0;
     assignables: AssignableDTO[] = [];
     answerMap: AnswerIndexer[] = [];
     answerSheet: AnswerSheet[] = [];
@@ -24,19 +24,19 @@ class RCSentenceModelBuilder implements RCSentenceDTO {
     }
 
     setNumber(number: number): RCSentenceModelBuilder {
-        this.number = number;
+        this.id = number;
         return this;
     }
 
     build(): SubmittableRCSentenceDTO {
-        return new SubmittableRCSentenceDTO(this.number, this.assignables, this.answerMap, this.answerSheet);
+        return new SubmittableRCSentenceDTO(this.id, this.assignables, this.answerMap, this.answerSheet);
     }
 }
 
 
 class SubmittableRCSentenceDTO implements RCSentenceDTO {
 
-    number: number;
+    id: number;
 
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
@@ -67,7 +67,7 @@ class SubmittableRCSentenceDTO implements RCSentenceDTO {
     }
 
     constructor(number: number, assignables: AssignableDTO[], answers: AnswerIndexer[], answerSheet: AnswerSheet[]) {
-        this.number = number;
+        this.id = number;
         this.assignables = assignables;
         this.answerMap = answers;
         this.answerSheet = answerSheet;

@@ -18,8 +18,8 @@ function TodosPagination(props: Props) {
   }
   var listItems = props.excercise.sentences.map(function (sentence) {
     return (<TodoPage
-      key={sentence.number}
-      representingTodoNumber={sentence.number}
+      key={sentence.id}
+      representingTodoNumber={sentence.id}
       currentTodoNumber={props.excerciseNumber}
       errorsNumber={-1}
       onSetSelected={props.onSetExercise}></TodoPage>)

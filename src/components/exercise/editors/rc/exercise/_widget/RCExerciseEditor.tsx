@@ -19,9 +19,9 @@ function Exercise() {
     new DummyExerciseProvider().getExercise(90987890).then((e) => setExercise(e));
 
     function createNewDraft(): NewDraftResponse {
-        let number = exercise.sentences[exercise.sentences.length - 1].number + 1;
+        let number = exercise.sentences[exercise.sentences.length - 1].id + 1;
         setExercise(e => {
-            e.sentences.push({ number: number, assignables: [], answerMap: [], answerSheet: [] });
+            e.sentences.push({ id: number, assignables: [], answerMap: [], answerSheet: [] });
             setExcerciseNumber(n => {
                 return e.sentences.length + 1;
             });

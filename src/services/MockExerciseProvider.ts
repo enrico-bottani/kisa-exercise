@@ -77,13 +77,13 @@ class DummyExerciseProvider {
     ]
 
     static singleChoiceSentence0: RCSentenceDTO = {
-        number: 0,
+        id: 0,
         assignables: this.strings0,
         answerMap: this.answers,
         answerSheet: []
     }
     static singleChoiceSentence1: RCSentenceDTO = {
-        number: 1,
+        id: 1,
         assignables: this.strings1,
         answerMap: this.answers1,
         answerSheet: []
@@ -114,7 +114,7 @@ class DummyExerciseProvider {
                     if (exercises[j].id === exerciseId) {
                         let sentences = exercises[j].sentences;
                         for (let i = 0; i < sentences.length; i++) {
-                            if (sentences[i].number === sentenceNumber) {
+                            if (sentences[i].id === sentenceNumber) {
                                 sentences[i] = exercise;
                                 resolve({ status: 200 }
                                 )  // Yay! Everything went well!

@@ -5,7 +5,7 @@ export interface RCExerciseDTO {
     sentences: RCSentenceDTO[];
 }
 export interface RCSentenceDTO {
-    number: number;
+    id: number;
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
     answerSheet: AnswerSheet[];

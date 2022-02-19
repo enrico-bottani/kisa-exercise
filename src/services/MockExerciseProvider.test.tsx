@@ -8,10 +8,10 @@ test('get exercise', () => {
 });
 test('get modified exercise', () => {
     const d = new DummyExerciseProvider();
-    return d.putSentence(90987890, 0, { number: 12, assignables: [], answerMap: [], answerSheet: [] })
+    return d.putSentence(90987890, 0, { id: 12, assignables: [], answerMap: [], answerSheet: [] })
         .then(() => {
             return new DummyExerciseProvider().getExercise(90987890)
-                .then(exercise => expect(exercise.sentences[0].number).toBe(12))
+                .then(exercise => expect(exercise.sentences[0].id).toBe(12))
         });
 });
 test('getting exercise will fail with an error', () => {
