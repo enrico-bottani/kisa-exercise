@@ -34,7 +34,7 @@ function RCEditorPreviewWrapper(props: Props) {
         })
     )
     return (
-        <div className="container">
+        <div className="container ps-0">
             <div className="row gx-3">
                 {children}
             </div>

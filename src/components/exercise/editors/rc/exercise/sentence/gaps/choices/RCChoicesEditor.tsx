@@ -24,7 +24,6 @@ function RCChoicesEditor({ rcAnswerableDto, id }: Props) {
 
     return (<div className="container gx-0">
         <div className="row gy-1">
-            {valid && <p>Valid:</p>}
             {choices}
             <div className="col-12">
                 <button className="btn btn-outline-secondary rounded-0">+</button>
