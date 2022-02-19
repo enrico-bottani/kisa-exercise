@@ -1,4 +1,4 @@
-import { RCAnswerableDTO } from "../../../../../dtos/DTOs";
+import { RCAnswerableDTO } from "../../../../../../../dtos/DTOs";
 import RCChoiceEditor from "./RCChoiceEditor";
 interface Props {
     id: number;

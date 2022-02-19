@@ -86,7 +86,7 @@ class ThreeStepRCSentenceStatusBuilder {
         return this;
     }
     setAnswerSheet(answerSheet: AnswerSheet[]): ThreeStepRCSentenceStatusBuilder {
-        if (this.step != 2) return this;
+        if (this.step !== 2) return this;
         this.answerSheet = answerSheet;
 
         this.step = 3;

@@ -1,10 +1,10 @@
 
-import { RCAnswerableDTO, RCSentenceDTO } from '../../../../../dtos/DTOs';
-import { RCSentenceDTOs } from '../../../../../dtos/RCSentenceDTOs';
-import EditorExerciseControls from '../../../../../models/editor/EditorExerciseControls';
-import ThreeStepRCSentenceStatusBuilder from '../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
-import RCEditorPreviewWrapper from '../../../common/todo/preview/RCEditorPreviewWrapper';
-import EditorStep from '../../utils/EditorStep';
+import { RCAnswerableDTO, RCSentenceDTO } from '../../../../../../../dtos/DTOs';
+import { RCSentenceDTOs } from '../../../../../../../dtos/RCSentenceDTOs';
+import EditorExerciseControls from '../../../../../../../models/editor/EditorExerciseControls';
+import ThreeStepRCSentenceStatusBuilder from '../../../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
+import RCEditorPreviewWrapper from '../../../../../common/todo/preview/RCEditorPreviewWrapper';
+import EditorStep from '../../../../utils/EditorStep';
 import RCBodyEditor from '../body/RCBodyEditor';
 import RCGapsEditor from '../gaps/RCGapsEditor';
 import styles from './RCSentenceEditor.module.css'
@@ -27,6 +27,12 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO }: Props) {
             new ThreeStepRCSentenceStatusBuilder()
                 .parseBody(body,
                     (nOfAnswers) => {
+
+                        if (nOfAnswers < choices.length) {
+                            console.log(`nOfAnswers${nOfAnswers} < choices.length ${choices.length}`)
+                            return choices.slice(0, nOfAnswers)
+                        }
+
                         for (let i = choices.length; i < nOfAnswers; i++) {
                             choices[i] = ["", ""];
                         }

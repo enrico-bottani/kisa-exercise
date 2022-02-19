@@ -1,5 +1,5 @@
-import { AssignableDTO, RCAnswerableDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
-import EditorExerciseControls from "../../../../../models/editor/EditorExerciseControls";
+import { AssignableDTO, RCAnswerableDTO, RCSentenceDTO } from "../../../../../../../dtos/DTOs";
+import EditorExerciseControls from "../../../../../../../models/editor/EditorExerciseControls";
 import RCChoicesEditor from "../choices/RCChoicesEditor";
 
 interface Props {
