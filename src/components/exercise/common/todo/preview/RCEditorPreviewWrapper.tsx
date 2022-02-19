@@ -26,6 +26,7 @@ function RCEditorPreviewWrapper(props: Props) {
                     return (
                         <RCChoices
                             key={id}
+                            gapKey={id}
                             singleChoiceAnswerable={(a as RCAnswerableDTO)}
                             editMode={1}></RCChoices>
                     );

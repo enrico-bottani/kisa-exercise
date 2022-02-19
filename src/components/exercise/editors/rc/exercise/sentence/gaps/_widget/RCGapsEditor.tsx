@@ -1,19 +1,21 @@
-import { AssignableDTO, RCAnswerableDTO, RCSentenceDTO } from "../../../../../../../../dtos/DTOs";
-import { RCSentenceDTOs } from "../../../../../../../../dtos/RCSentenceDTOs";
-import EditorExerciseControls from "../../../../../../../../models/editor/EditorExerciseControls";
+import { RCAnswerableDTO, RCSentenceDTO } from "../../../../../../../../dtos/DTOs";
 import RCChoicesEditor from "../choices/RCChoicesEditor";
 
 interface Props {
-    onRCSentenceEdit: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
+    stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
     rcSentenceDTO: RCSentenceDTO;
 }
-function RCGapsEditor({ rcSentenceDTO, onRCSentenceEdit }: Props) {
+function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
     var gaps: RCAnswerableDTO[] = rcSentenceDTO.answerMap.map(indexer => {
         return (rcSentenceDTO.assignables[indexer.index]) as RCAnswerableDTO;
     });
 
-    function onChoiceEdited(gapId: number, rcAnswerableDTO: RCAnswerableDTO): void {
-        onRCSentenceEdit(rcSentenceDTO.id, rcSentenceDTO);
+    function onAnswerableEdited(gapKey: number, rcAnswerableDTO: RCAnswerableDTO): void {
+        let answerableID = rcSentenceDTO.answerMap[gapKey].index;
+        let rcSentDTO: RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
+        rcSentDTO.assignables[answerableID] = rcAnswerableDTO;
+        console.log("Submitting:", rcSentDTO.assignables[answerableID])
+        stageRCSentenceEdits(rcSentenceDTO.id, rcSentDTO);
     }
 
     let gapsTSX = gaps.map((rcAnswerableDto, gapIndex) => {
@@ -23,7 +25,7 @@ function RCGapsEditor({ rcSentenceDTO, onRCSentenceEdit }: Props) {
                     <div className="btn btn-sm rounded-0 btn-secondary">{String.fromCharCode(65 + gapIndex)}</div>
                 </div>
                 <div className="col">
-                    <RCChoicesEditor gapID={gapIndex} rcAnswerableDto={rcAnswerableDto}></RCChoicesEditor>
+                    <RCChoicesEditor onAnswerableEdited={onAnswerableEdited} gapKey={gapIndex} rcAnswerableDto={rcAnswerableDto}></RCChoicesEditor>
                 </div>
             </div>)
     })

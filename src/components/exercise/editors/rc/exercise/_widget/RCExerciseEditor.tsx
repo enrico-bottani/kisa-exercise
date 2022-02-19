@@ -30,9 +30,11 @@ function Exercise() {
         return { message: "ok", success: true };
     }
 
-
-    let onRCSentenceEdit = function (id: number, answerableDTO: RCSentenceDTO) {
+    // The only way to ask the parent to persist in the database the changes.
+    // Calling this method stages the changes.
+    let stageRCSentenceEdits = function (id: number, answerableDTO: RCSentenceDTO) {
         setExercise(e => {
+            console.log("Staging:  ", answerableDTO)
             e.sentences[id] = answerableDTO;
             let rtn = Object.assign({}, e);
             console.log("Exercise: ", rtn);
@@ -62,7 +64,7 @@ function Exercise() {
                 <div className="row mb-3">
                     <div className="col">
                         <RCSentenceEditor
-                            onRCSentenceEdit={onRCSentenceEdit}
+                            stageRCSentenceEdits={stageRCSentenceEdits}
                             rcSentenceDTO={exercise.sentences[excerciseNumber]}></RCSentenceEditor>
                     </div>
                 </div>

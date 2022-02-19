@@ -9,19 +9,18 @@ import RCGapsEditor from '../gaps/_widget/RCGapsEditor';
 import styles from './RCSentenceEditor.module.css'
 
 interface Props {
-    onRCSentenceEdit: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
+    stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
     rcSentenceDTO: RCSentenceDTO;
 }
 
 
 
-function RCSentenceEditor({ onRCSentenceEdit, rcSentenceDTO }: Props) {
+function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
     let marginTop = 3;
 
 
     let onRCBodyEdit = function (body: string) {
         let choices = RCSentenceDTOs.extractChoices(rcSentenceDTO);
-
         let sentenceDTO: RCSentenceDTO =
             new ThreeStepRCSentenceStatusBuilder()
                 .parseBody(body,
@@ -38,10 +37,8 @@ function RCSentenceEditor({ onRCSentenceEdit, rcSentenceDTO }: Props) {
                         return choices;
                     })
                 .build();
-
-        onRCSentenceEdit(rcSentenceDTO.id, sentenceDTO)
+        stageRCSentenceEdits(rcSentenceDTO.id, sentenceDTO)
         console.log("Body edited.")
-
     }
 
 
@@ -61,7 +58,7 @@ function RCSentenceEditor({ onRCSentenceEdit, rcSentenceDTO }: Props) {
             </EditorStep>
 
             <EditorStep number={2} title="Formulate the questions:" marginTop={marginTop}>
-                <RCGapsEditor onRCSentenceEdit={onRCSentenceEdit} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
+                <RCGapsEditor stageRCSentenceEdits={stageRCSentenceEdits} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
             </EditorStep>
             <EditorStep number={3} title="Preview:" marginTop={marginTop}>
                 <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO}></RCEditorPreviewWrapper>

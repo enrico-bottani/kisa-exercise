@@ -2,15 +2,23 @@ import { useState } from "react";
 import { RCAnswerableDTO } from "../../../../../../../../dtos/DTOs";
 import RCChoiceEditor from "./RCChoiceEditor";
 interface Props {
-    gapID: number;
+    gapKey: number;
     rcAnswerableDto: RCAnswerableDTO;
+    onAnswerableEdited: (gapKey: number, rcAnswerableDTO: RCAnswerableDTO) => void;
 }
-function RCChoicesEditor({ rcAnswerableDto, gapID }: Props) {
+function RCChoicesEditor({ rcAnswerableDto, gapKey, onAnswerableEdited }: Props) {
     let [valid, setValid] = useState(true);
+
+
+    function onDirtyAnswerable(gapKey: number, choice: number, value: string) {
+        let parse: RCAnswerableDTO = JSON.parse(JSON.stringify(rcAnswerableDto));
+        parse.choices[choice] = value;
+        onAnswerableEdited(gapKey, parse);
+    }
 
     var choices = rcAnswerableDto.choices.map((choice, choiceID) => {
         return (<div className="col-12 " key={choiceID}>
-            <RCChoiceEditor gapIndex={gapID} choiceID={choiceID} text={choice}></RCChoiceEditor>
+            <RCChoiceEditor gapKey={gapKey} onDirtyAnswerable={onDirtyAnswerable} text={choice} choiceID={choiceID}></RCChoiceEditor>
         </div>)
     })
 
