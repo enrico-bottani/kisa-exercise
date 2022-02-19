@@ -18,6 +18,6 @@ export interface RCBodyEditable {
     onRCBodyEdit: (sentenceId: number, body: string) => void;
 }
 
-interface EditorExerciseControls extends NewDraftAble, RCSentenceEditable {
+interface EditorExerciseControls extends RCSentenceEditable {
 }
 export default EditorExerciseControls;

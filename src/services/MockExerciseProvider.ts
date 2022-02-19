@@ -98,6 +98,12 @@ class DummyExerciseProvider {
     };
 
     static exercises = [DummyExerciseProvider.exercise];
+    static EMPTY: RCExerciseDTO = {
+        id: -1,
+        title: "",
+        selected: 0,
+        sentences: []
+    }
 
     public putSentence(exerciseId: number, sentenceNumber: number, exercise: RCSentenceDTO): Promise<any> {
         // Find the sentence to modify

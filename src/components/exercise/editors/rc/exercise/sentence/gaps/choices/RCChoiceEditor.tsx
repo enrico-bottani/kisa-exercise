@@ -2,12 +2,13 @@ import styles from './RCChoiceEditor.module.css'
 
 interface Props {
     text: string;
-    onTextChange: (text: string) => void
+    i: number;
+    onTextChange: (i: number, text: string) => void
 }
-function RCChoiceEditor({ text, onTextChange }: Props) {
+function RCChoiceEditor({ text, onTextChange, i }: Props) {
 
     function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-        onTextChange(event.target.value);
+        onTextChange(i, event.target.value);
     }
 
     return (<div className="input-group">

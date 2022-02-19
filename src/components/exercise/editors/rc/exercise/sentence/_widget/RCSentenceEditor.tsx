@@ -1,22 +1,21 @@
 
-import { RCAnswerableDTO, RCSentenceDTO } from '../../../../../../../dtos/DTOs';
+import { RCSentenceDTO } from '../../../../../../../dtos/DTOs';
 import { RCSentenceDTOs } from '../../../../../../../dtos/RCSentenceDTOs';
-import EditorExerciseControls from '../../../../../../../models/editor/EditorExerciseControls';
 import ThreeStepRCSentenceStatusBuilder from '../../../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
 import RCEditorPreviewWrapper from '../../../../../common/todo/preview/RCEditorPreviewWrapper';
 import EditorStep from '../../../../utils/EditorStep';
 import RCBodyEditor from '../body/RCBodyEditor';
-import RCGapsEditor from '../gaps/RCGapsEditor';
+import RCGapsEditor from '../gaps/_widget/RCGapsEditor';
 import styles from './RCSentenceEditor.module.css'
 
 interface Props {
-    eeControls: EditorExerciseControls;
+    onRCSentenceEdit: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
     rcSentenceDTO: RCSentenceDTO;
 }
 
 
 
-function RCSentenceEditor({ eeControls, rcSentenceDTO }: Props) {
+function RCSentenceEditor({ onRCSentenceEdit, rcSentenceDTO }: Props) {
     let marginTop = 3;
 
 
@@ -40,7 +39,7 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO }: Props) {
                     })
                 .build();
 
-        eeControls.onRCSentenceEdit(rcSentenceDTO.number, sentenceDTO)
+        onRCSentenceEdit(rcSentenceDTO.number, sentenceDTO)
         console.log("Body edited.")
 
     }
@@ -62,7 +61,7 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO }: Props) {
             </EditorStep>
 
             <EditorStep number={2} title="Formulate the questions:" marginTop={marginTop}>
-                <RCGapsEditor eeControls={eeControls} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
+                <RCGapsEditor onRCSentenceEdit={onRCSentenceEdit} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
             </EditorStep>
             <EditorStep number={3} title="Solve it:" marginTop={marginTop}>
                 <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO}></RCEditorPreviewWrapper>

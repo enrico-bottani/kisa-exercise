@@ -2,7 +2,7 @@
 import { RCSentenceDTO, StringConstantDTO, RCAnswerableDTO } from "../../../../../dtos/DTOs";
 import ExerciseType from "../../../../../models/ExerciseType";
 import RCChoices from "../assignables/RCOptions/RCChoices";
-import StringElement from "../assignables/StringElement";
+import StringElement from "../assignables/StringElement/StringElement";
 
 import styles from "./RCEditorPreviewWrapper.module.css";
 
@@ -34,9 +34,11 @@ function RCEditorPreviewWrapper(props: Props) {
         })
     )
     return (
-        <>
-            {children}
-        </>
+        <div className="container">
+            <div className="row gx-3">
+                {children}
+            </div>
+        </div>
     )
 }
 export default RCEditorPreviewWrapper;
