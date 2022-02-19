@@ -1,4 +1,3 @@
-import { RCAnswerableEditable } from '../../../../../models/editor/EditorExerciseControls';
 import styles from './RCChoiceEditor.module.css'
 
 interface Props {

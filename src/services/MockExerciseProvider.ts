@@ -12,7 +12,7 @@ class DummyExerciseProvider {
         {
             id: 2,
             type: ExerciseType.RCAnswerable,
-            choices: ["in", "on", "for"]
+            choices: ["in", "on", "0"]
         } as RCAnswerableDTO,
         {
             id: 3,
@@ -61,6 +61,12 @@ class DummyExerciseProvider {
     static answers: AnswerIndexer[] = [
         {
             index: 1,
+        },
+        {
+            index: 3,
+        },
+        {
+            index: 5,
         }
     ]
 
@@ -112,7 +118,7 @@ class DummyExerciseProvider {
                     }
                 }
                 reject({ status: 404 })
-            }, 150)
+            }, 10)
         })
 
     }
@@ -137,7 +143,7 @@ class DummyExerciseProvider {
                 if (exercise !== null)
                     resolve(exercise);
                 resolve(null)
-            }, 500
+            }, 10
             )
         })
     }

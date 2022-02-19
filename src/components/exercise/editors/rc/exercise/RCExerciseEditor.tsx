@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { RCAnswerableDTO, RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
-import EditorExerciseControls, { NewDraftAble, NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
+import { useState } from "react";
+import { RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
+import EditorExerciseControls, { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
-import ThreeStepRCSentenceStatusBuilder from "../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
 import ExerciseHeading from "../../../common/heading/ExerciseHeading";
 import Navigation from "../../../common/nav/Navigation";
 import TodosPagination from "../../../common/pagination/TodosPagination";
@@ -31,43 +30,21 @@ function Exercise() {
         return { message: "ok", success: true };
     }
 
-    function onRCBodyEdit(sentenceId: number, body: string) {
-        setExercise(
-            oldRCExercise => {
 
-                let sentenceToUpdate = oldRCExercise.sentences[sentenceId];
+    let onRCSentenceEdit = function (id: number, answerableDTO: RCSentenceDTO) {
+        console.log("Editing sentence at index " + id + ": ", answerableDTO)
+        setExercise(e => {
+            e.sentences[id] = answerableDTO;
+            let rtn = Object.assign({}, e);
+            console.log("Exercise: ", rtn);
+            return rtn;
+        })
 
-                var prevQuestions = sentenceToUpdate.answerMap.map(indexer => {
-                    return (sentenceToUpdate.assignables[indexer.index])
-                })
-
-                var _3StepRCBuilder = new ThreeStepRCSentenceStatusBuilder();
-                let newSentence = _3StepRCBuilder.parseBody(body).build();
-
-                newSentence.answerMap.forEach((indexer, i) => {
-                    if (i < prevQuestions.length) {
-                        newSentence.assignables[indexer.index] = prevQuestions[i];
-                    }
-                    // TODO: Improve efficency when i>=pre.length
-                })
-
-                oldRCExercise.sentences[sentenceId] = newSentence;
-                console.log(oldRCExercise.sentences[sentenceId].assignables[2])
-                oldRCExercise = JSON.parse(JSON.stringify(oldRCExercise))
-                return oldRCExercise;
-            }
-        )
-        // Parse into components
-    }
-
-    let onRCAnswerableEdit = function (id: number, answerableDTO: RCAnswerableDTO) {
-        console.log("Editing answerable at index " + id + ": ", answerableDTO)
 
     }
     const [eeControls, setEEControls] = useState<EditorExerciseControls>({
         newDraft: createNewDraft,
-        onRCBodyEdit: onRCBodyEdit,
-        onRCAnswerableEdit: onRCAnswerableEdit,
+        onRCSentenceEdit: onRCSentenceEdit,
     });
 
     let rtn = <div className="container"><div className="row"><div className="col"><h1>Loading...</h1></div></div></div>

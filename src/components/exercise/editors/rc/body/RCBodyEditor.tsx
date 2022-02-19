@@ -6,7 +6,7 @@ import ThreeStepRCSentenceStatusBuilder from "../../../../../status/editor/_3_st
 
 interface Props {
     rcSentenceDTO: RCSentenceDTO;
-    rcBodyEditable: RCBodyEditable;
+    rcBodyEditable: (body: string) => void;
 }
 
 
@@ -23,7 +23,7 @@ function RCBodyEditor({ rcBodyEditable, rcSentenceDTO }: Props) {
     function onEdit(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.selectionStart != null)
             setCursor(e.target.selectionStart);
-        rcBodyEditable.onRCBodyEdit(rcSentenceDTO.number, e.target.value);
+        rcBodyEditable(e.target.value);
     }
     return (
         <input type="text"

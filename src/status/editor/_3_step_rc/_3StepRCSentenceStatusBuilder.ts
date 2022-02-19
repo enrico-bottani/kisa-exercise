@@ -26,8 +26,7 @@ class ThreeStepRCSentenceStatusBuilder {
     }
 
 
-
-    parseBody(body: string): ThreeStepRCSentenceStatusBuilder {
+    parseBody(body: string, setAnsw?: (nOfGaps: number) => string[][]): ThreeStepRCSentenceStatusBuilder {
         if (this.step !== 0) return this;
 
 
@@ -61,6 +60,8 @@ class ThreeStepRCSentenceStatusBuilder {
 
 
         this.step = 1;
+
+        if (setAnsw !== undefined) this.setAnswers(setAnsw(nOfAnswers));
         return this;
     }
     setAnswers(answers: string[][]): ThreeStepRCSentenceStatusBuilder {

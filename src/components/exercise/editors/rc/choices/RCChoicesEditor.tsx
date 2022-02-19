@@ -1,15 +1,13 @@
-import { AssignableDTO, RCAnswerableDTO } from "../../../../../dtos/DTOs";
-import EditorExerciseControls from "../../../../../models/editor/EditorExerciseControls";
+import { RCAnswerableDTO } from "../../../../../dtos/DTOs";
 import RCChoiceEditor from "./RCChoiceEditor";
 interface Props {
     id: number;
     rcAnswerableDto: RCAnswerableDTO;
-    eeControls: EditorExerciseControls;
 }
-function RCChoicesEditor({ rcAnswerableDto, eeControls, id }: Props) {
+function RCChoicesEditor({ rcAnswerableDto, id }: Props) {
 
     function onTextChange(text: string) {
-        eeControls.onRCAnswerableEdit(id, rcAnswerableDto);
+
     }
 
     var choices = rcAnswerableDto.choices.map(choice => {

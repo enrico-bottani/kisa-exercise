@@ -1,6 +1,8 @@
 
-import { RCSentenceDTO } from '../../../../../dtos/DTOs';
+import { RCAnswerableDTO, RCSentenceDTO } from '../../../../../dtos/DTOs';
+import { RCSentenceDTOs } from '../../../../../dtos/RCSentenceDTOs';
 import EditorExerciseControls from '../../../../../models/editor/EditorExerciseControls';
+import ThreeStepRCSentenceStatusBuilder from '../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
 import RCEditorPreviewWrapper from '../../../common/todo/preview/RCEditorPreviewWrapper';
 import EditorStep from '../../utils/EditorStep';
 import RCBodyEditor from '../body/RCBodyEditor';
@@ -18,6 +20,26 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO }: Props) {
     let marginTop = 3;
 
 
+    let onRCBodyEdit = function (body: string) {
+        let choices = RCSentenceDTOs.extractChoices(rcSentenceDTO);
+
+        let sentenceDTO: RCSentenceDTO =
+            new ThreeStepRCSentenceStatusBuilder()
+                .parseBody(body,
+                    (nOfAnswers) => {
+                        for (let i = choices.length; i < nOfAnswers; i++) {
+                            choices[i] = ["", ""];
+                        }
+                        return choices;
+                    })
+                .build();
+
+        eeControls.onRCSentenceEdit(rcSentenceDTO.number, sentenceDTO)
+        console.log("Body edited.")
+
+    }
+
+
 
     return (
         <div className={styles.EditorFrame}>
@@ -30,7 +52,7 @@ function RCSentenceEditor({ eeControls, rcSentenceDTO }: Props) {
                 </div>
             </div>
             <EditorStep number={1} title="Write the body:">
-                <RCBodyEditor rcBodyEditable={eeControls} rcSentenceDTO={rcSentenceDTO}></RCBodyEditor>
+                <RCBodyEditor rcBodyEditable={onRCBodyEdit} rcSentenceDTO={rcSentenceDTO}></RCBodyEditor>
             </EditorStep>
 
             <EditorStep number={2} title="Formulate the questions:" marginTop={marginTop}>

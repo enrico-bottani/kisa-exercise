@@ -10,7 +10,6 @@ export interface RCSentenceDTO {
     answerMap: AnswerIndexer[];
     answerSheet: AnswerSheet[];
 }
-
 // ASSIGNABLES
 export interface AssignableDTO {
     type: string;
