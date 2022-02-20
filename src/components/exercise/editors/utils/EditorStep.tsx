@@ -2,20 +2,22 @@ import { ReactElement } from 'react';
 import styles from './EditorStep.module.css';
 
 interface _InnerProps {
-    marginTop?: number;
+    paddingTop?: number;
+    paddingBottom?: number;
     children: ReactElement<any, any>;
+    positionSticky?: boolean;
 }
 
 interface Props extends _InnerProps {
     number: number;
     title: string;
-    marginTop?: number;
-    children: ReactElement<any, any>;
+
 }
 
-function EditorStepChildWrapper({ marginTop, children }: _InnerProps) {
+function EditorStepChildWrapper({ paddingTop, paddingBottom, children }: _InnerProps) {
+
     return (<div className={styles.EditorStepChildWrapper}>
-        <div className="border-start border-2 w-100">
+        <div className={"border-start border-2 w-100 "}>
             <div className='ms-3'>
                 {children}
             </div>
@@ -23,17 +25,22 @@ function EditorStepChildWrapper({ marginTop, children }: _InnerProps) {
     </div >)
 }
 
-function EditorStep({ children, title, number, marginTop }: Props) {
-    if (marginTop == null) marginTop = 0;
-    return (<div className={"mt-" + marginTop}>
-        <h6 className={styles.EditorStep}>
-            <span className={styles.EditorStepNumber}>{number}</span>{title}
-        </h6>
+function EditorStep({ children, title, number, paddingTop, paddingBottom, positionSticky }: Props) {
+    if (paddingTop === undefined) paddingTop = 0;
+    if (paddingBottom === undefined) paddingBottom = 0;
+    let stepClass = "";
+    if (positionSticky !== undefined) stepClass = styles.StickyPreview;
 
-        <EditorStepChildWrapper marginTop={marginTop}>
-            {children}
-        </EditorStepChildWrapper>
+    return (
+        <div className={"pt-" + paddingTop + " pb-" + paddingBottom + " " + stepClass}>
+            <h6 className={styles.EditorStep}>
+                <span className={styles.EditorStepNumber}>{number}</span>{title}
+            </h6>
 
-    </div>)
+            <EditorStepChildWrapper paddingTop={paddingTop} paddingBottom={paddingBottom}>
+                {children}
+            </EditorStepChildWrapper>
+
+        </div>)
 }
 export default EditorStep;

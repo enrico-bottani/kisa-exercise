@@ -1,10 +1,10 @@
-import { AnswerIndexer, AnswerSheet, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
+import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
     id: number = 0;
     assignables: AssignableDTO[] = [];
     answerMap: AnswerIndexer[] = [];
-    answerSheet: AnswerSheet[] = [];
+    answerSheet: AnswerSheetItemDTO[] = [];
 
     constructor() { }
 
@@ -18,7 +18,7 @@ class RCSentenceModelBuilder implements RCSentenceDTO {
         return this;
     }
 
-    setAnswerSheet(answerSheet: AnswerSheet[]): RCSentenceModelBuilder {
+    setAnswerSheet(answerSheet: AnswerSheetItemDTO[]): RCSentenceModelBuilder {
         this.answerSheet = answerSheet;
         return this;
     }
@@ -40,7 +40,7 @@ class SubmittableRCSentenceDTO implements RCSentenceDTO {
 
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
-    answerSheet: AnswerSheet[] = [];
+    answerSheet: AnswerSheetItemDTO[] = [];
 
     static builder(): RCSentenceModelBuilder {
         return new RCSentenceModelBuilder();
@@ -66,7 +66,7 @@ class SubmittableRCSentenceDTO implements RCSentenceDTO {
         return this.assignables[this.answerMap[i].index] as RCAnswerableDTO;
     }
 
-    constructor(number: number, assignables: AssignableDTO[], answers: AnswerIndexer[], answerSheet: AnswerSheet[]) {
+    constructor(number: number, assignables: AssignableDTO[], answers: AnswerIndexer[], answerSheet: AnswerSheetItemDTO[]) {
         this.id = number;
         this.assignables = assignables;
         this.answerMap = answers;

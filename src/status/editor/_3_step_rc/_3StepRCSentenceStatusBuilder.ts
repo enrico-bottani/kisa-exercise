@@ -1,5 +1,5 @@
 import SubmittableRCSentenceDTO from "../../../dtos/SubmittableRCSentenceDTO";
-import { AnswerIndexer, AnswerSheet, AssignableDTO, RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../../dtos/DTOs";
+import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../../dtos/DTOs";
 import ExerciseType from "../../../models/ExerciseType";
 class StatusBuilderException {
     message: string;
@@ -13,7 +13,7 @@ class ThreeStepRCSentenceStatusBuilder {
     step: number = 0;
     indexer: AnswerIndexer[] = [];
     assigns: AssignableDTO[] = [];
-    answerSheet: AnswerSheet[] = [];
+    answerSheet: AnswerSheetItemDTO[] = [];
     getStep(): number {
         return this.step;
     }
@@ -26,7 +26,7 @@ class ThreeStepRCSentenceStatusBuilder {
     }
 
 
-    parseBody(body: string, setAnsw?: (nOfGaps: number) => string[][]): ThreeStepRCSentenceStatusBuilder {
+    parseBody(body: string, setAnsw?: (nOfGaps: number) => string[][], setAnswSheet?: (nOfGaps: number) => AnswerSheetItemDTO[]): ThreeStepRCSentenceStatusBuilder {
         if (this.step !== 0) return this;
 
 
@@ -62,6 +62,7 @@ class ThreeStepRCSentenceStatusBuilder {
         this.step = 1;
 
         if (setAnsw !== undefined) this.setAnswers(setAnsw(nOfAnswers));
+        if (setAnswSheet !== undefined) this.setAnswerSheet(setAnswSheet(nOfAnswers))
         return this;
     }
     setAnswers(answers: string[][]): ThreeStepRCSentenceStatusBuilder {
@@ -85,7 +86,7 @@ class ThreeStepRCSentenceStatusBuilder {
         this.step = 2;
         return this;
     }
-    setAnswerSheet(answerSheet: AnswerSheet[]): ThreeStepRCSentenceStatusBuilder {
+    setAnswerSheet(answerSheet: AnswerSheetItemDTO[]): ThreeStepRCSentenceStatusBuilder {
         if (this.step !== 2) return this;
         this.answerSheet = answerSheet;
 

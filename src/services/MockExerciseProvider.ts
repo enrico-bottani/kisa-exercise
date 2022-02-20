@@ -80,7 +80,7 @@ class DummyExerciseProvider {
         id: 0,
         assignables: this.strings0,
         answerMap: this.answers,
-        answerSheet: []
+        answerSheet: [null, null]
     }
     static singleChoiceSentence1: RCSentenceDTO = {
         id: 1,

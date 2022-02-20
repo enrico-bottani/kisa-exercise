@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { RCAnswerableDTO } from "../../../../../../../../dtos/DTOs";
+import { AnswerSheetItemDTO, RCAnswerableDTO } from "../../../../../../../../dtos/DTOs";
 import RCChoiceEditor from "./RCChoiceEditor";
 interface Props {
     gapKey: number;
     rcAnswerableDto: RCAnswerableDTO;
+    answerId: number;
+    onSetSolution: (gapKey: number, givenAnswer: number) => void;
     onAnswerableEdited: (gapKey: number, rcAnswerableDTO: RCAnswerableDTO) => void;
 }
-function RCChoicesEditor({ rcAnswerableDto, gapKey, onAnswerableEdited }: Props) {
+function RCChoicesEditor({ rcAnswerableDto, gapKey, onAnswerableEdited, onSetSolution, answerId }: Props) {
     let [valid, setValid] = useState(true);
 
 
@@ -17,10 +19,7 @@ function RCChoicesEditor({ rcAnswerableDto, gapKey, onAnswerableEdited }: Props)
     }
     function onDelete(gapKey: number, choice: number) {
         let clone: RCAnswerableDTO = JSON.parse(JSON.stringify(rcAnswerableDto));
-        console.log("Removing from " + clone.choices + " at index " + choice)
         clone.choices.splice(choice, 1);
-        console.log("Removing from " + clone.choices + " at index " + choice)
-
         onAnswerableEdited(gapKey, clone);
     }
     function onCreate() {
@@ -28,9 +27,13 @@ function RCChoicesEditor({ rcAnswerableDto, gapKey, onAnswerableEdited }: Props)
         clone.choices.push("")
         onAnswerableEdited(gapKey, clone);
     }
+    function _onSetSolution(gapKey: number, givenAnswer: number) {
+        onSetSolution(gapKey, givenAnswer);
+    }
+
     var choices = rcAnswerableDto.choices.map((choice, choiceID) => {
         return (<div className="col-12 " key={choiceID}>
-            <RCChoiceEditor gapKey={gapKey} onDelete={onDelete} onDirtyAnswerable={onDirtyAnswerable} text={choice} choiceID={choiceID}></RCChoiceEditor>
+            <RCChoiceEditor answer={choiceID === answerId} gapKey={gapKey} onDelete={onDelete} onSetSolution={_onSetSolution} onDirtyAnswerable={onDirtyAnswerable} text={choice} choiceID={choiceID}></RCChoiceEditor>
         </div>)
     })
 

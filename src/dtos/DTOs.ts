@@ -8,7 +8,7 @@ export interface RCSentenceDTO {
     id: number;
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
-    answerSheet: AnswerSheet[];
+    answerSheet: (AnswerSheetItemDTO | null)[];
 }
 // ASSIGNABLES
 export interface AssignableDTO {
@@ -28,7 +28,7 @@ export interface AnswerIndexer {
     index: number;
 }
 
-export interface AnswerSheet {
+export interface AnswerSheetItemDTO {
     givenAnswer: number;
     status: number; // 0 = not submitted, 1 = correct, 2 wrong
 }

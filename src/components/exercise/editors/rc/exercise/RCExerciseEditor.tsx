@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { RCExerciseDTO, RCSentenceDTO } from "../../../../../../dtos/DTOs";
-import EditorExerciseControls, { NewDraftResponse } from "../../../../../../models/editor/EditorExerciseControls";
-import DummyExerciseProvider from "../../../../../../services/MockExerciseProvider";
-import ExerciseHeading from "../../../../common/heading/ExerciseHeading";
-import Navigation from "../../../../common/nav/Navigation";
-import TodosPagination from "../../../../common/pagination/TodosPagination";
-import RCSentenceEditor from "../sentence/_widget/RCSentenceEditor";
+import { RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
+import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
+import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
+import ExerciseHeading from "../../../common/heading/ExerciseHeading";
+import Navigation from "../../../common/nav/Navigation";
+import TodosPagination from "../../../common/pagination/TodosPagination";
+
 import styles from "./RCExerciseEditor.module.css"
+import RCSentenceEditor from "./sentence/_widget/RCSentenceEditor";
 
 function Exercise() {
 

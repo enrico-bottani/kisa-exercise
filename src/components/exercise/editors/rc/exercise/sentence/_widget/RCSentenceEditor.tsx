@@ -1,5 +1,5 @@
 
-import { RCSentenceDTO } from '../../../../../../../dtos/DTOs';
+import { RCSentenceDTO, AnswerSheetItemDTO } from '../../../../../../../dtos/DTOs';
 import { RCSentenceDTOs } from '../../../../../../../dtos/RCSentenceDTOs';
 import ThreeStepRCSentenceStatusBuilder from '../../../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
 import RCEditorPreviewWrapper from '../../../../../common/todo/preview/RCEditorPreviewWrapper';
@@ -16,7 +16,7 @@ interface Props {
 
 
 function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
-    let marginTop = 3;
+    let marginTop = 2;
 
 
     let onRCBodyEdit = function (body: string) {
@@ -25,7 +25,6 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
             new ThreeStepRCSentenceStatusBuilder()
                 .parseBody(body,
                     (nOfAnswers) => {
-
                         if (nOfAnswers < choices.length) {
                             console.log(`nOfAnswers${nOfAnswers} < choices.length ${choices.length}`)
                             return choices.slice(0, nOfAnswers)
@@ -35,6 +34,13 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
                             choices[i] = ["", ""];
                         }
                         return choices;
+                    },
+                    (nOfAnswers) => {
+                        let answers = [];
+                        for (let i = 0; i < nOfAnswers; i++) {
+                            answers.push({ givenAnswer: -1, status: -1 } as AnswerSheetItemDTO);
+                        }
+                        return answers;
                     })
                 .build();
         stageRCSentenceEdits(rcSentenceDTO.id, sentenceDTO)
@@ -53,20 +59,21 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
                     </div>
                 </div>
             </div>
-            <EditorStep number={1} title="Write the body:">
+            <EditorStep number={1} title="Write the body:" paddingTop={marginTop} paddingBottom={marginTop} >
                 <RCBodyEditor rcBodyEditable={onRCBodyEdit} rcSentenceDTO={rcSentenceDTO}></RCBodyEditor>
             </EditorStep>
 
-            <EditorStep number={2} title="Formulate the questions:" marginTop={marginTop}>
+            <EditorStep number={2} title="Formulate the questions:" paddingTop={marginTop} paddingBottom={marginTop} >
                 <RCGapsEditor stageRCSentenceEdits={stageRCSentenceEdits} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
             </EditorStep>
-            <EditorStep number={3} title="Preview:" marginTop={marginTop}>
-                <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO}></RCEditorPreviewWrapper>
-            </EditorStep>
-            <EditorStep number={4} title="Save:" marginTop={marginTop}>
+            <EditorStep number={3} title="Preview and save:"
+                paddingTop={marginTop} paddingBottom={marginTop} positionSticky={true}>
                 <>
-                    <button className={'btn btn-primary rounded-0 col col-auto me-1 ' + styles.EditorButtonPrimaryBorderLeft} disabled>Save</button>
-                    <button disabled className='btn btn-outline-danger rounded-0 me-1 col col-auto'>Discharge changes</button>
+                    <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO}></RCEditorPreviewWrapper>
+                    <div className='mt-1'>
+                        <button className={'btn btn-primary rounded-0 col col-auto me-1 ' + styles.EditorButtonPrimaryBorderLeft} disabled>Save</button>
+                        <button disabled className='btn btn-outline-danger rounded-0 me-1 col col-auto'>Discharge changes</button>
+                    </div>
                 </>
             </EditorStep>
         </div >)
