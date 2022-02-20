@@ -4,11 +4,14 @@ export interface RCExerciseDTO {
     selected: number;
     sentences: RCSentenceDTO[];
 }
+
+
 export interface RCSentenceDTO {
     id: number;
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
     answerSheet: (AnswerSheetItemDTO | null)[];
+    dirty?: boolean;
 }
 // ASSIGNABLES
 export interface AssignableDTO {

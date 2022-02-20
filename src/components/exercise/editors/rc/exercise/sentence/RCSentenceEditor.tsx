@@ -16,15 +16,14 @@ interface Props {
 
 
 
-function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
+function RCSentenceEditor(props: Props) {
     let marginTop = 2;
 
-
     let onRCBodyEdit = function (body: string) {
-        let choices = RCSentenceDTOs.extractChoices(rcSentenceDTO);
+        let choices = RCSentenceDTOs.extractChoices(props.rcSentenceDTO);
         let sentenceDTO: RCSentenceDTO =
             new ThreeStepRCSentenceStatusBuilder()
-                .parseBody(rcSentenceDTO.id, body,
+                .parseBody(props.rcSentenceDTO.id, body,
                     (nOfAnswers) => {
                         if (nOfAnswers < choices.length) {
                             return choices.slice(0, nOfAnswers)
@@ -43,7 +42,7 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
                         return answers;
                     })
                 .build();
-        stageRCSentenceEdits(rcSentenceDTO.id, sentenceDTO)
+        props.stageRCSentenceEdits(props.rcSentenceDTO.id, sentenceDTO)
     }
 
 
@@ -51,29 +50,29 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
     return (
         <div className={styles.EditorFrame}>
             <div className="container px-0">
-                <div className='row gx-0 border-bottom border-2 mb-3'>
-                    <div className="col"><h2>Radio Choice Editor</h2></div>
+                <div className='row gx-0 border-bottom border-2 mb-3 pb-2 d-flex align-items-center'>
+                    <div className="col-auto">
+                        <button disabled={!(props.rcSentenceDTO.dirty === true)} className={"btn btn-success rounded-0 " + styles.EditorSubStepNumber} >
+                            <i className="bi bi-save"></i>
+                            <span className='ms-2'>Save</span>
+                        </button>
+                    </div>
+                    <div className="col ms-3"><h2 className='mb-0'>Radio Choice Editor</h2></div>
                     <div className="col-auto">
                         <div className="btn btn-outline-secondary rounded-0 border-0"><i className="bi bi-three-dots"></i></div>
                     </div>
                 </div>
             </div>
+            <EditorStep number={0} title="Preview:"
+                paddingTop={marginTop} paddingBottom={marginTop} positionSticky={true}>
+                <RCEditorPreviewWrapper rcSentenceDTO={props.rcSentenceDTO}></RCEditorPreviewWrapper>
+            </EditorStep>
             <EditorStep number={1} title="Write the body:" paddingTop={marginTop} paddingBottom={marginTop} >
-                <RCBodyEditor rcBodyEditable={onRCBodyEdit} rcSentenceDTO={rcSentenceDTO}></RCBodyEditor>
+                <RCBodyEditor rcBodyEditable={onRCBodyEdit} rcSentenceDTO={props.rcSentenceDTO}></RCBodyEditor>
             </EditorStep>
 
             <EditorStep number={2} title="Formulate the questions:" paddingTop={marginTop} paddingBottom={marginTop} >
-                <RCGapsEditor stageRCSentenceEdits={stageRCSentenceEdits} rcSentenceDTO={rcSentenceDTO}></RCGapsEditor>
-            </EditorStep>
-            <EditorStep number={3} title="Preview and save:"
-                paddingTop={marginTop} paddingBottom={marginTop} positionSticky={true}>
-                <>
-                    <RCEditorPreviewWrapper rcSentenceDTO={rcSentenceDTO}></RCEditorPreviewWrapper>
-                    <div className='mt-1'>
-                        <button className={'btn btn-primary rounded-0 col col-auto me-1 ' + styles.EditorButtonPrimaryBorderLeft} disabled>Save</button>
-                        <button disabled className='btn btn-outline-danger rounded-0 me-1 col col-auto'>Discharge changes</button>
-                    </div>
-                </>
+                <RCGapsEditor stageRCSentenceEdits={props.stageRCSentenceEdits} rcSentenceDTO={props.rcSentenceDTO}></RCGapsEditor>
             </EditorStep>
         </div >)
 }

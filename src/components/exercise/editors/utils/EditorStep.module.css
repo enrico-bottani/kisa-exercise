@@ -4,10 +4,10 @@
 
 .StickyPreview{
     position: sticky;
-    bottom: 0;
+    top: 0;
     background-color: #e9ecef;
-    z-index: 2;
-    box-shadow: 0px -2px 0px 0px rgba(222,226,230,0.8);
+    z-index: 4;
+    box-shadow: 0px 2px 0px 0px rgba(222,226,230,0.8);
 }
 
 .BorderSeparator{
