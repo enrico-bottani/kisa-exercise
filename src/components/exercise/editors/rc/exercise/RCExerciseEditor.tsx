@@ -23,9 +23,6 @@ function Exercise() {
         let number = exercise.sentences[exercise.sentences.length - 1].id + 1;
         setExercise(e => {
             e.sentences.push({ id: number, assignables: [], answerMap: [], answerSheet: [] });
-            setExcerciseNumber(n => {
-                return e.sentences.length + 1;
-            });
             return e;
         });
         return { message: "ok", success: true };

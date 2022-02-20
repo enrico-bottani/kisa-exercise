@@ -11,6 +11,7 @@ class StatusBuilderException {
 class ThreeStepRCSentenceStatusBuilder {
     bodyParseError = -1;
     step: number = 0;
+    sentenceId: number = -1;
     indexer: AnswerIndexer[] = [];
     assigns: AssignableDTO[] = [];
     answerSheet: AnswerSheetItemDTO[] = [];
@@ -20,16 +21,16 @@ class ThreeStepRCSentenceStatusBuilder {
 
     build() {
         return SubmittableRCSentenceDTO.builder()
+            .setNumber(this.sentenceId)
             .setAnswerMap(this.indexer)
             .setAssignables(this.assigns)
             .setAnswerSheet(this.answerSheet).build();
     }
 
 
-    parseBody(body: string, setAnsw?: (nOfGaps: number) => string[][], setAnswSheet?: (nOfGaps: number) => AnswerSheetItemDTO[]): ThreeStepRCSentenceStatusBuilder {
+    parseBody(sentenceId: number, body: string, setAnsw?: (nOfGaps: number) => string[][], setAnswSheet?: (nOfGaps: number) => AnswerSheetItemDTO[]): ThreeStepRCSentenceStatusBuilder {
         if (this.step !== 0) return this;
-
-
+        this.sentenceId = sentenceId;
         // Ricevo la stringa e la divido in più parole
         const words = body.split('..');
         // Ottengo il numero di domande da fare (e risposte)
@@ -93,8 +94,9 @@ class ThreeStepRCSentenceStatusBuilder {
         this.step = 3;
         return this;
     }
-    static parseToStr(rSDTO: RCSentenceDTO): string {
-        let parseResult = rSDTO.assignables.map((item) => {
+    static parseToStr(rcSentenceDTO: RCSentenceDTO): string {
+        if (rcSentenceDTO.assignables === undefined) return "";
+        let parseResult = rcSentenceDTO.assignables.map((item) => {
             if (item.type === ExerciseType.String) {
                 return (item as StringConstantDTO).value;
             }

@@ -1,7 +1,7 @@
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
-    id: number = 0;
+    id: number = -1;
     assignables: AssignableDTO[] = [];
     answerMap: AnswerIndexer[] = [];
     answerSheet: AnswerSheetItemDTO[] = [];

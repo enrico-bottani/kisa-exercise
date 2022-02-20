@@ -12,19 +12,19 @@ interface Props {
 }
 
 function TodosPagination(props: Props) {
-  let add = <></>
-  if (props.newDraft !== undefined) {
-    add = <TodoNewSentenceButton text='Add new' newDraft={props.newDraft}></TodoNewSentenceButton>
-  }
-  var listItems = props.excercise.sentences.map(function (sentence) {
+  var listItems = props.excercise.sentences.map((sentence, i) => {
     return (<TodoPage
-      key={sentence.id}
+      key={"todo-page-" + i}
       representingTodoNumber={sentence.id}
       currentTodoNumber={props.excerciseNumber}
       errorsNumber={-1}
       onSetSelected={props.onSetExercise}></TodoPage>)
   });
-  listItems.push(<TodoPageGenericButton<void> onClick={props.newDraft} label={'+'} btnClass={''} param={undefined} sign={undefined} id={''}></TodoPageGenericButton>)
+  listItems.push(<TodoPageGenericButton<void>
+    key={"todo-page--1"}
+    onClick={props.newDraft}
+    label={'+'} btnClass={''}
+    param={undefined} sign={undefined} id={''}></TodoPageGenericButton>)
 
   return (<>{listItems}</>)
 }

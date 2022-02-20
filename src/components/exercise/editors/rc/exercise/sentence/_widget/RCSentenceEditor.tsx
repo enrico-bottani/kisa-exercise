@@ -23,7 +23,7 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
         let choices = RCSentenceDTOs.extractChoices(rcSentenceDTO);
         let sentenceDTO: RCSentenceDTO =
             new ThreeStepRCSentenceStatusBuilder()
-                .parseBody(body,
+                .parseBody(rcSentenceDTO.id, body,
                     (nOfAnswers) => {
                         if (nOfAnswers < choices.length) {
                             console.log(`nOfAnswers${nOfAnswers} < choices.length ${choices.length}`)

@@ -14,15 +14,12 @@ interface Props {
 function RCBodyEditor({ rcBodyEditable, rcSentenceDTO }: Props) {
 
     var [strSentence, setStrSentence] = useState(ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
-    var [cursor, setCursor] = useState(0);
 
     useEffect(() => {
         setStrSentence(ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
     }, [rcSentenceDTO])
 
     function onEdit(e: React.ChangeEvent<HTMLInputElement>) {
-        if (e.target.selectionStart != null)
-            setCursor(e.target.selectionStart);
         rcBodyEditable(e.target.value);
     }
     return (
