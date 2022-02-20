@@ -38,7 +38,7 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
                     (nOfAnswers) => {
                         let answers = [];
                         for (let i = 0; i < nOfAnswers; i++) {
-                            answers.push({ givenAnswer: -1, status: -1 } as AnswerSheetItemDTO);
+                            answers.push({ givenAnswerID: -1, status: -1 } as AnswerSheetItemDTO);
                         }
                         return answers;
                     })

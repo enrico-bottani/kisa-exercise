@@ -28,7 +28,7 @@ test('renders learn react link', () => {
     let a = ((new ThreeStepRCSentenceStatusBuilder)
         .parseBody("An .. of .. .")
         .setAnswers(answer)
-        .setAnswerSheet([{ givenAnswer: 0, status: 0 }, { givenAnswer: 0, status: 0 }])
+        .setAnswerSheet([{ givenAnswerID: 0, status: 0, correctAnswerID: 0 }, { givenAnswerID: 0, status: 0, correctAnswerID: 0 }])
         .build())
     expect(a?.assignables.length).toEqual(5)
     expect(a?.submittable()).toEqual(true);

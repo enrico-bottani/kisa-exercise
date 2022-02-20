@@ -20,7 +20,7 @@ function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
 
     function onSetSolution(gapKey: number, givenAnswer: number) {
         let rcSentDTO: RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
-        rcSentDTO.answerSheet[gapKey] = { givenAnswer: givenAnswer, status: -1 }
+        rcSentDTO.answerSheet[gapKey] = { correctAnswerID: givenAnswer, givenAnswerID: -1, status: 0 }
         stageRCSentenceEdits(rcSentenceDTO.id, rcSentDTO);
     }
 
@@ -28,7 +28,7 @@ function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
 
 
     let gapsTSX = gaps.map((rcAnswerableDto, gapIndex) => {
-        let answerId = rcSentenceDTO.answerSheet[gapIndex]?.givenAnswer;
+        let answerId = rcSentenceDTO.answerSheet[gapIndex]?.correctAnswerID;
         if (answerId === undefined) answerId = -1;
         return (
             <div className="row gx-1 mb-2" key={gapIndex}>

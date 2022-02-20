@@ -29,7 +29,8 @@ export interface AnswerIndexer {
 }
 
 export interface AnswerSheetItemDTO {
-    givenAnswer: number;
+    givenAnswerID: number;
+    correctAnswerID: number;
     status: number; // 0 = not submitted, 1 = correct, 2 wrong
 }
 

@@ -1,15 +1,27 @@
+import { AnswerSheetItemDTO } from '../../../../../../../dtos/DTOs';
 import styles from './RCButton.module.css'
 interface Props {
-    id: string;
+    answerI: number;
     choice: string;
     gapKey: number;
     editMode: number;
+    isGivenAnswer: boolean;
+    status: number;
+    isCorrectAnswer: boolean;
+    onGivenAnswerChange: (answerId: number) => void;
 }
 function RCButton(props: Props) {
-    let gapKey = props.gapKey + "_" + props.id + "";
+    let gapKey = props.gapKey + "_" + props.answerI + "";
+    function onGivenAnswerChange() {
+        props.onGivenAnswerChange(props.answerI);
+    }
+    let btnOutlineClass = "btn-outline-secondary";
+    if (props.isCorrectAnswer && props.isGivenAnswer) {
+        btnOutlineClass = "btn-success ";
+    }
     return (<div>
-        <input type="radio" className="btn-check" name={props.gapKey + ""} id={gapKey} autoComplete="off" />
-        <label className={"btn btn-outline-warning " + styles.Choice} htmlFor={gapKey}>{props.choice}</label>
+        <input checked={props.isGivenAnswer} onChange={onGivenAnswerChange} type="radio" className="btn-check" name={props.gapKey + ""} id={gapKey} />
+        <label className={"btn " + btnOutlineClass + " " + styles.Choice} htmlFor={gapKey}>{props.choice}</label>
     </div>)
 }
 export default RCButton;

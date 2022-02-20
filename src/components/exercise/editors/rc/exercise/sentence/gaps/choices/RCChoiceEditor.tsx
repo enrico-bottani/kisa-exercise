@@ -26,7 +26,7 @@ function RCChoiceEditor({ text, choiceID, answer, onDirtyAnswerable, onSetSoluti
         <div>
             <div className="input-group ">
                 <div className="input-group-text rounded-0" onClick={_onSetSolution}>
-                    <input onClick={_onSetSolution} checked={answer} className="form-check-input mt-0" type="radio" name={"a_" + gapKey} aria-label="Radio button for following text input"></input>
+                    <input onChange={_onSetSolution} checked={answer} className="form-check-input mt-0" type="radio" name={"a_" + gapKey} aria-label="Radio button for following text input"></input>
                     <div className={styles.CorrectAnswer}>Answer</div>
                 </div>
                 <input type="input" value={text} className={"form-control rounded-0 " + styles.RCChoiceEditor} onChange={onChange}></input>

@@ -12,28 +12,30 @@ interface Props {
 
 function RCEditorPreviewWrapper(props: Props) {
     var singleChoiceSentence = props.rcSentenceDTO;
-    let children = (
-        singleChoiceSentence.assignables.map((a, id) => {
-            switch (a.type) {
-                case ExerciseType.String:
-                    return (
-                        <StringElement
-                            key={id}
-                            stringConstant={(a as StringConstantDTO)}
-                            editMode={1}></StringElement>
-                    );
-                case ExerciseType.RCAnswerable:
-                    return (
-                        <RCChoices
-                            key={id}
-                            gapKey={id}
-                            singleChoiceAnswerable={(a as RCAnswerableDTO)}
-                            editMode={1}></RCChoices>
-                    );
-                default: return <></>
-            }
-        })
-    )
+    let gapKeyCounter = 0;
+    let children = singleChoiceSentence.assignables.map((a, id) => {
+        switch (a.type) {
+            case ExerciseType.String:
+                return (
+                    <StringElement
+                        key={id}
+                        stringConstant={(a as StringConstantDTO)}
+                        editMode={1}></StringElement>
+                );
+            case ExerciseType.RCAnswerable:
+                gapKeyCounter++
+                return (
+                    <RCChoices
+                        key={id}
+                        gapKey={gapKeyCounter - 1}
+                        rcAnswerableDTO={(a as RCAnswerableDTO)}
+                        answSheetItem={props.rcSentenceDTO.answerSheet[gapKeyCounter - 1]}
+                        editMode={1}></RCChoices>
+                );
+            default: return <></>
+        }
+    })
+
     return (
         <div className="container ps-0">
             <div className="row gx-3">
