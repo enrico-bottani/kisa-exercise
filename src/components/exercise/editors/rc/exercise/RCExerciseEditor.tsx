@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
 import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
@@ -17,8 +17,10 @@ function Exercise() {
     const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
     const [draft, setDraft] = useState<RCSentenceDTO | null>(null);
 
-    new DummyExerciseProvider().getExercise(90987890).then((e) => setExercise(e));
-
+    useEffect(() => {
+        new DummyExerciseProvider().getExercise(90987890)
+            .then((fetchedExercise) => setExercise(e => { return fetchedExercise }));
+    })
     function createNewDraft(): NewDraftResponse {
         let number = exercise.sentences[exercise.sentences.length - 1].id + 1;
         setExercise(e => {
