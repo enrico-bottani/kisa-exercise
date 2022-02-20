@@ -14,7 +14,6 @@ function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
         let answerableID = rcSentenceDTO.answerMap[gapKey].index;
         let rcSentDTO: RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
         rcSentDTO.assignables[answerableID] = rcAnswerableDTO;
-        console.log("Submitting:", rcSentDTO.assignables[answerableID])
         stageRCSentenceEdits(rcSentenceDTO.id, rcSentDTO);
     }
 

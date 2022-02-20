@@ -12,21 +12,22 @@ interface Props {
 
 
 function RCBodyEditor({ rcBodyEditable, rcSentenceDTO }: Props) {
-
-    var [strSentence, setStrSentence] = useState(ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
-
-    useEffect(() => {
-        setStrSentence(ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO));
-    }, [rcSentenceDTO])
+    useState()
 
     function onEdit(e: React.ChangeEvent<HTMLInputElement>) {
         rcBodyEditable(e.target.value);
     }
+
+    useEffect(() => {
+        let string = ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO);
+    })
+
     return (
-        <input type="text"
+        <input key={"str_" + rcSentenceDTO.id} type="text"
             onChange={onEdit}
             className={"form-control col rounded-0"}
             id="exampleFormControlTextarea1"
-            defaultValue={strSentence}></input>)
+
+            defaultValue={ThreeStepRCSentenceStatusBuilder.parseToStr(rcSentenceDTO)}></input>)
 }
 export default RCBodyEditor;

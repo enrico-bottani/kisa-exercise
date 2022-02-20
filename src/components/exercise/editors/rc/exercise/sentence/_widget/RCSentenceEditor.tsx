@@ -26,7 +26,6 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
                 .parseBody(rcSentenceDTO.id, body,
                     (nOfAnswers) => {
                         if (nOfAnswers < choices.length) {
-                            console.log(`nOfAnswers${nOfAnswers} < choices.length ${choices.length}`)
                             return choices.slice(0, nOfAnswers)
                         }
 
@@ -44,7 +43,6 @@ function RCSentenceEditor({ stageRCSentenceEdits, rcSentenceDTO }: Props) {
                     })
                 .build();
         stageRCSentenceEdits(rcSentenceDTO.id, sentenceDTO)
-        console.log("Body edited.")
     }
 
 

@@ -23,6 +23,7 @@ function Exercise() {
         let number = exercise.sentences[exercise.sentences.length - 1].id + 1;
         setExercise(e => {
             e.sentences.push({ id: number, assignables: [], answerMap: [], answerSheet: [] });
+            setExcerciseNumber(e.sentences[e.sentences.length - 1].id);
             return e;
         });
         return { message: "ok", success: true };
@@ -35,7 +36,6 @@ function Exercise() {
             console.log("Staging:  ", answerableDTO)
             e.sentences[id] = answerableDTO;
             let rtn = Object.assign({}, e);
-            console.log("Exercise: ", rtn);
             return rtn;
         })
     }
