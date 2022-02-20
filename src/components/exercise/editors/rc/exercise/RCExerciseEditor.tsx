@@ -36,8 +36,9 @@ function Exercise() {
     let stageRCSentenceEdits = function (id: number, answerableDTO: RCSentenceDTO) {
         setExercise(e => {
             console.log("Staging:  ", answerableDTO)
-            e.sentences[id] = answerableDTO;
             let rtn = Object.assign({}, e);
+            rtn.sentences[id] = answerableDTO;
+            rtn.sentences[id].dirty = true;
             return rtn;
         })
     }
