@@ -7,7 +7,7 @@ import Navigation from "../../../common/nav/Navigation";
 import TodosPagination from "../../../common/pagination/TodosPagination";
 
 import styles from "./RCExerciseEditor.module.css"
-import RCSentenceEditor from "./sentence/_widget/RCSentenceEditor";
+import RCSentenceEditor from "./sentence/RCSentenceEditor";
 
 function Exercise() {
 
