@@ -67,8 +67,9 @@ class Exercise implements ExerciseDTO {
         this.todos = todos;
     }
 
-    clone() {
-        new Exercise(this.id, this.title, this.selected, JSON.parse(JSON.stringify(this.todos)));
+    clone(): Exercise {
+        return new Exercise(this.id, this.title, this.selected, JSON.parse(JSON.stringify(this.todos)));
+
     }
 
     public static builder(): ExerciseDTOImpl_Builder {

@@ -1,4 +1,3 @@
-import SentenceType from "../../../ExerciseType";
 import TodoType from "../../../TodoType";
 import JSONDeepCopy from "../../../../utils/JSONDeepCopy";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO } from "../../../../dtos/DTOs";

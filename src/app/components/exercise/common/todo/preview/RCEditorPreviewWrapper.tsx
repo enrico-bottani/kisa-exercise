@@ -5,8 +5,6 @@ import SentenceType from "../../../../../models/ExerciseType";
 import RCChoices from "../assignables/RCOptions/RCChoices";
 import StringElement from "../assignables/StringElement/StringElement";
 
-import styles from "./RCEditorPreviewWrapper.module.css";
-
 interface Props {
     rcSentenceDTO: I_RCSentenceDTO;
 }

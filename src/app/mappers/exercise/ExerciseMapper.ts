@@ -6,3 +6,5 @@ class ExerciseMapper {
         return Exercise.builder().setId(e.id).setSelected(e.selected).setTitle(e.title).setTodosFromDtos(e.todos).build();
     }
 }
+
+export default ExerciseMapper;

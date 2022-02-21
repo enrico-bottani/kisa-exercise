@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ExerciseDTO } from "../../../../../dtos/exercise/ExerciseDTO";
 import { I_RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 import { RCSentence } from "../../../../../models/exercise/todo/rc_sentence/RCSentence";
 import DummyExerciseProvider from "../../../../../services/exercise_provider/MockExerciseProvider";
@@ -10,26 +9,30 @@ import TodosPagination from "../../../common/pagination/TodosPagination";
 
 import styles from "./RCExerciseEditor.module.css"
 import RCSentenceEditor from "./sentence/RCSentenceEditor";
+import Exercise from "../../../../../models/exercise/Exercise";
+import ExerciseMapper from "../../../../../mappers/exercise/ExerciseMapper";
+import RCSentenceMapper from "../../../../../mappers/exercise/RCSentenceMapper";
 
-function Exercise() {
+function ExerciseEditor() {
 
     // Setting STATES
-    // [Convention] Exercise with id == -1: uninitialized
-    const [exercise, setExercise] = useState<ExerciseDTO>(DummyExerciseProvider.EMPTY);
+    // [Convention] Exercise with id == -1: not initialized
+    const [exercise, setExercise] = useState<Exercise>(Exercise.builder().build());
     const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
 
     useEffect(() => {
         new DummyExerciseProvider().getExercise(90987890)
-            .then((fetchedExercise) => setExercise(e => { return fetchedExercise }));
-    })
+            .then((fetchedExercise) => setExercise(e => { return ExerciseMapper.map(fetchedExercise) }));
+    }, [])
+
     function createNewDraft(type: TodoType): NewDraftResponse {
-        let number = exercise.todos[exercise.todos.length - 1].position + 1;
-        setExercise(e => {
+        setExercise(ex => {
+            let e = ex.clone();
+            let number = e.todos[e.todos.length - 1].position + 1;
             switch (type) {
                 case TodoType.RCSentenceType:
                     e.todos.push(RCSentence.builder()
                         .setPosition(number).setAnswerMap([]).setAnswerSheet([]).build())
-                    //e.todos.push({ position: number, type: type, assignables: [], answerMap: [], answerSheet: [] } as I_RCSentenceDTO);
                     setExcerciseNumber(e.todos[e.todos.length - 1].position);
                     return e;
                 default:
@@ -39,13 +42,11 @@ function Exercise() {
         return { message: "ok", success: true };
     }
 
-    // The only way to ask the parent to persist in the database the changes.
-    // Calling this method stages the changes.
-    let stageRCSentenceEdits = function (id: number, answerableDTO: I_RCSentenceDTO) {
+    function stageRCSentenceEdits(id: number, answerableDTO: I_RCSentenceDTO) {
         setExercise(e => {
             console.log("Staging:  ", answerableDTO)
-            let rtn = Object.assign({}, e);
-            rtn.todos[id] = answerableDTO;
+            let rtn: Exercise = e.clone();
+            rtn.todos[id] = RCSentenceMapper.map(answerableDTO)
             rtn.todos[id].dirty = true;
             return rtn;
         })
@@ -71,7 +72,7 @@ function Exercise() {
                         }
                         <RCSentenceEditor
                             stageRCSentenceEdits={stageRCSentenceEdits}
-                            rcSentenceDTO={exercise.todos[excerciseNumber] as I_RCSentenceDTO}></RCSentenceEditor>
+                            rcSentenceDTO={RCSentenceMapper.map(exercise.todos[excerciseNumber] as RCSentence)}></RCSentenceEditor>
                     </div>
                 </div>
                 <Navigation></Navigation>
@@ -83,4 +84,4 @@ function Exercise() {
 
     return (rtn)
 }
-export default Exercise;
+export default ExerciseEditor;

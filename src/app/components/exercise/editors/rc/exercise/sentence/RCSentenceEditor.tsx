@@ -9,10 +9,11 @@ import EditorStep from '../../../utils/EditorStep';
 import RCBodyEditor from './body/RCBodyEditor';
 import RCGapsEditor from './gaps/_widget/RCGapsEditor';
 import styles from './RCSentenceEditor.module.css'
+import { RCSentence } from '../../../../../../models/exercise/todo/rc_sentence/RCSentence';
 
 interface Props {
     stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: I_RCSentenceDTO) => void;
-    rcSentenceDTO: I_RCSentenceDTO;
+    rcSentenceDTO: RCSentence;
 }
 
 
