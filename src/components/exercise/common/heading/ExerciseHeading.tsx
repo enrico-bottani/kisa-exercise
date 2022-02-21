@@ -4,6 +4,6 @@ interface Props {
 
 function ExerciseHeading({ children }: Props) {
 
-    return (<h1 className='mb-3'>{children}</h1>)
+    return (<h2 className='mb-3'>{children}</h2>)
 }
 export default ExerciseHeading;

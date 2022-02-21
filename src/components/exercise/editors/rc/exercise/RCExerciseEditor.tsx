@@ -54,11 +54,6 @@ function Exercise() {
     if (exercise.id !== -1) {
         rtn = (<div>
             <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <ExerciseHeading>Put in the correct preposition</ExerciseHeading>
-                    </div>
-                </div>
                 <div>
                     <div className={"row mb-3 gx-1 align-baseline"}>
                         <TodosPagination
