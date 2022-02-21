@@ -1,4 +1,4 @@
-import { ITodoDTO } from "../DTOs";
+import { ITodoDTO } from "../todo/ITodoDTO";
 import { IExerciseDTO } from "./IExerciseDTO";
 
 class ExerciseDTOImpl_Builder {

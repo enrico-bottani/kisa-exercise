@@ -1,16 +1,6 @@
+import { ITodoDTO } from "./todo/ITodoDTO";
 
-export interface ITodoDTO {
-    position: number;
-    type: string;
-    dirty?: boolean;
-}
 
-export interface RCSentenceDTO extends ITodoDTO {
-    assignables: AssignableDTO[];
-    answerMap: AnswerIndexer[];
-    answerSheet: (AnswerSheetItemDTO | null)[];
-
-}
 // ASSIGNABLES
 export interface AssignableDTO {
     type: string;

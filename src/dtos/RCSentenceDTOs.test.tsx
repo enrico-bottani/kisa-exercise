@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { RCSentenceDTOs } from './RCSentenceDTOs';
-import { RCSentenceDTO } from './DTOs';
 import DummyExerciseProvider from '../services/exercise_provider/MockExerciseProvider';
+import { RCSentenceDTO } from './todo/rc_sentence/RCSentenceDTO';
 
 test('test questions extraction', () => {
     const d = new DummyExerciseProvider();

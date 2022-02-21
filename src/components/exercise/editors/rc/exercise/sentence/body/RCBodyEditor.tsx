@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { RCSentenceDTO, StringConstantDTO } from "../../../../../../../dtos/DTOs";
-import { RCBodyEditable } from "../../../../../../../models/editor/EditorExerciseControls";
-import ExerciseType from "../../../../../../../models/ExerciseType";
+import { RCSentenceDTO } from "../../../../../../../dtos/todo/rc_sentence/RCSentenceDTO";
 import ThreeStepRCSentenceStatusBuilder from "../../../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
 
 interface Props {

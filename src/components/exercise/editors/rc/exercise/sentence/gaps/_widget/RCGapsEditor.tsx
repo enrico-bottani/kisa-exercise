@@ -1,4 +1,5 @@
-import { RCAnswerableDTO, RCSentenceDTO } from "../../../../../../../../dtos/DTOs";
+import { RCAnswerableDTO } from "../../../../../../../../dtos/DTOs";
+import { RCSentenceDTO } from "../../../../../../../../dtos/todo/rc_sentence/RCSentenceDTO";
 import RCChoicesEditor from "../choices/RCChoicesEditor";
 
 interface Props {

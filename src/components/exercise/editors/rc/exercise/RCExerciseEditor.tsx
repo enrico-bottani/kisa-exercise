@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { RCSentenceDTO } from "../../../../../dtos/DTOs";
 import { IExerciseDTO } from "../../../../../dtos/exercise/IExerciseDTO";
+import { RCSentenceDTO } from "../../../../../dtos/todo/rc_sentence/RCSentenceDTO";
 import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import TodoType from "../../../../../models/TodoType";
 import DummyExerciseProvider from "../../../../../services/exercise_provider/MockExerciseProvider";

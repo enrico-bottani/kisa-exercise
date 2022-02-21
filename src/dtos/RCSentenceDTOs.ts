@@ -1,5 +1,5 @@
-import ThreeStepRCSentenceStatusBuilder from "../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
-import { RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
+import { RCAnswerableDTO } from "./DTOs";
+import { RCSentenceDTO } from "./todo/rc_sentence/RCSentenceDTO";
 
 export class RCSentenceDTOs {
 

@@ -1,5 +1,6 @@
 
-import { RCSentenceDTO, StringConstantDTO, RCAnswerableDTO } from "../../../../../dtos/DTOs";
+import { StringConstantDTO, RCAnswerableDTO } from "../../../../../dtos/DTOs";
+import { RCSentenceDTO } from "../../../../../dtos/todo/rc_sentence/RCSentenceDTO";
 import ExerciseType from "../../../../../models/ExerciseType";
 import RCChoices from "../assignables/RCOptions/RCChoices";
 import StringElement from "../assignables/StringElement/StringElement";

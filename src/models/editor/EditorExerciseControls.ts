@@ -1,4 +1,4 @@
-import { RCSentenceDTO } from "../../dtos/DTOs";
+import { RCSentenceDTO } from "../../dtos/todo/rc_sentence/RCSentenceDTO";
 
 export interface NewDraftResponse {
     message: string,

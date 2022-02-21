@@ -1,5 +1,6 @@
-import { AnswerIndexer, AssignableDTO, RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../dtos/DTOs";
+import { AnswerIndexer, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../dtos/DTOs";
 import { IExerciseDTO } from "../../dtos/exercise/IExerciseDTO";
+import { RCSentenceDTO } from "../../dtos/todo/rc_sentence/RCSentenceDTO";
 import ExerciseType from "../../models/ExerciseType";
 import TodoType from "../../models/TodoType";
 import IExerciseProvider from "./IExerciseProvider";
@@ -146,8 +147,6 @@ class DummyExerciseProvider implements IExerciseProvider {
     }
 
     public getExercise(exerciseID: number): Promise<IExerciseDTO> {
-        let exercises = DummyExerciseProvider.exercises;
-
         return new Promise<any>((resolve, reject) => {
             setTimeout(() => {
                 let exercise = this.privateGetExercise(exerciseID);
