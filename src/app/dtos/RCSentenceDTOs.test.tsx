@@ -1,6 +1,6 @@
 import { RCSentenceDTOs } from './RCSentenceDTOs';
-import { I_RCSentenceDTO } from "./todo/rc_sentence/I_RCSentenceDTO";
-import { ITodoDTO } from './todo/ITodoDTO';
+import { I_RCSentenceDTO } from "./exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { ITodoDTO } from './exercise/todo/ITodoDTO';
 import DummyExerciseProvider from '../services/exercise_provider/MockExerciseProvider';
 import JSONDeepCopy from '../utils/JSONDeepCopy';
 

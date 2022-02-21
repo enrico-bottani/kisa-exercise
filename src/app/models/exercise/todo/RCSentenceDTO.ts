@@ -1,7 +1,7 @@
-import SentenceType from "../../../models/ExerciseType";
-import TodoType from "../../../models/TodoType";
-import JSONDeepCopy from "../../../utils/JSONDeepCopy";
-import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO } from "../../DTOs";
+import SentenceType from "../../../../models/ExerciseType";
+import TodoType from "../../../../models/TodoType";
+import JSONDeepCopy from "../../../../utils/JSONDeepCopy";
+import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO } from "../../../DTOs";
 import { I_RCSentenceDTO } from "./I_RCSentenceDTO";
 
 export class RCSentenceDTOBuilder {

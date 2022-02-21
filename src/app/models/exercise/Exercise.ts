@@ -1,4 +1,4 @@
-import { ITodoDTO } from "../../dtos/todo/ITodoDTO";
+import { ITodoDTO } from "../../dtos/exercise/todo/ITodoDTO";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 
 class ExerciseDTOImpl_Builder {

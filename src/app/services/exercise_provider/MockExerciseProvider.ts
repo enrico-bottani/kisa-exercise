@@ -1,6 +1,6 @@
 import { AnswerIndexer, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../dtos/DTOs";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
-import { I_RCSentenceDTO } from "../../dtos/todo/rc_sentence/I_RCSentenceDTO";
+import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 import SentenceType from "../../models/ExerciseType";
 import TodoType from "../../models/TodoType";
 import IExerciseProvider from "./IExerciseProvider";

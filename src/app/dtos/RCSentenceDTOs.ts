@@ -1,5 +1,5 @@
 import { RCAnswerableDTO } from "./DTOs";
-import { I_RCSentenceDTO } from "./todo/rc_sentence/I_RCSentenceDTO";
+import { I_RCSentenceDTO } from "./exercise/todo/rc_sentence/I_RCSentenceDTO";
 
 export class RCSentenceDTOs {
 

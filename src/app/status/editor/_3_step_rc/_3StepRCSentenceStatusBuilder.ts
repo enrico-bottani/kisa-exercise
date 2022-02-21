@@ -1,7 +1,7 @@
 import SubmittableRCSentenceDTO from "../../../dtos/SubmittableRCSentenceDTO";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../../dtos/DTOs";
 import SentenceType from "../../../models/ExerciseType";
-import { I_RCSentenceDTO } from "../../../dtos/todo/rc_sentence/I_RCSentenceDTO";
+import { I_RCSentenceDTO } from "../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 class StatusBuilderException {
     message: string;
     constructor(message: string) {

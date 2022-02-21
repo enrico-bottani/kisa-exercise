@@ -1,4 +1,4 @@
-import { ITodoDTO } from "../todo/ITodoDTO";
+import { ITodoDTO } from "./todo/ITodoDTO";
 
 
 export interface ExerciseDTO {

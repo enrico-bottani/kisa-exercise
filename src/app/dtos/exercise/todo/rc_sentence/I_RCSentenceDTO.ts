@@ -1,4 +1,4 @@
-import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO } from "../../DTOs";
+import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO } from "../../../DTOs";
 import { ITodoDTO } from "../ITodoDTO";
 
 
