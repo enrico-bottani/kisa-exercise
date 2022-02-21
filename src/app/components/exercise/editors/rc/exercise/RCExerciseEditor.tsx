@@ -42,14 +42,8 @@ function ExerciseEditor() {
         return { message: "ok", success: true };
     }
 
-    function stageRCSentenceEdits(id: number, answerableDTO: I_RCSentenceDTO) {
-        setExercise(e => {
-            console.log("Staging:  ", answerableDTO)
-            let rtn: Exercise = e.clone();
-            rtn.todos[id] = RCSentenceMapper.map(answerableDTO)
-            rtn.todos[id].dirty = true;
-            return rtn;
-        })
+    function stageTodoChangesHavingOrder(todoOrder: number, todoToEdit: I_RCSentenceDTO) {
+        setExercise(e => cloneExerciseAndSetSentence(e, todoOrder, todoToEdit))
     }
 
     let rtn = <div className="container"><div className="row"><div className="col"><h1>Loading...</h1></div></div></div>
@@ -71,7 +65,7 @@ function ExerciseEditor() {
                         {// In futuro andrà fatto uno switch in base al tipo di TODO
                         }
                         <RCSentenceEditor
-                            stageRCSentenceEdits={stageRCSentenceEdits}
+                            stageRCSentenceEdits={stageTodoChangesHavingOrder}
                             rcSentenceDTO={RCSentenceMapper.map(exercise.todos[excerciseNumber] as RCSentence)}></RCSentenceEditor>
                     </div>
                 </div>
@@ -80,8 +74,18 @@ function ExerciseEditor() {
             </div>
         </div>)
     }
-
-
     return (rtn)
+
+
+    ///////////////////////////////
+    // Private utility functions //
+    ///////////////////////////////
+
+    function cloneExerciseAndSetSentence(e: Exercise, order: number, rcSentenceDTO: I_RCSentenceDTO) {
+        let rtn: Exercise = e.clone();
+        rtn.todos[order] = RCSentenceMapper.map(rcSentenceDTO);
+        rtn.todos[order].dirty = true;
+        return rtn;
+    }
 }
 export default ExerciseEditor;
