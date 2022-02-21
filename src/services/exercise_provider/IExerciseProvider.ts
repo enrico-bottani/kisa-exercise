@@ -1,6 +1,6 @@
-import { ExerciseDTO } from "../../dtos/DTOs";
+import { IExerciseDTO } from "../../dtos/exercise/IExerciseDTO";
 
 interface IExerciseProvider {
-    getExercise(exerciseID: number): Promise<ExerciseDTO>;
+    getExercise(exerciseID: number): Promise<IExerciseDTO>;
 }
 export default IExerciseProvider;

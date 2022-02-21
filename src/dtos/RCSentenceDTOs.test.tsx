@@ -8,7 +8,7 @@ test('test questions extraction', () => {
     const d = new DummyExerciseProvider();
     return d.getExercise(90987890)
         .then(e => {
-            let sentences = RCSentenceDTOs.extractChoices(e.sentences[0] as RCSentenceDTO);
+            let sentences = RCSentenceDTOs.extractChoices(e.todos[0] as RCSentenceDTO);
             expect(sentences.length).toBe(3);
         });
 });

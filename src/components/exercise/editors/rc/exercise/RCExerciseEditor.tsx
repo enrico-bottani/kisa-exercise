@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { ExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
+import { RCSentenceDTO } from "../../../../../dtos/DTOs";
+import { IExerciseDTO } from "../../../../../dtos/exercise/IExerciseDTO";
 import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import TodoType from "../../../../../models/TodoType";
 import DummyExerciseProvider from "../../../../../services/exercise_provider/MockExerciseProvider";
-import ExerciseHeading from "../../../common/heading/ExerciseHeading";
 import Navigation from "../../../common/nav/Navigation";
 import TodosPagination from "../../../common/pagination/TodosPagination";
 
@@ -14,7 +14,7 @@ function Exercise() {
 
     // Setting STATES
     // [Convention] Exercise with id == -1: uninitialized
-    const [exercise, setExercise] = useState<ExerciseDTO>(DummyExerciseProvider.EMPTY);
+    const [exercise, setExercise] = useState<IExerciseDTO>(DummyExerciseProvider.EMPTY);
     const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
     const [draft, setDraft] = useState<RCSentenceDTO | null>(null);
 
@@ -23,12 +23,12 @@ function Exercise() {
             .then((fetchedExercise) => setExercise(e => { return fetchedExercise }));
     })
     function createNewDraft(type: TodoType): NewDraftResponse {
-        let number = exercise.sentences[exercise.sentences.length - 1].position + 1;
+        let number = exercise.todos[exercise.todos.length - 1].position + 1;
         setExercise(e => {
             switch (type) {
                 case TodoType.RCSentenceType:
-                    e.sentences.push({ position: number, type: type, assignables: [], answerMap: [], answerSheet: [] } as RCSentenceDTO);
-                    setExcerciseNumber(e.sentences[e.sentences.length - 1].position);
+                    e.todos.push({ position: number, type: type, assignables: [], answerMap: [], answerSheet: [] } as RCSentenceDTO);
+                    setExcerciseNumber(e.todos[e.todos.length - 1].position);
                     return e;
                 default:
                     return e;
@@ -43,8 +43,8 @@ function Exercise() {
         setExercise(e => {
             console.log("Staging:  ", answerableDTO)
             let rtn = Object.assign({}, e);
-            rtn.sentences[id] = answerableDTO;
-            rtn.sentences[id].dirty = true;
+            rtn.todos[id] = answerableDTO;
+            rtn.todos[id].dirty = true;
             return rtn;
         })
     }
@@ -69,7 +69,7 @@ function Exercise() {
                         }
                         <RCSentenceEditor
                             stageRCSentenceEdits={stageRCSentenceEdits}
-                            rcSentenceDTO={exercise.sentences[excerciseNumber] as RCSentenceDTO}></RCSentenceEditor>
+                            rcSentenceDTO={exercise.todos[excerciseNumber] as RCSentenceDTO}></RCSentenceEditor>
                     </div>
                 </div>
                 <Navigation></Navigation>

@@ -15,7 +15,7 @@ test('get modified exercise', () => {
     })
         .then(() => {
             return new DummyExerciseProvider().getExercise(90987890)
-                .then(exercise => expect(exercise.sentences[0].position).toBe(12))
+                .then(exercise => expect(exercise.todos[0].position).toBe(12))
         });
 });
 test('getting exercise will fail with an error', () => {

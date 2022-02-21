@@ -1,4 +1,5 @@
-import { AnswerIndexer, AssignableDTO, ExerciseDTO, RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../dtos/DTOs";
+import { AnswerIndexer, AssignableDTO, RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../dtos/DTOs";
+import { IExerciseDTO } from "../../dtos/exercise/IExerciseDTO";
 import ExerciseType from "../../models/ExerciseType";
 import TodoType from "../../models/TodoType";
 import IExerciseProvider from "./IExerciseProvider";
@@ -92,21 +93,21 @@ class DummyExerciseProvider implements IExerciseProvider {
         answerMap: this.answers1,
         answerSheet: []
     }
-    static exercise: ExerciseDTO = {
+    static exercise: IExerciseDTO = {
         title: "Put in the correct preposition",
         id: 90987890,
         selected: 0,
-        sentences: [
+        todos: [
             this.singleChoiceSentence0, this.singleChoiceSentence1
         ]
     };
 
     static exercises = [DummyExerciseProvider.exercise];
-    static EMPTY: ExerciseDTO = {
+    static EMPTY: IExerciseDTO = {
         id: -1,
         title: "",
         selected: 0,
-        sentences: []
+        todos: []
     }
 
     public putSentence(exerciseId: number, sentenceNumber: number, exercise: RCSentenceDTO): Promise<any> {
@@ -116,7 +117,7 @@ class DummyExerciseProvider implements IExerciseProvider {
             setTimeout(function () {
                 for (let j = 0; j < exercises.length; j++) {
                     if (exercises[j].id === exerciseId) {
-                        let sentences = exercises[j].sentences;
+                        let sentences = exercises[j].todos;
                         for (let i = 0; i < sentences.length; i++) {
                             if (sentences[i].position === sentenceNumber) {
                                 sentences[i] = exercise;
@@ -133,7 +134,7 @@ class DummyExerciseProvider implements IExerciseProvider {
 
     }
 
-    privateGetExercise(exerciseID: number): ExerciseDTO | null {
+    privateGetExercise(exerciseID: number): IExerciseDTO | null {
         let exercises = DummyExerciseProvider.exercises;
 
         for (let j = 0; j < exercises.length; j++) {
@@ -144,7 +145,7 @@ class DummyExerciseProvider implements IExerciseProvider {
         return null;
     }
 
-    public getExercise(exerciseID: number): Promise<ExerciseDTO> {
+    public getExercise(exerciseID: number): Promise<IExerciseDTO> {
         let exercises = DummyExerciseProvider.exercises;
 
         return new Promise<any>((resolve, reject) => {

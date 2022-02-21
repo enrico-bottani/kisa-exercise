@@ -1,5 +1,5 @@
 import TodoType from "../models/TodoType";
-import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, ExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
+import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
     position: number = -1;
