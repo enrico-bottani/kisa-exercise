@@ -15,8 +15,9 @@ import RCSentenceMapper from "../../../../../mappers/exercise/RCSentenceMapper";
 
 function ExerciseEditor() {
 
-    // Setting STATES
-    // [Convention] Exercise with id == -1: not initialized
+    //////////////////////////////////////////////
+    ///                  Hooks                 ///
+    //////////////////////////////////////////////
     const [exercise, setExercise] = useState<Exercise>(Exercise.builder().build());
     const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
 
@@ -25,29 +26,24 @@ function ExerciseEditor() {
             .then((fetchedExercise) => setExercise(e => { return ExerciseMapper.map(fetchedExercise) }));
     }, [])
 
+    //////////////////////////////////////////////
+    ///                Callback                ///
+    //////////////////////////////////////////////
     function createNewDraft(type: TodoType): NewDraftResponse {
-        setExercise(ex => {
-            let e = ex.clone();
-            let number = e.todos[e.todos.length - 1].position + 1;
-            switch (type) {
-                case TodoType.RCSentenceType:
-                    e.todos.push(RCSentence.builder()
-                        .setPosition(number).setAnswerMap([]).setAnswerSheet([]).build())
-                    setExcerciseNumber(e.todos[e.todos.length - 1].position);
-                    return e;
-                default:
-                    return e;
-            }
-        });
+        setExercise(ex => _createNewDraftByType(ex, type));
         return { message: "ok", success: true };
     }
 
-    function stageTodoChangesHavingOrder(todoOrder: number, todoToEdit: I_RCSentenceDTO) {
+    function setStageTodoChangesByOrder(todoOrder: number, todoToEdit: I_RCSentenceDTO) {
         setExercise(e => cloneExerciseAndSetSentence(e, todoOrder, todoToEdit))
     }
 
-    let rtn = <div className="container"><div className="row"><div className="col"><h1>Loading...</h1></div></div></div>
+    ////////////////////////////////////////////
+    ///                  JSX                 ///
+    ////////////////////////////////////////////
 
+    let rtn = <div className="container"><div className="row"><div className="col"><h1>Loading...</h1></div></div></div>
+    // [Convention] Exercise with id == -1: not initialized
     if (exercise.id !== -1) {
         rtn = (<div>
             <div className="container">
@@ -65,7 +61,7 @@ function ExerciseEditor() {
                         {// In futuro andrà fatto uno switch in base al tipo di TODO
                         }
                         <RCSentenceEditor
-                            stageRCSentenceEdits={stageTodoChangesHavingOrder}
+                            stageRCSentenceEdits={setStageTodoChangesByOrder}
                             rcSentenceDTO={RCSentenceMapper.map(exercise.todos[excerciseNumber] as RCSentence)}></RCSentenceEditor>
                     </div>
                 </div>
@@ -77,15 +73,30 @@ function ExerciseEditor() {
     return (rtn)
 
 
-    ///////////////////////////////
-    // Private utility functions //
-    ///////////////////////////////
+    ////////////////////////////////////////////
+    //       Private utility functions        //
+    ////////////////////////////////////////////
 
     function cloneExerciseAndSetSentence(e: Exercise, order: number, rcSentenceDTO: I_RCSentenceDTO) {
         let rtn: Exercise = e.clone();
         rtn.todos[order] = RCSentenceMapper.map(rcSentenceDTO);
         rtn.todos[order].dirty = true;
         return rtn;
+    }
+
+    function _createNewDraftByType(ex: Exercise, type: TodoType) {
+        let e = ex.clone();
+        let number = e.todos[e.todos.length - 1].position + 1;
+        switch (type) {
+            case TodoType.RCSentenceType:
+                e.todos.push(RCSentence.builder()
+                    .setPosition(number).setAnswerMap([]).setAnswerSheet([]).build());
+                setExcerciseNumber(e.todos[e.todos.length - 1].position);
+                break;
+            default:
+                break;
+        }
+        return e;
     }
 }
 export default ExerciseEditor;
