@@ -1,17 +1,21 @@
-export interface RCExerciseDTO {
+export interface ExerciseDTO {
     id: number;
     title: string;
     selected: number;
-    sentences: RCSentenceDTO[];
+    sentences: TodoDTO[];
 }
 
-
-export interface RCSentenceDTO {
+export interface TodoDTO {
     id: number;
+    type: string;
+    dirty?: boolean;
+}
+
+export interface RCSentenceDTO extends TodoDTO {
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
     answerSheet: (AnswerSheetItemDTO | null)[];
-    dirty?: boolean;
+
 }
 // ASSIGNABLES
 export interface AssignableDTO {

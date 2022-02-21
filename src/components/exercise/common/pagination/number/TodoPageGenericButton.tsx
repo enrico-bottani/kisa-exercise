@@ -1,12 +1,14 @@
 
+import { NewDraftResponse } from '../../../../../models/editor/EditorExerciseControls';
+import TodoType from '../../../../../models/TodoType';
 import styles from './TodoNumber.module.css';
-interface Props <T>{
-    onClick:any;
-    label:string;
-    btnClass:string;
-    param:T;
-    sign:any;
-    id:string;
+interface Props<T> {
+    onClick(type: T): NewDraftResponse
+    label: string;
+    btnClass: string;
+    param: T;
+    sign: any;
+    id: string;
 }
 
 function GenericTodoButton<T>(props: Props<T>) {

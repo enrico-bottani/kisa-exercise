@@ -1,4 +1,4 @@
-import { RCAnswerableDTO, RCExerciseDTO, RCSentenceDTO } from "../../dtos/DTOs";
+import { RCAnswerableDTO, ExerciseDTO, RCSentenceDTO } from "../../dtos/DTOs";
 
 export interface NewDraftResponse {
     message: string,

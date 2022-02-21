@@ -1,7 +1,9 @@
-import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
+import TodoType from "../models/TodoType";
+import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, ExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
     id: number = -1;
+    type: string = TodoType.RCSentenceType;
     assignables: AssignableDTO[] = [];
     answerMap: AnswerIndexer[] = [];
     answerSheet: AnswerSheetItemDTO[] = [];
@@ -37,6 +39,7 @@ class RCSentenceModelBuilder implements RCSentenceDTO {
 class SubmittableRCSentenceDTO implements RCSentenceDTO {
 
     id: number;
+    type: string = TodoType.RCSentenceType;
 
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];
@@ -51,7 +54,7 @@ class SubmittableRCSentenceDTO implements RCSentenceDTO {
             const answerable = this.getAnswerableAt(i);
             if (answerable.choices.length < 2) return false;
         }
-        if (this.answerSheet.length != this.answerMap.length) {
+        if (this.answerSheet.length !== this.answerMap.length) {
             return false;
         }
 

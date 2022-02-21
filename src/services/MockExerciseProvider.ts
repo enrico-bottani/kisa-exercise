@@ -1,5 +1,6 @@
-import { RCExerciseDTO, RCSentenceDTO, RCAnswerableDTO, AssignableDTO, StringConstantDTO, AnswerIndexer } from "../dtos/DTOs";
+import { ExerciseDTO, RCSentenceDTO, RCAnswerableDTO, AssignableDTO, StringConstantDTO, AnswerIndexer } from "../dtos/DTOs";
 import ExerciseType from "../models/ExerciseType";
+import TodoType from "../models/TodoType";
 
 class DummyExerciseProvider {
 
@@ -78,17 +79,19 @@ class DummyExerciseProvider {
 
     static singleChoiceSentence0: RCSentenceDTO = {
         id: 0,
+        type: TodoType.RCSentenceType,
         assignables: this.strings0,
         answerMap: this.answers,
         answerSheet: [null, null]
     }
     static singleChoiceSentence1: RCSentenceDTO = {
         id: 1,
+        type: TodoType.RCSentenceType,
         assignables: this.strings1,
         answerMap: this.answers1,
         answerSheet: []
     }
-    static exercise: RCExerciseDTO = {
+    static exercise: ExerciseDTO = {
         title: "Put in the correct preposition",
         id: 90987890,
         selected: 0,
@@ -98,7 +101,7 @@ class DummyExerciseProvider {
     };
 
     static exercises = [DummyExerciseProvider.exercise];
-    static EMPTY: RCExerciseDTO = {
+    static EMPTY: ExerciseDTO = {
         id: -1,
         title: "",
         selected: 0,
@@ -129,7 +132,7 @@ class DummyExerciseProvider {
 
     }
 
-    privateGetExercise(exerciseID: number): RCExerciseDTO | null {
+    privateGetExercise(exerciseID: number): ExerciseDTO | null {
         let exercises = DummyExerciseProvider.exercises;
 
         for (let j = 0; j < exercises.length; j++) {
@@ -140,7 +143,7 @@ class DummyExerciseProvider {
         return null;
     }
 
-    public getExercise(exerciseID: number): Promise<RCExerciseDTO> {
+    public getExercise(exerciseID: number): Promise<ExerciseDTO> {
         let exercises = DummyExerciseProvider.exercises;
 
         return new Promise<any>((resolve, reject) => {

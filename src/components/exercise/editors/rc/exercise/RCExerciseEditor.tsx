@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { RCExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
+import { ExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
 import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
+import TodoType from "../../../../../models/TodoType";
 import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
 import ExerciseHeading from "../../../common/heading/ExerciseHeading";
 import Navigation from "../../../common/nav/Navigation";
@@ -13,7 +14,7 @@ function Exercise() {
 
     // Setting STATES
     // [Convention] Exercise with id == -1: uninitialized
-    const [exercise, setExercise] = useState<RCExerciseDTO>(DummyExerciseProvider.EMPTY);
+    const [exercise, setExercise] = useState<ExerciseDTO>(DummyExerciseProvider.EMPTY);
     const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
     const [draft, setDraft] = useState<RCSentenceDTO | null>(null);
 
@@ -21,12 +22,17 @@ function Exercise() {
         new DummyExerciseProvider().getExercise(90987890)
             .then((fetchedExercise) => setExercise(e => { return fetchedExercise }));
     })
-    function createNewDraft(): NewDraftResponse {
+    function createNewDraft(type: TodoType): NewDraftResponse {
         let number = exercise.sentences[exercise.sentences.length - 1].id + 1;
         setExercise(e => {
-            e.sentences.push({ id: number, assignables: [], answerMap: [], answerSheet: [] });
-            setExcerciseNumber(e.sentences[e.sentences.length - 1].id);
-            return e;
+            switch (type) {
+                case TodoType.RCSentenceType:
+                    e.sentences.push({ id: number, type: type, assignables: [], answerMap: [], answerSheet: [] } as RCSentenceDTO);
+                    setExcerciseNumber(e.sentences[e.sentences.length - 1].id);
+                    return e;
+                default:
+                    return e;
+            }
         });
         return { message: "ok", success: true };
     }
@@ -56,7 +62,7 @@ function Exercise() {
                 <div>
                     <div className={"row mb-3 gx-1 align-baseline"}>
                         <TodosPagination
-                            newDraft={createNewDraft}
+                            createNewDraft={createNewDraft}
                             excercise={exercise}
                             excerciseNumber={excerciseNumber}
                             onSetExercise={setExcerciseNumber}></TodosPagination>
@@ -64,9 +70,11 @@ function Exercise() {
                 </div>
                 <div className="row mb-3">
                     <div className="col">
+                        {// In futuro andrà fatto uno switch in base al tipo di TODO
+                        }
                         <RCSentenceEditor
                             stageRCSentenceEdits={stageRCSentenceEdits}
-                            rcSentenceDTO={exercise.sentences[excerciseNumber]}></RCSentenceEditor>
+                            rcSentenceDTO={exercise.sentences[excerciseNumber] as RCSentenceDTO}></RCSentenceEditor>
                     </div>
                 </div>
                 <Navigation></Navigation>

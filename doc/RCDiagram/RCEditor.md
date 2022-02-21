@@ -9,15 +9,21 @@ class RCExerciseDTO{
     title: string
     selected: number
 }
+class Todo{
+    <<interface>>
+    number: number
+}
 class RCSentenceDTO{
     <<interface>>
     number: number
 }
-RCExerciseDTO "1" --o "*" RCSentenceDTO : sentences
 class AssignableDTO{
     <<interface>>
     type: string
 }
+RCExerciseDTO "1" --o "*" Todo : sentences
+RCSentenceDTO --|> Todo : Inheritance
+
 RCSentenceDTO "1" --o "*" AssignableDTO : assignables
 class StringConstantDTO{
     <<interface>>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DummyExerciseProvider from './MockExerciseProvider';
+import TodoType from '../models/TodoType';
 
 test('get exercise', () => {
     const d = new DummyExerciseProvider();
@@ -8,7 +9,10 @@ test('get exercise', () => {
 });
 test('get modified exercise', () => {
     const d = new DummyExerciseProvider();
-    return d.putSentence(90987890, 0, { id: 12, assignables: [], answerMap: [], answerSheet: [] })
+    return d.putSentence(90987890, 0, {
+        id: 12, assignables: [], answerMap: [], answerSheet: [],
+        type: TodoType.RCSentenceType
+    })
         .then(() => {
             return new DummyExerciseProvider().getExercise(90987890)
                 .then(exercise => expect(exercise.sentences[0].id).toBe(12))
