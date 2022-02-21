@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import RCExerciseEditor from './components/exercise/editors/rc/exercise/RCExerciseEditor';
-import Header from './components/header/Header';
-import ContainerRow from './components/utils/ConRow';
+import RCExerciseEditor from './app/components/exercise/editors/rc/exercise/RCExerciseEditor';
+import Header from './app/components/header/Header';
+import ContainerRow from './app/components/utils/ConRow';
 
 function App() {
   return (
