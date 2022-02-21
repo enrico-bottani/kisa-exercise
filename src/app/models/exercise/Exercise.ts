@@ -1,11 +1,15 @@
 import { ITodoDTO } from "../../dtos/exercise/todo/ITodoDTO";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
+import Todo from "./todo/Todo";
+import { RCSentence } from "./todo/rc_sentence/RCSentence";
+import TodoType from "../TodoType";
+import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 
 class ExerciseDTOImpl_Builder {
     id: number = -1;
     title: string = "";
     selected: number = 0;
-    todos: ITodoDTO[] = [];
+    todos: Todo[] = [];
 
     public setId(id: number): ExerciseDTOImpl_Builder {
         this.id = id;
@@ -19,10 +23,31 @@ class ExerciseDTOImpl_Builder {
         this.selected = selected;
         return this;
     }
-    public setTodoDTO(todos: ITodoDTO[]): ExerciseDTOImpl_Builder {
+    public setTodo(todos: Todo[]): ExerciseDTOImpl_Builder {
         this.todos = todos;
         return this;
     }
+
+    public setTodosFromDtos(e: ITodoDTO[]): ExerciseDTOImpl_Builder {
+        // For each todo
+        let todo = e.map(td => {
+            // Get the type
+            if (td.type === TodoType.RCSentenceType) {
+                let rcSentence = td as I_RCSentenceDTO;
+                return RCSentence.builder()
+                    .setPosition(rcSentence.position)
+                    .setType(rcSentence.type)
+                    .setDirty(rcSentence.dirty === true)
+                    .setAssignables(rcSentence.assignables)
+                    .setAnswerMap(rcSentence.answerMap)
+                    .setAnswerSheet(rcSentence.answerSheet).build();
+            }
+            else return new Todo(td.position, td.type, td.dirty)
+        });
+        this.setTodo(todo);
+        return this;
+    }
+
     build(): Exercise {
         return new Exercise(this.id, this.title, this.selected, this.todos);
     }
@@ -33,9 +58,9 @@ class Exercise implements ExerciseDTO {
     id: number = -1;
     title: string = "";
     selected: number = 0;
-    todos: ITodoDTO[] = [];
+    todos: Todo[] = [];
 
-    constructor(id: number, title: string, selected: number, todos: ITodoDTO[]) {
+    constructor(id: number, title: string, selected: number, todos: Todo[]) {
         this.id = id;
         this.title = title;
         this.selected = selected;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ExerciseDTO } from "../../../../../dtos/exercise/ExerciseDTO";
 import { I_RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
-import { RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
+import { RCSentence } from "../../../../../models/exercise/todo/rc_sentence/RCSentence";
 import DummyExerciseProvider from "../../../../../services/exercise_provider/MockExerciseProvider";
 import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import TodoType from "../../../../../models/TodoType";
@@ -27,7 +27,7 @@ function Exercise() {
         setExercise(e => {
             switch (type) {
                 case TodoType.RCSentenceType:
-                    e.todos.push(RCSentenceDTO.builder()
+                    e.todos.push(RCSentence.builder()
                         .setPosition(number).setAnswerMap([]).setAnswerSheet([]).build())
                     //e.todos.push({ position: number, type: type, assignables: [], answerMap: [], answerSheet: [] } as I_RCSentenceDTO);
                     setExcerciseNumber(e.todos[e.todos.length - 1].position);
