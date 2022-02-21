@@ -10,7 +10,7 @@ test('Parse one gap', () => {
 test('Parse one gap and check the id', () => {
     let a = ((new ThreeStepRCSentenceStatusBuilder()).parseBody(1, "Hello .. world").build())
     expect(a?.assignables.length).toEqual(3)
-    expect(a?.id).toBe(1);
+    expect(a?.position).toBe(1);
 });
 
 test('Parse one gap at the beginning of the sentence', () => {

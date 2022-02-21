@@ -23,7 +23,7 @@ function RCSentenceEditor(props: Props) {
         let choices = RCSentenceDTOs.extractChoices(props.rcSentenceDTO);
         let sentenceDTO: RCSentenceDTO =
             new ThreeStepRCSentenceStatusBuilder()
-                .parseBody(props.rcSentenceDTO.id, body,
+                .parseBody(props.rcSentenceDTO.position, body,
                     (nOfAnswers) => {
                         if (nOfAnswers < choices.length) {
                             return choices.slice(0, nOfAnswers)
@@ -42,7 +42,7 @@ function RCSentenceEditor(props: Props) {
                         return answers;
                     })
                 .build();
-        props.stageRCSentenceEdits(props.rcSentenceDTO.id, sentenceDTO)
+        props.stageRCSentenceEdits(props.rcSentenceDTO.position, sentenceDTO)
     }
 
 

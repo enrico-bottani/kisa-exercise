@@ -2,7 +2,7 @@ import TodoType from "../models/TodoType";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, ExerciseDTO, RCAnswerableDTO, RCSentenceDTO } from "./DTOs";
 
 class RCSentenceModelBuilder implements RCSentenceDTO {
-    id: number = -1;
+    position: number = -1;
     type: string = TodoType.RCSentenceType;
     assignables: AssignableDTO[] = [];
     answerMap: AnswerIndexer[] = [];
@@ -26,19 +26,19 @@ class RCSentenceModelBuilder implements RCSentenceDTO {
     }
 
     setNumber(number: number): RCSentenceModelBuilder {
-        this.id = number;
+        this.position = number;
         return this;
     }
 
     build(): SubmittableRCSentenceDTO {
-        return new SubmittableRCSentenceDTO(this.id, this.assignables, this.answerMap, this.answerSheet);
+        return new SubmittableRCSentenceDTO(this.position, this.assignables, this.answerMap, this.answerSheet);
     }
 }
 
 
 class SubmittableRCSentenceDTO implements RCSentenceDTO {
 
-    id: number;
+    position: number;
     type: string = TodoType.RCSentenceType;
 
     assignables: AssignableDTO[];
@@ -70,7 +70,7 @@ class SubmittableRCSentenceDTO implements RCSentenceDTO {
     }
 
     constructor(number: number, assignables: AssignableDTO[], answers: AnswerIndexer[], answerSheet: AnswerSheetItemDTO[]) {
-        this.id = number;
+        this.position = number;
         this.assignables = assignables;
         this.answerMap = answers;
         this.answerSheet = answerSheet;

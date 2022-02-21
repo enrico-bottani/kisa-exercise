@@ -1,6 +1,6 @@
+import { AnswerIndexer, AssignableDTO, ExerciseDTO, RCAnswerableDTO, RCSentenceDTO, StringConstantDTO } from "../../dtos/DTOs";
 import ExerciseType from "../../models/ExerciseType";
 import TodoType from "../../models/TodoType";
-import { ExerciseDTO, RCSentenceDTO, RCAnswerableDTO, AssignableDTO, StringConstantDTO, AnswerIndexer } from "../dtos/DTOs";
 import IExerciseProvider from "./IExerciseProvider";
 
 class DummyExerciseProvider implements IExerciseProvider {
@@ -79,14 +79,14 @@ class DummyExerciseProvider implements IExerciseProvider {
     ]
 
     static singleChoiceSentence0: RCSentenceDTO = {
-        id: 0,
+        position: 0,
         type: TodoType.RCSentenceType,
         assignables: this.strings0,
         answerMap: this.answers,
         answerSheet: [null, null]
     }
     static singleChoiceSentence1: RCSentenceDTO = {
-        id: 1,
+        position: 1,
         type: TodoType.RCSentenceType,
         assignables: this.strings1,
         answerMap: this.answers1,
@@ -118,7 +118,7 @@ class DummyExerciseProvider implements IExerciseProvider {
                     if (exercises[j].id === exerciseId) {
                         let sentences = exercises[j].sentences;
                         for (let i = 0; i < sentences.length; i++) {
-                            if (sentences[i].id === sentenceNumber) {
+                            if (sentences[i].position === sentenceNumber) {
                                 sentences[i] = exercise;
                                 resolve({ status: 200 }
                                 )  // Yay! Everything went well!

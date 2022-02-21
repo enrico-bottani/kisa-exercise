@@ -23,7 +23,7 @@ function RCBodyEditor({ rcBodyEditable, rcSentenceDTO }: Props) {
     })
 
     return (
-        <input key={"str_" + rcSentenceDTO.id} type="text"
+        <input key={"str_" + rcSentenceDTO.position} type="text"
             onChange={onEdit}
             className={"form-control col rounded-0"}
             id="exampleFormControlTextarea1"

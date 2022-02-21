@@ -14,13 +14,13 @@ function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
         let answerableID = rcSentenceDTO.answerMap[gapKey].index;
         let rcSentDTO: RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
         rcSentDTO.assignables[answerableID] = rcAnswerableDTO;
-        stageRCSentenceEdits(rcSentenceDTO.id, rcSentDTO);
+        stageRCSentenceEdits(rcSentenceDTO.position, rcSentDTO);
     }
 
     function onSetSolution(gapKey: number, givenAnswer: number) {
         let rcSentDTO: RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
         rcSentDTO.answerSheet[gapKey] = { correctAnswerID: givenAnswer, givenAnswerID: -1, status: 0 }
-        stageRCSentenceEdits(rcSentenceDTO.id, rcSentDTO);
+        stageRCSentenceEdits(rcSentenceDTO.position, rcSentDTO);
     }
 
 

@@ -16,7 +16,7 @@ function TodosPagination(props: Props) {
   var listItems = props.excercise.sentences.map((sentence, i) => {
     return (<TodoPage
       key={"todo-page-" + i}
-      representingTodoNumber={sentence.id}
+      representingTodoNumber={sentence.position}
       currentTodoNumber={props.excerciseNumber}
       errorsNumber={-1}
       onSetSelected={props.onSetExercise}></TodoPage>)

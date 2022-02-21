@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ExerciseDTO, RCSentenceDTO } from "../../../../../dtos/DTOs";
 import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
 import TodoType from "../../../../../models/TodoType";
-import DummyExerciseProvider from "../../../../../services/MockExerciseProvider";
+import DummyExerciseProvider from "../../../../../services/exercise_provider/MockExerciseProvider";
 import ExerciseHeading from "../../../common/heading/ExerciseHeading";
 import Navigation from "../../../common/nav/Navigation";
 import TodosPagination from "../../../common/pagination/TodosPagination";
@@ -23,12 +23,12 @@ function Exercise() {
             .then((fetchedExercise) => setExercise(e => { return fetchedExercise }));
     })
     function createNewDraft(type: TodoType): NewDraftResponse {
-        let number = exercise.sentences[exercise.sentences.length - 1].id + 1;
+        let number = exercise.sentences[exercise.sentences.length - 1].position + 1;
         setExercise(e => {
             switch (type) {
                 case TodoType.RCSentenceType:
-                    e.sentences.push({ id: number, type: type, assignables: [], answerMap: [], answerSheet: [] } as RCSentenceDTO);
-                    setExcerciseNumber(e.sentences[e.sentences.length - 1].id);
+                    e.sentences.push({ position: number, type: type, assignables: [], answerMap: [], answerSheet: [] } as RCSentenceDTO);
+                    setExcerciseNumber(e.sentences[e.sentences.length - 1].position);
                     return e;
                 default:
                     return e;

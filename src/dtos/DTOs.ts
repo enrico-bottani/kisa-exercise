@@ -6,7 +6,7 @@ export interface ExerciseDTO {
 }
 
 export interface TodoDTO {
-    id: number;
+    position: number;
     type: string;
     dirty?: boolean;
 }
