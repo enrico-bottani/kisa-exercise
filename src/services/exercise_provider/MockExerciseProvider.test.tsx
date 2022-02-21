@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DummyExerciseProvider from './MockExerciseProvider';
-import TodoType from '../models/TodoType';
+import TodoType from '../../models/TodoType';
 
 test('get exercise', () => {
     const d = new DummyExerciseProvider();

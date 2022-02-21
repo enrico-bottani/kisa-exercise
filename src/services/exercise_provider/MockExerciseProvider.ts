@@ -1,8 +1,9 @@
+import ExerciseType from "../../models/ExerciseType";
+import TodoType from "../../models/TodoType";
 import { ExerciseDTO, RCSentenceDTO, RCAnswerableDTO, AssignableDTO, StringConstantDTO, AnswerIndexer } from "../dtos/DTOs";
-import ExerciseType from "../models/ExerciseType";
-import TodoType from "../models/TodoType";
+import IExerciseProvider from "./IExerciseProvider";
 
-class DummyExerciseProvider {
+class DummyExerciseProvider implements IExerciseProvider {
 
     static strings0: AssignableDTO[] = [
         {
