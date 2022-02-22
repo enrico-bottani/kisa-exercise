@@ -16,11 +16,12 @@ function RCButton(props: Props) {
         props.onGivenAnswerChange(props.answerI);
     }
     let btnOutlineClass = "btn-outline-secondary";
-    if (props.isCorrectAnswer && props.isGivenAnswer) {
+    if (props.isCorrectAnswer /*&& props.isGivenAnswer*/) {
         btnOutlineClass = "btn-success ";
     }
+    const checked = (props.editMode === 1) ? props.isCorrectAnswer : props.isGivenAnswer;
     return (<div>
-        <input checked={props.isGivenAnswer} onChange={onGivenAnswerChange} type="radio" className="btn-check" name={props.gapKey + ""} id={gapKey} />
+        <input checked={props.isCorrectAnswer} onChange={onGivenAnswerChange} type="radio" className="btn-check" name={props.gapKey + ""} id={gapKey} />
         <label className={"btn " + btnOutlineClass + " " + styles.Choice} htmlFor={gapKey}>{props.choice}</label>
     </div>)
 }

@@ -33,9 +33,9 @@ function EditorStep({ children, title, number, paddingTop, paddingBottom, positi
 
     return (
         <div className={"pt-" + paddingTop + " pb-" + paddingBottom + " " + stepClass}>
-            <h6 className={styles.EditorStep}>
+            <h5 className={styles.EditorStep}>
                 <span className={styles.EditorStepNumber}>{number}</span>{title}
-            </h6>
+            </h5>
 
             <EditorStepChildWrapper paddingTop={paddingTop} paddingBottom={paddingBottom}>
                 {children}

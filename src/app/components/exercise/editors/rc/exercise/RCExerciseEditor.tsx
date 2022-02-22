@@ -38,9 +38,9 @@ function ExerciseEditor() {
         setExercise(e => cloneExerciseAndSetSentence(e, todoOrder, todoToEdit))
     }
 
-    ////////////////////////////////////////////
-    ///                  JSX                 ///
-    ////////////////////////////////////////////
+    //////////////////////////////////////////////
+    ///                   JSX                  ///
+    //////////////////////////////////////////////
 
     let rtn = <div className="container"><div className="row"><div className="col"><h1>Loading...</h1></div></div></div>
     // [Convention] Exercise with id == -1: not initialized
@@ -73,9 +73,9 @@ function ExerciseEditor() {
     return (rtn)
 
 
-    ////////////////////////////////////////////
-    //       Private utility functions        //
-    ////////////////////////////////////////////
+    //////////////////////////////////////////////
+    ///       Private utility functions        ///
+    //////////////////////////////////////////////
 
     function cloneExerciseAndSetSentence(e: Exercise, order: number, rcSentenceDTO: I_RCSentenceDTO) {
         let rtn: Exercise = e.clone();

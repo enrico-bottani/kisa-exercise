@@ -9,7 +9,7 @@ function StringElement(props: Props) {
     let field;
     if (props.editMode === 1) {
         field =
-            <div className="col-12 col-md-auto ">
+            <div className="col-auto">
                 <p className={styles.ParagraphStyle}>{props.stringConstant.value}</p>
             </div>
     }
