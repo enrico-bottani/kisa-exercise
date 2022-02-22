@@ -12,26 +12,3 @@ test('test questions extraction', () => {
             expect(sentences.length).toBe(3);
         });
 });
-
-// (Stupid test to check str immutability)
-let fnChangeString = function (str: string): void {
-    str = "mutable";
-}
-test('pass by reference string test', () => {
-    const d = new DummyExerciseProvider();
-    return d.getExercise(90987890)
-        .then(e => {
-            let str = "immutable";
-            fnChangeString(str)
-            expect(str).toBe("immutable");
-        });
-});
-
-test('ITodo dto', () => {
-    const itodo: ITodoDTO = {
-        position: 0,
-        type: "foo",
-        dirty: false
-    }
-    console.log(JSONDeepCopy.deepCopy(itodo));
-});
