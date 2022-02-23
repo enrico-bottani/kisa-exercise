@@ -1,4 +1,4 @@
-import { ITodoDTO } from "../../dtos/exercise/todo/ITodoDTO";
+import { TodoDTO } from "../../dtos/exercise/todo/TodoDTO";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import Todo from "./todo/Todo";
 import { RCSentence } from "./todo/rc_sentence/RCSentence";
@@ -28,7 +28,7 @@ class ExerciseDTOImpl_Builder {
         return this;
     }
 
-    public setTodosFromDtos(e: ITodoDTO[]): ExerciseDTOImpl_Builder {
+    public setTodosFromDtos(e: TodoDTO[]): ExerciseDTOImpl_Builder {
         // For each todo
         let todo = e.map(td => {
             // Get the type

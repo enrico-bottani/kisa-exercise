@@ -1,4 +1,4 @@
-import { ITodoDTO } from "./exercise/todo/ITodoDTO";
+import { TodoDTO } from "./exercise/todo/TodoDTO";
 
 
 // ASSIGNABLES

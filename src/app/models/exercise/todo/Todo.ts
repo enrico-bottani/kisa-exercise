@@ -1,7 +1,7 @@
-import { ITodoDTO } from "../../../dtos/exercise/todo/ITodoDTO";
+import { TodoDTO } from "../../../dtos/exercise/todo/TodoDTO";
 import SentenceType from "../../ExerciseType";
 
-class Todo implements ITodoDTO {
+class Todo implements TodoDTO {
     position: number = -1;
     type: string = SentenceType.Undefined;
     dirty?: boolean = false;

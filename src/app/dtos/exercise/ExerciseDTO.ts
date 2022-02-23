@@ -1,9 +1,8 @@
-import { ITodoDTO } from "./todo/ITodoDTO";
+import { TodoDTO } from "./todo/TodoDTO";
 
 
 export interface ExerciseDTO {
     id: number;
     title: string;
-    selected: number;
-    todos: ITodoDTO[];
+    todos: TodoDTO[];
 }

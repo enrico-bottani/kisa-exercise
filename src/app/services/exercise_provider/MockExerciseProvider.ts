@@ -2,6 +2,7 @@ import { AnswerIndexer, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
+import Exercise from "../../models/exercise/Exercise";
 import SentenceType from "../../models/ExerciseType";
 import TodoType from "../../models/TodoType";
 import IExerciseProvider from "./IExerciseProvider";
@@ -96,21 +97,14 @@ class DummyExerciseProvider implements IExerciseProvider {
         answerSheet: []
     }
     static exercise: ExerciseDTO = {
-        title: "Put in the correct preposition",
         id: 90987890,
-        selected: 0,
+        title: "Put in the correct preposition",
         todos: [
             this.singleChoiceSentence0, this.singleChoiceSentence1
         ]
-    };
+    } as ExerciseDTO;
 
     static exercises = [DummyExerciseProvider.exercise];
-    static EMPTY: ExerciseDTO = {
-        id: -1,
-        title: "",
-        selected: 0,
-        todos: []
-    }
 
     public putSentence(exerciseId: number, sentenceNumber: number, exercise: I_RCSentenceDTO): Promise<any> {
         // Find the sentence to modify
@@ -147,12 +141,12 @@ class DummyExerciseProvider implements IExerciseProvider {
         return null;
     }
 
-    public getExercise(exerciseID: number): Promise<ExerciseDTO> {
+    public getExercise(exerciseID: number): Promise<Exercise> {
         return new Promise<any>((resolve, reject) => {
             setTimeout(() => {
                 let exercise = this.privateGetExercise(exerciseID);
                 if (exercise !== null)
-                    resolve(ExerciseMapper.map(exercise));
+                    resolve(ExerciseMapper.map(exercise, 0));
                 resolve(null)
             }, 10
             )

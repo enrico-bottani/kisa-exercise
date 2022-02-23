@@ -12,6 +12,8 @@ import RCSentenceEditor from "./sentence/RCSentenceEditor";
 import Exercise from "../../../../../models/exercise/Exercise";
 import ExerciseMapper from "../../../../../mappers/exercise/ExerciseMapper";
 import RCSentenceMapper from "../../../../../mappers/exercise/RCSentenceMapper";
+import { ExerciseDTO } from "../../../../../dtos/exercise/ExerciseDTO";
+import ExerciseProvider from "../../../../../services/exercise_provider/ExerciseProvider";
 
 function ExerciseEditor() {
 
@@ -22,8 +24,12 @@ function ExerciseEditor() {
     const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
 
     useEffect(() => {
-        new DummyExerciseProvider().getExercise(90987890)
-            .then((fetchedExercise) => setExercise(e => { return ExerciseMapper.map(fetchedExercise) }));
+        console.log("useEffect");
+        new ExerciseProvider().getExercise(90987890)
+            .then(fe => setExercise(oldExercise => {
+                console.log(fe);
+                return fe;
+            }));
     }, [])
 
     //////////////////////////////////////////////
@@ -35,7 +41,8 @@ function ExerciseEditor() {
     }
 
     function setStageTodoChangesByOrder(todoOrder: number, todoToEdit: I_RCSentenceDTO) {
-        setExercise(e => cloneExerciseAndSetSentence(e, todoOrder, todoToEdit))
+        setExercise(e =>
+            cloneExerciseAndSetSentence(e, todoOrder, todoToEdit))
     }
 
     //////////////////////////////////////////////
@@ -81,6 +88,7 @@ function ExerciseEditor() {
         let rtn: Exercise = e.clone();
         rtn.todos[order] = RCSentenceMapper.map(rcSentenceDTO);
         rtn.todos[order].dirty = true;
+        console.log(JSON.stringify(rtn as ExerciseDTO));
         return rtn;
     }
 
