@@ -6,7 +6,8 @@ class RCSentenceMapper {
     static map(e: I_RCSentenceDTO): RCSentence {
         return RCSentence.builder()
             .setPosition(e.position)
-            .setAnswerMap(e.answerMap)
+            // TODO: Generate answer map
+            .setAnswerMap([])
             .setAnswerSheet(e.answerSheet)
             .setAssignables(e.assignables)
             .setDirty(e.dirty === true)

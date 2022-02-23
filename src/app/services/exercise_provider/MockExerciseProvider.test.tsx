@@ -2,17 +2,18 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DummyExerciseProvider from './MockExerciseProvider';
 import Todo from '../../models/exercise/todo/Todo';
+import { RCSentence } from '../../models/exercise/todo/rc_sentence/RCSentence';
 
 test('get exercise', () => {
     const d = new DummyExerciseProvider();
     d.getExercise(90987890)
+
 });
 test('get modified exercise', () => {
     const d = new DummyExerciseProvider();
-    return d.putSentence(90987890, 0, {
-        position: 12, assignables: [], answerMap: [], answerSheet: [],
-        type: Todo.Type.RCSentenceType
-    })
+    return d.putSentence(90987890, 0, RCSentence.builder()
+        .setPosition(12).setAssignables([]).setAnswerSheet([])
+        .setAnswerMap([]).setType(Todo.Type.RCSentenceType).build())
         .then(() => {
             return new DummyExerciseProvider().getExercise(90987890)
                 .then(exercise => expect(exercise.todos[0].position).toBe(12))

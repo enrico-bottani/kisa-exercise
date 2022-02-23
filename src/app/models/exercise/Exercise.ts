@@ -3,6 +3,7 @@ import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import Todo from "./todo/Todo";
 import { RCSentence } from "./todo/rc_sentence/RCSentence";
 import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import RCSentenceMapper from "../../mappers/exercise/RCSentenceMapper";
 
 class ExerciseDTOImpl_Builder {
     id: number = -1;
@@ -33,13 +34,7 @@ class ExerciseDTOImpl_Builder {
             // Get the type
             if (td.type === Todo.Type.RCSentenceType) {
                 let rcSentence = td as I_RCSentenceDTO;
-                return RCSentence.builder()
-                    .setPosition(rcSentence.position)
-                    .setType(rcSentence.type)
-                    .setDirty(rcSentence.dirty === true)
-                    .setAssignables(rcSentence.assignables)
-                    .setAnswerMap(rcSentence.answerMap)
-                    .setAnswerSheet(rcSentence.answerSheet).build();
+                return RCSentenceMapper.map(rcSentence);
             }
             else return new Todo(td.position, td.type, td.dirty)
         });

@@ -1,10 +1,11 @@
 import { RCAnswerableDTO } from "../../../../../../../dtos/DTOs";
 import { I_RCSentenceDTO } from "../../../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentence } from "../../../../../../../models/exercise/todo/rc_sentence/RCSentence";
 import RCChoicesEditor from "../choices/RCChoicesEditor";
 
 interface Props {
     stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: I_RCSentenceDTO) => void;
-    rcSentenceDTO: I_RCSentenceDTO;
+    rcSentenceDTO: RCSentence;
 }
 function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
     var gaps: RCAnswerableDTO[] = rcSentenceDTO.answerMap.map(indexer => {

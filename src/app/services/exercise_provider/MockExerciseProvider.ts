@@ -3,6 +3,7 @@ import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
 import Exercise from "../../models/exercise/Exercise";
+import { RCSentence } from "../../models/exercise/todo/rc_sentence/RCSentence";
 import Todo from "../../models/exercise/todo/Todo";
 import IExerciseProvider from "./IExerciseProvider";
 
@@ -85,14 +86,12 @@ class DummyExerciseProvider implements IExerciseProvider {
         position: 0,
         type: Todo.Type.RCSentenceType,
         assignables: this.strings0,
-        answerMap: this.answers,
         answerSheet: [null, null]
     }
     static singleChoiceSentence1: I_RCSentenceDTO = {
         position: 1,
         type: Todo.Type.RCSentenceType,
         assignables: this.strings1,
-        answerMap: this.answers1,
         answerSheet: []
     }
     static exercise: ExerciseDTO = {
@@ -105,7 +104,7 @@ class DummyExerciseProvider implements IExerciseProvider {
 
     static exercises = [DummyExerciseProvider.exercise];
 
-    public putSentence(exerciseId: number, sentenceNumber: number, exercise: I_RCSentenceDTO): Promise<any> {
+    public putSentence(exerciseId: number, sentenceNumber: number, exercise: RCSentence): Promise<any> {
         // Find the sentence to modify
         let exercises = DummyExerciseProvider.exercises;
         return new Promise<any>((resolve, reject) => {

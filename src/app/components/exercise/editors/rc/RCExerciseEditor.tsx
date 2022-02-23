@@ -11,6 +11,7 @@ import TodosPagination from "../../common/pagination/TodosPagination";
 import RCSentenceEditor from "./sentence/RCSentenceEditor";
 import styles from "./RCExerciseEditor.module.css";
 import Todo from "../../../../models/exercise/todo/Todo";
+import MockExerciseProvider from "../../../../services/exercise_provider/MockExerciseProvider";
 
 function ExerciseEditor() {
 
@@ -22,7 +23,7 @@ function ExerciseEditor() {
 
     useEffect(() => {
         console.log("useEffect");
-        new ExerciseProvider().getExercise(90987890)
+        new MockExerciseProvider().getExercise(90987890)
             .then(fe => setExercise(oldExercise => {
                 console.log(fe);
                 return fe;
