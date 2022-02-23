@@ -1,10 +1,6 @@
 import Exercise from "../../models/exercise/Exercise";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import IExerciseProvider from "./IExerciseProvider";
-import Todo from "../../models/exercise/todo/Todo";
-import TodoType from "../../models/TodoType";
-import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
-import { RCSentence } from "../../models/exercise/todo/rc_sentence/RCSentence";
 import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
 
 class ExerciseProvider implements IExerciseProvider {

@@ -1,4 +1,3 @@
-import TodoType from "../../../TodoType";
 import JSONDeepCopy from "../../../../utils/JSONDeepCopy";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO } from "../../../../dtos/DTOs";
 import { I_RCSentenceDTO } from "../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
@@ -9,7 +8,7 @@ export class RCSentence_Builder {
     answerMap: AnswerIndexer[] = [];
     answerSheet: (AnswerSheetItemDTO | null)[] = [];
     position: number = 0;
-    type: string = TodoType.RCSentenceType;
+    type: string = Todo.Type.RCSentenceType;
     dirty?: boolean = false;
     setAssignables(assignables: AssignableDTO[]): RCSentence_Builder {
         this.assignables = assignables;

@@ -1,7 +1,7 @@
 import { TodoDTO } from "../../../dtos/exercise/todo/TodoDTO";
 import SentenceType from "../../ExerciseType";
 
-class Todo implements TodoDTO {
+export class Todo implements TodoDTO {
     position: number = -1;
     type: string = SentenceType.Undefined;
     dirty?: boolean = false;
@@ -14,6 +14,11 @@ class Todo implements TodoDTO {
 
     clone(): Todo {
         return new Todo(this.position, this.type, this.dirty);
+    }
+}
+export namespace Todo {
+    export enum Type {
+        RCSentenceType = "RCT"
     }
 }
 export default Todo;

@@ -3,8 +3,8 @@ import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
 import Exercise from "../../models/exercise/Exercise";
+import Todo from "../../models/exercise/todo/Todo";
 import SentenceType from "../../models/ExerciseType";
-import TodoType from "../../models/TodoType";
 import IExerciseProvider from "./IExerciseProvider";
 
 class DummyExerciseProvider implements IExerciseProvider {
@@ -84,14 +84,14 @@ class DummyExerciseProvider implements IExerciseProvider {
 
     static singleChoiceSentence0: I_RCSentenceDTO = {
         position: 0,
-        type: TodoType.RCSentenceType,
+        type: Todo.Type.RCSentenceType,
         assignables: this.strings0,
         answerMap: this.answers,
         answerSheet: [null, null]
     }
     static singleChoiceSentence1: I_RCSentenceDTO = {
         position: 1,
-        type: TodoType.RCSentenceType,
+        type: Todo.Type.RCSentenceType,
         assignables: this.strings1,
         answerMap: this.answers1,
         answerSheet: []

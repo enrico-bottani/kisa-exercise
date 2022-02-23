@@ -5,12 +5,12 @@ import RCSentenceMapper from "../../../../mappers/exercise/RCSentenceMapper";
 import { NewDraftResponse } from "../../../../models/editor/EditorExerciseControls";
 import Exercise from "../../../../models/exercise/Exercise";
 import { RCSentence } from "../../../../models/exercise/todo/rc_sentence/RCSentence";
-import TodoType from "../../../../models/TodoType";
 import ExerciseProvider from "../../../../services/exercise_provider/ExerciseProvider";
 import Navigation from "../../common/nav/Navigation";
 import TodosPagination from "../../common/pagination/TodosPagination";
 import RCSentenceEditor from "./sentence/RCSentenceEditor";
 import styles from "./RCExerciseEditor.module.css";
+import Todo from "../../../../models/exercise/todo/Todo";
 
 function ExerciseEditor() {
 
@@ -32,7 +32,7 @@ function ExerciseEditor() {
     //////////////////////////////////////////////
     ///                Callback                ///
     //////////////////////////////////////////////
-    function createNewDraft(type: TodoType): NewDraftResponse {
+    function createNewDraft(type: Todo.Type): NewDraftResponse {
         setExercise(ex => _createNewDraftByType(ex, type));
         return { message: "ok", success: true };
     }
@@ -89,11 +89,11 @@ function ExerciseEditor() {
         return rtn;
     }
 
-    function _createNewDraftByType(ex: Exercise, type: TodoType) {
+    function _createNewDraftByType(ex: Exercise, type: Todo.Type) {
         let e = ex.clone();
         let number = e.todos[e.todos.length - 1].position + 1;
         switch (type) {
-            case TodoType.RCSentenceType:
+            case Todo.Type.RCSentenceType:
                 e.todos.push(RCSentence.builder()
                     .setPosition(number).setAnswerMap([]).setAnswerSheet([]).build());
                 setExcerciseNumber(e.todos[e.todos.length - 1].position);

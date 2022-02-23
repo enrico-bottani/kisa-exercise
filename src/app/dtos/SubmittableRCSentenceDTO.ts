@@ -1,10 +1,11 @@
-import TodoType from "../models/TodoType";
+
+import Todo from "../models/exercise/todo/Todo";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCAnswerableDTO } from "./DTOs";
 import { I_RCSentenceDTO } from "./exercise/todo/rc_sentence/I_RCSentenceDTO";
 
 class RCSentenceModelBuilder implements I_RCSentenceDTO {
     position: number = -1;
-    type: string = TodoType.RCSentenceType;
+    type: string = Todo.Type.RCSentenceType;
     assignables: AssignableDTO[] = [];
     answerMap: AnswerIndexer[] = [];
     answerSheet: AnswerSheetItemDTO[] = [];
@@ -38,7 +39,7 @@ class RCSentenceModelBuilder implements I_RCSentenceDTO {
 class SubmittableRCSentenceDTO implements I_RCSentenceDTO {
 
     position: number;
-    type: string = TodoType.RCSentenceType;
+    type: string = Todo.Type.RCSentenceType;
 
     assignables: AssignableDTO[];
     answerMap: AnswerIndexer[];

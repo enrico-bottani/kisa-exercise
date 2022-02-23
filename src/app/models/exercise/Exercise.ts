@@ -2,7 +2,6 @@ import { TodoDTO } from "../../dtos/exercise/todo/TodoDTO";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import Todo from "./todo/Todo";
 import { RCSentence } from "./todo/rc_sentence/RCSentence";
-import TodoType from "../TodoType";
 import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 
 class ExerciseDTOImpl_Builder {
@@ -32,7 +31,7 @@ class ExerciseDTOImpl_Builder {
         // For each todo
         let todo = e.map(td => {
             // Get the type
-            if (td.type === TodoType.RCSentenceType) {
+            if (td.type === Todo.Type.RCSentenceType) {
                 let rcSentence = td as I_RCSentenceDTO;
                 return RCSentence.builder()
                     .setPosition(rcSentence.position)

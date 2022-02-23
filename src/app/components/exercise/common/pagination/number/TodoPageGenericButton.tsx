@@ -1,6 +1,5 @@
 
 import { NewDraftResponse } from '../../../../../models/editor/EditorExerciseControls';
-import TodoType from '../../../../../models/TodoType';
 import styles from './TodoNumber.module.css';
 interface Props<T> {
     onClick(type: T): NewDraftResponse
