@@ -53,7 +53,7 @@ class ExerciseDTOImpl_Builder {
 }
 
 // Implementa ExerciseDTO, se devo ritornare il tipo di dato è corretto
-class Exercise implements ExerciseDTO {
+export class Exercise implements ExerciseDTO {
     id: number = -1;
     title: string = "";
     selected: number = 0;

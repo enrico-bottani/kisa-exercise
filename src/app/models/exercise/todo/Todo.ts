@@ -1,9 +1,9 @@
+import { AssignableDTO } from "../../../dtos/DTOs";
 import { TodoDTO } from "../../../dtos/exercise/todo/TodoDTO";
-import SentenceType from "../../ExerciseType";
 
 export class Todo implements TodoDTO {
     position: number = -1;
-    type: string = SentenceType.Undefined;
+    type: string = AssignableDTO.Type.Undefined;
     dirty?: boolean = false;
 
     constructor(position: number, type: string, dirty?: boolean) {

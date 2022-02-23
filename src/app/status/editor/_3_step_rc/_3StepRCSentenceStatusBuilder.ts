@@ -1,6 +1,5 @@
 import SubmittableRCSentenceDTO from "../../../dtos/SubmittableRCSentenceDTO";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../../dtos/DTOs";
-import SentenceType from "../../../models/ExerciseType";
 import { I_RCSentenceDTO } from "../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 class StatusBuilderException {
     message: string;
@@ -46,7 +45,7 @@ class ThreeStepRCSentenceStatusBuilder {
         // Popolo assigns e answer. Attenzione che assigns non è completo. Verrà riservato il posto per
         // Scrivere le domande, ma queste verranno poi effettivamente scritte nello stato 2
         for (let i = 0; i < words.length; i++) {
-            let str: StringConstantDTO = { type: SentenceType.String, value: words[i] }
+            let str: StringConstantDTO = { type: AssignableDTO.Type.String, value: words[i] }
             if (skipFirstString) {
                 skipFirstString = false;
             }
@@ -54,7 +53,7 @@ class ThreeStepRCSentenceStatusBuilder {
                 this.assigns.push(str)
             }
             if (i + 1 < words.length) {
-                let str: RCAnswerableDTO = { type: SentenceType.RCAnswerable, choices: [] }
+                let str: RCAnswerableDTO = { type: AssignableDTO.Type.RCAnswerable, choices: [] }
                 this.assigns.push(str)
                 this.indexer.push({ index: this.assigns.length - 1 } as AnswerIndexer)
             }
@@ -98,10 +97,10 @@ class ThreeStepRCSentenceStatusBuilder {
     static parseToStr(rcSentenceDTO: I_RCSentenceDTO): string {
         if (rcSentenceDTO.assignables === undefined) return "";
         let parseResult = rcSentenceDTO.assignables.map((item) => {
-            if (item.type === SentenceType.String) {
+            if (item.type === AssignableDTO.Type.String) {
                 return (item as StringConstantDTO).value;
             }
-            else if (item.type === SentenceType.RCAnswerable) {
+            else if (item.type === AssignableDTO.Type.RCAnswerable) {
                 return "..";
             }
             else return "";

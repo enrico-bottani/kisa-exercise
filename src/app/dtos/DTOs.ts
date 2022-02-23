@@ -5,7 +5,13 @@ import { TodoDTO } from "./exercise/todo/TodoDTO";
 export interface AssignableDTO {
     type: string;
 }
-
+export namespace AssignableDTO {
+    export enum Type {
+        RCAnswerable = "RCA",
+        String = "STR",
+        Undefined = "UND"
+    }
+}
 export interface StringConstantDTO extends AssignableDTO {
     value: string;
 }

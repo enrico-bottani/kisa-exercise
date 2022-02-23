@@ -1,7 +1,6 @@
 
-import { StringConstantDTO, RCAnswerableDTO } from "../../../../../dtos/DTOs";
+import { StringConstantDTO, RCAnswerableDTO, AssignableDTO } from "../../../../../dtos/DTOs";
 import { I_RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
-import SentenceType from "../../../../../models/ExerciseType";
 import RCChoices from "../assignables/RCOptions/RCChoices";
 import StringElement from "../assignables/StringElement/StringElement";
 
@@ -14,14 +13,14 @@ function RCEditorPreviewWrapper(props: Props) {
     let gapKeyCounter = 0;
     let children = singleChoiceSentence.assignables.map((a, id) => {
         switch (a.type) {
-            case SentenceType.String:
+            case AssignableDTO.Type.String:
                 return (
                     <StringElement
                         key={id}
                         stringConstant={(a as StringConstantDTO)}
                         editMode={1}></StringElement>
                 );
-            case SentenceType.RCAnswerable:
+            case AssignableDTO.Type.RCAnswerable:
                 gapKeyCounter++
                 return (
                     <RCChoices

@@ -4,7 +4,6 @@ import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSenten
 import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
 import Exercise from "../../models/exercise/Exercise";
 import Todo from "../../models/exercise/todo/Todo";
-import SentenceType from "../../models/ExerciseType";
 import IExerciseProvider from "./IExerciseProvider";
 
 class DummyExerciseProvider implements IExerciseProvider {
@@ -12,37 +11,37 @@ class DummyExerciseProvider implements IExerciseProvider {
     static strings0: AssignableDTO[] = [
         {
             id: 1,
-            type: SentenceType.String,
+            type: AssignableDTO.Type.String,
             value: "Lucy is arriving "
         } as StringConstantDTO,
         {
             id: 2,
-            type: SentenceType.RCAnswerable,
+            type: AssignableDTO.Type.RCAnswerable,
             choices: ["in", "on", "0"]
         } as RCAnswerableDTO,
         {
             id: 3,
-            type: SentenceType.String,
+            type: AssignableDTO.Type.String,
             value: " February the 13th "
         } as StringConstantDTO,
         {
             id: 4,
-            type: SentenceType.RCAnswerable,
+            type: AssignableDTO.Type.RCAnswerable,
             choices: ["in", "on", "at"]
         } as RCAnswerableDTO,
         {
             id: 5,
-            type: SentenceType.String,
+            type: AssignableDTO.Type.String,
             value: " eight o'clock "
         } as StringConstantDTO,
         {
             id: 4,
-            type: SentenceType.RCAnswerable,
+            type: AssignableDTO.Type.RCAnswerable,
             choices: ["of", "on", "in"]
         } as RCAnswerableDTO,
         {
             id: 5,
-            type: SentenceType.String,
+            type: AssignableDTO.Type.String,
             value: " the morning."
         } as StringConstantDTO,
     ]
@@ -50,17 +49,17 @@ class DummyExerciseProvider implements IExerciseProvider {
     static strings1: AssignableDTO[] = [
         {
             id: 1,
-            type: SentenceType.String,
+            type: AssignableDTO.Type.String,
             value: "We are "
         } as StringConstantDTO,
         {
             id: 0,
-            type: SentenceType.RCAnswerable,
+            type: AssignableDTO.Type.RCAnswerable,
             choices: ["the", "a"]
         } as RCAnswerableDTO,
         {
             id: 2,
-            type: SentenceType.String,
+            type: AssignableDTO.Type.String,
             value: " world"
         } as StringConstantDTO,
     ]
