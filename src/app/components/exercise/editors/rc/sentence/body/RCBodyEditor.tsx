@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { I_RCSentenceDTO } from "../../../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
-import ThreeStepRCSentenceStatusBuilder from "../../../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
+import { I_RCSentenceDTO } from "../../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import ThreeStepRCSentenceStatusBuilder from "../../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder";
 
 interface Props {
     rcSentenceDTO: I_RCSentenceDTO;

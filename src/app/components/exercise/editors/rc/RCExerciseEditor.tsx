@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
-import { I_RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
-import { RCSentence } from "../../../../../models/exercise/todo/rc_sentence/RCSentence";
-import DummyExerciseProvider from "../../../../../services/exercise_provider/MockExerciseProvider";
-import { NewDraftResponse } from "../../../../../models/editor/EditorExerciseControls";
-import TodoType from "../../../../../models/TodoType";
-import Navigation from "../../../common/nav/Navigation";
-import TodosPagination from "../../../common/pagination/TodosPagination";
-
-import styles from "./RCExerciseEditor.module.css"
+import { ExerciseDTO } from "../../../../dtos/exercise/ExerciseDTO";
+import { I_RCSentenceDTO } from "../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import RCSentenceMapper from "../../../../mappers/exercise/RCSentenceMapper";
+import { NewDraftResponse } from "../../../../models/editor/EditorExerciseControls";
+import Exercise from "../../../../models/exercise/Exercise";
+import { RCSentence } from "../../../../models/exercise/todo/rc_sentence/RCSentence";
+import TodoType from "../../../../models/TodoType";
+import ExerciseProvider from "../../../../services/exercise_provider/ExerciseProvider";
+import Navigation from "../../common/nav/Navigation";
+import TodosPagination from "../../common/pagination/TodosPagination";
 import RCSentenceEditor from "./sentence/RCSentenceEditor";
-import Exercise from "../../../../../models/exercise/Exercise";
-import ExerciseMapper from "../../../../../mappers/exercise/ExerciseMapper";
-import RCSentenceMapper from "../../../../../mappers/exercise/RCSentenceMapper";
-import { ExerciseDTO } from "../../../../../dtos/exercise/ExerciseDTO";
-import ExerciseProvider from "../../../../../services/exercise_provider/ExerciseProvider";
+import styles from "./RCExerciseEditor.module.css";
 
 function ExerciseEditor() {
 

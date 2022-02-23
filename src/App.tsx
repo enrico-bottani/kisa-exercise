@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import RCExerciseEditor from './app/components/exercise/editors/rc/exercise/RCExerciseEditor';
+import RCExerciseEditor from './app/components/exercise/editors/rc/RCExerciseEditor';
 import Header from './app/components/header/Header';
 import ContainerRow from './app/components/utils/ConRow';
 

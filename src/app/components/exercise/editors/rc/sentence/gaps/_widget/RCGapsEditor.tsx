@@ -1,5 +1,5 @@
-import { RCAnswerableDTO } from "../../../../../../../../dtos/DTOs";
-import { I_RCSentenceDTO } from "../../../../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCAnswerableDTO } from "../../../../../../../dtos/DTOs";
+import { I_RCSentenceDTO } from "../../../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
 import RCChoicesEditor from "../choices/RCChoicesEditor";
 
 interface Props {

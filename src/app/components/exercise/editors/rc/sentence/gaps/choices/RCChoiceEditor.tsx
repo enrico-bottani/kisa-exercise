@@ -1,4 +1,4 @@
-import { RCAnswerableDTO } from '../../../../../../../../dtos/DTOs';
+import { RCAnswerableDTO } from '../../../../../../../dtos/DTOs';
 import styles from './RCChoiceEditor.module.css'
 
 interface Props {

@@ -1,15 +1,15 @@
 
 
-import { AnswerSheetItemDTO } from '../../../../../../dtos/DTOs';
-import { RCSentenceDTOs } from '../../../../../../dtos/RCSentenceDTOs';
-import { I_RCSentenceDTO } from "../../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
-import ThreeStepRCSentenceStatusBuilder from '../../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
-import RCEditorPreviewWrapper from '../../../../common/todo/preview/RCEditorPreviewWrapper';
-import EditorStep from '../../../utils/EditorStep';
+import { AnswerSheetItemDTO } from '../../../../../dtos/DTOs';
+import { RCSentenceDTOs } from '../../../../../dtos/RCSentenceDTOs';
+import { I_RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import ThreeStepRCSentenceStatusBuilder from '../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
+import RCEditorPreviewWrapper from '../../../common/todo/preview/RCEditorPreviewWrapper';
+import EditorStep from '../../utils/EditorStep';
 import RCBodyEditor from './body/RCBodyEditor';
 import RCGapsEditor from './gaps/_widget/RCGapsEditor';
 import styles from './RCSentenceEditor.module.css'
-import { RCSentence } from '../../../../../../models/exercise/todo/rc_sentence/RCSentence';
+import { RCSentence } from '../../../../../models/exercise/todo/rc_sentence/RCSentence';
 
 interface Props {
     stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: I_RCSentenceDTO) => void;

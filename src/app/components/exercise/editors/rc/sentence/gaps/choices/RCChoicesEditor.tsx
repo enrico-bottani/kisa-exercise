@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnswerSheetItemDTO, RCAnswerableDTO } from "../../../../../../../../dtos/DTOs";
+import { AnswerSheetItemDTO, RCAnswerableDTO } from "../../../../../../../dtos/DTOs";
 import RCChoiceEditor from "./RCChoiceEditor";
 interface Props {
     gapKey: number;
