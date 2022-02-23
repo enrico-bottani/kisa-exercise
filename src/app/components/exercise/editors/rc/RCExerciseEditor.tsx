@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ExerciseDTO } from "../../../../dtos/exercise/ExerciseDTO";
-import { I_RCSentenceDTO } from "../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import RCSentenceMapper from "../../../../mappers/exercise/RCSentenceMapper";
 import { NewDraftResponse } from "../../../../models/editor/EditorExerciseControls";
 import Exercise from "../../../../models/exercise/Exercise";
@@ -38,7 +38,7 @@ function ExerciseEditor() {
         return { message: "ok", success: true };
     }
 
-    function setStageTodoChangesByOrder(todoOrder: number, todoToEdit: I_RCSentenceDTO) {
+    function setStageTodoChangesByOrder(todoOrder: number, todoToEdit: RCSentenceDTO) {
         setExercise(e =>
             cloneExerciseAndSetSentence(e, todoOrder, todoToEdit))
     }
@@ -82,7 +82,7 @@ function ExerciseEditor() {
     ///       Private utility functions        ///
     //////////////////////////////////////////////
 
-    function cloneExerciseAndSetSentence(e: Exercise, order: number, rcSentenceDTO: I_RCSentenceDTO) {
+    function cloneExerciseAndSetSentence(e: Exercise, order: number, rcSentenceDTO: RCSentenceDTO) {
         let rtn: Exercise = e.clone();
         rtn.todos[order] = RCSentenceMapper.map(rcSentenceDTO);
         rtn.todos[order].dirty = true;

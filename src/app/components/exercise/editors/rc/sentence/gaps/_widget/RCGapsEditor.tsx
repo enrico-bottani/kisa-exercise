@@ -1,10 +1,10 @@
 import { RCAnswerableDTO } from "../../../../../../../dtos/DTOs";
-import { I_RCSentenceDTO } from "../../../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../../../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import { RCSentence } from "../../../../../../../models/exercise/todo/rc_sentence/RCSentence";
 import RCChoicesEditor from "../choices/RCChoicesEditor";
 
 interface Props {
-    stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: I_RCSentenceDTO) => void;
+    stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
     rcSentenceDTO: RCSentence;
 }
 function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
@@ -14,13 +14,13 @@ function RCGapsEditor({ rcSentenceDTO, stageRCSentenceEdits }: Props) {
 
     function onAnswerableEdited(gapKey: number, rcAnswerableDTO: RCAnswerableDTO): void {
         let answerableID = rcSentenceDTO.answerMap[gapKey].index;
-        let rcSentDTO: I_RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
+        let rcSentDTO: RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
         rcSentDTO.assignables[answerableID] = rcAnswerableDTO;
         stageRCSentenceEdits(rcSentenceDTO.position, rcSentDTO);
     }
 
     function onSetSolution(gapKey: number, givenAnswer: number) {
-        let rcSentDTO: I_RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
+        let rcSentDTO: RCSentenceDTO = JSON.parse(JSON.stringify(rcSentenceDTO));
         rcSentDTO.answerSheet[gapKey] = { correctAnswerID: givenAnswer, givenAnswerID: -1, status: 0 }
         stageRCSentenceEdits(rcSentenceDTO.position, rcSentDTO);
     }

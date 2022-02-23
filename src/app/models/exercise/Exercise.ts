@@ -2,7 +2,7 @@ import { TodoDTO } from "../../dtos/exercise/todo/TodoDTO";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
 import Todo from "./todo/Todo";
 import { RCSentence } from "./todo/rc_sentence/RCSentence";
-import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import RCSentenceMapper from "../../mappers/exercise/RCSentenceMapper";
 
 class ExerciseDTOImpl_Builder {
@@ -33,7 +33,7 @@ class ExerciseDTOImpl_Builder {
         let todo = e.map(td => {
             // Get the type
             if (td.type === Todo.Type.RCSentenceType) {
-                let rcSentence = td as I_RCSentenceDTO;
+                let rcSentence = td as RCSentenceDTO;
                 return RCSentenceMapper.map(rcSentence);
             }
             else return new Todo(td.position, td.type, td.dirty)

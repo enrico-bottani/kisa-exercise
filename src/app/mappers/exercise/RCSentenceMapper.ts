@@ -1,9 +1,9 @@
-import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import { RCSentence } from "../../models/exercise/todo/rc_sentence/RCSentence";
 
 
 class RCSentenceMapper {
-    static map(e: I_RCSentenceDTO): RCSentence {
+    static map(e: RCSentenceDTO): RCSentence {
         return RCSentence.builder()
             .setPosition(e.position)
             // TODO: Generate answer map

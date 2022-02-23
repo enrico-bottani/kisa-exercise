@@ -1,6 +1,6 @@
 import SubmittableRCSentenceDTO from "../../../dtos/SubmittableRCSentenceDTO";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../../dtos/DTOs";
-import { I_RCSentenceDTO } from "../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 class StatusBuilderException {
     message: string;
     constructor(message: string) {
@@ -94,7 +94,7 @@ class ThreeStepRCSentenceStatusBuilder {
         this.step = 3;
         return this;
     }
-    static parseToStr(rcSentenceDTO: I_RCSentenceDTO): string {
+    static parseToStr(rcSentenceDTO: RCSentenceDTO): string {
         if (rcSentenceDTO.assignables === undefined) return "";
         let parseResult = rcSentenceDTO.assignables.map((item) => {
             if (item.type === AssignableDTO.Type.String) {

@@ -1,6 +1,6 @@
 import { AnswerIndexer, AssignableDTO, RCAnswerableDTO, StringConstantDTO } from "../../dtos/DTOs";
 import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
-import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
 import Exercise from "../../models/exercise/Exercise";
 import { RCSentence } from "../../models/exercise/todo/rc_sentence/RCSentence";
@@ -82,13 +82,13 @@ class DummyExerciseProvider implements IExerciseProvider {
         }
     ]
 
-    static singleChoiceSentence0: I_RCSentenceDTO = {
+    static singleChoiceSentence0: RCSentenceDTO = {
         position: 0,
         type: Todo.Type.RCSentenceType,
         assignables: this.strings0,
         answerSheet: [null, null]
     }
-    static singleChoiceSentence1: I_RCSentenceDTO = {
+    static singleChoiceSentence1: RCSentenceDTO = {
         position: 1,
         type: Todo.Type.RCSentenceType,
         assignables: this.strings1,

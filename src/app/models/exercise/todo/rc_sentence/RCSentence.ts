@@ -1,6 +1,6 @@
 import JSONDeepCopy from "../../../../utils/JSONDeepCopy";
 import { AnswerIndexer, AnswerSheetItemDTO, AssignableDTO } from "../../../../dtos/DTOs";
-import { I_RCSentenceDTO } from "../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import Todo from "../Todo";
 
 export class RCSentence_Builder {
@@ -40,25 +40,31 @@ export class RCSentence_Builder {
         return this;
     }
     build(): RCSentence {
-        return new RCSentence(this.assignables, this.answerMap, this.answerSheet, this.position, this.type, this.dirty);
+        return new RCSentence(this.assignables, this.answerSheet, this.position, this.type, this.dirty);
     }
 }
 
-export class RCSentence extends Todo implements I_RCSentenceDTO {
+export class RCSentence extends Todo implements RCSentenceDTO {
     assignables: AssignableDTO[] = [];
     answerMap: AnswerIndexer[] = [];
     answerSheet: (AnswerSheetItemDTO | null)[] = [];
-    constructor(assignables: AssignableDTO[], answerMap: AnswerIndexer[], answerSheet: (AnswerSheetItemDTO | null)[], position: number, type: string, dirty?: boolean) {
+    constructor(assignables: AssignableDTO[], answerSheet: (AnswerSheetItemDTO | null)[], position: number, type: string, dirty?: boolean) {
         super(position, type, dirty);
         this.assignables = assignables;
-        this.answerMap = answerMap;
+        for (let i = 0; i < assignables.length; i++) {
+            if (assignables[i].type == AssignableDTO.Type.RCAnswerable) {
+                this.answerMap.push({ index: i } as AnswerIndexer)
+            }
+
+        }
+
         this.answerSheet = answerSheet;
     }
     static builder() {
         return new RCSentence_Builder();
     }
     clone(): RCSentence {
-        return new RCSentence(JSONDeepCopy.deepCopy(this.assignables), JSONDeepCopy.deepCopy(this.answerMap), JSONDeepCopy.deepCopy(this.answerSheet), this.position, this.type, this.dirty)
+        return new RCSentence(JSONDeepCopy.deepCopy(this.assignables), JSONDeepCopy.deepCopy(this.answerSheet), this.position, this.type, this.dirty)
     }
 }
 

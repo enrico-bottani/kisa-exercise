@@ -1,11 +1,11 @@
 
 import { StringConstantDTO, RCAnswerableDTO, AssignableDTO } from "../../../../../dtos/DTOs";
-import { I_RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import RCChoices from "../assignables/RCOptions/RCChoices";
 import StringElement from "../assignables/StringElement/StringElement";
 
 interface Props {
-    rcSentenceDTO: I_RCSentenceDTO;
+    rcSentenceDTO: RCSentenceDTO;
 }
 
 function RCEditorPreviewWrapper(props: Props) {

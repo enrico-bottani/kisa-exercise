@@ -1,6 +1,6 @@
 import { RCSentence } from "../models/exercise/todo/rc_sentence/RCSentence";
 import { RCAnswerableDTO } from "./DTOs";
-import { I_RCSentenceDTO } from "./exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "./exercise/todo/rc_sentence/RCSentenceDTO";
 
 export class RCSentenceDTOs {
 

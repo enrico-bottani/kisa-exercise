@@ -1,4 +1,4 @@
-import { I_RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 
 export interface NewDraftResponse {
     message: string,
@@ -11,7 +11,7 @@ export interface NewDraftAble {
 
 
 export interface RCSentenceEditable {
-    onRCSentenceEdit: (sentenceId: number, rcSentenceDTO: I_RCSentenceDTO) => void;
+    onRCSentenceEdit: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
 }
 
 export interface RCBodyEditable {

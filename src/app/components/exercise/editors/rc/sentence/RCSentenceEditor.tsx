@@ -2,7 +2,7 @@
 
 import { AnswerSheetItemDTO } from '../../../../../dtos/DTOs';
 import { RCSentenceDTOs } from '../../../../../dtos/RCSentenceDTOs';
-import { I_RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/I_RCSentenceDTO";
+import { RCSentenceDTO } from "../../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import ThreeStepRCSentenceStatusBuilder from '../../../../../status/editor/_3_step_rc/_3StepRCSentenceStatusBuilder';
 import RCEditorPreviewWrapper from '../../../common/todo/preview/RCEditorPreviewWrapper';
 import EditorStep from '../../utils/EditorStep';
@@ -12,7 +12,7 @@ import styles from './RCSentenceEditor.module.css'
 import { RCSentence } from '../../../../../models/exercise/todo/rc_sentence/RCSentence';
 
 interface Props {
-    stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: I_RCSentenceDTO) => void;
+    stageRCSentenceEdits: (sentenceId: number, rcSentenceDTO: RCSentenceDTO) => void;
     rcSentenceDTO: RCSentence;
 }
 
@@ -23,7 +23,7 @@ function RCSentenceEditor(props: Props) {
 
     let onRCBodyEdit = function (body: string) {
         let choices = RCSentenceDTOs.extractChoices(props.rcSentenceDTO);
-        let sentenceDTO: I_RCSentenceDTO =
+        let sentenceDTO: RCSentenceDTO =
             new ThreeStepRCSentenceStatusBuilder()
                 .parseBody(props.rcSentenceDTO.position, body,
                     (nOfAnswers) => {
