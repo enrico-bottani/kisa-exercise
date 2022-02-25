@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import RCExerciseEditor from './app/components/exercise/editors/rc/RCExerciseEditor';
 import Header from './app/components/header/Header';
 import ContainerRow from './app/components/utils/ConRow';
 import ExerciseSelection from "./app/components/exercise/ExerciseSelection";
+import Exercise from "./app/models/exercise/Exercise";
 
 function App() {
+    let [exerciseId, setExerciseId] = useState(-1)
     return (
 
 
@@ -16,17 +18,19 @@ function App() {
             <header className="App-header">
                 <ContainerRow>
                     <div className="col">
-                        <ExerciseSelection/>
+                        <ExerciseSelection exerciseId={exerciseId} setExerciseId={setExerciseId}/>
                     </div>
                 </ContainerRow>
             </header>
-
+            {exerciseId}
             <ContainerRow>
                 <div className="col">
                     <Header/>
                 </div>
             </ContainerRow>
-            <RCExerciseEditor/>
+
+
+            <RCExerciseEditor exerciseId={exerciseId}/>
 
         </div>
     );

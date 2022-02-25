@@ -1,9 +1,18 @@
 import ExerciseProvider from "../../services/exercise_provider/ExerciseProvider";
-import {useEffect, useState} from "react";
+import {MouseEventHandler, useEffect, useState} from "react";
 import Exercise from "../../models/exercise/Exercise";
 import set = Reflect.set;
 
-function ExerciseSelection() {
+interface Props {
+    exerciseId: number;
+    setExerciseId:any;
+}
+
+
+function ExerciseSelection(props:Props) {
+    //////////////////////////////////////////////
+    ///                  Hooks                 ///
+    //////////////////////////////////////////////
     let [exercises, setExercises] = useState(new Array<Exercise>())
     let [networkError, setNetworkError] = useState(false)
     useEffect(() => {
@@ -19,6 +28,9 @@ function ExerciseSelection() {
 
     }, [])
 
+    function onExerciseChoose(e: number) {
+        props.setExerciseId(e);
+    }
 
     let ui = <p>Loading exercises</p>
     if (networkError) {
@@ -31,7 +43,7 @@ function ExerciseSelection() {
         console.log(exercises)
 
         ui = <ul>{exercises.map(e => {
-            return <li key={e.id}>{e.title}
+            return <li key={e.id} onClick={ev=>onExerciseChoose(e.id)}>{e.title}
                 <div>
                     <code>{JSON.stringify(e)}</code>
                 </div>
