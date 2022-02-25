@@ -5,7 +5,7 @@ import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
 
 class ExerciseProvider implements IExerciseProvider {
     getExercise(exerciseID: number): Promise<Exercise> {
-        return fetch("http://localhost:8081/exercise/4", {method: "GET"})
+        return fetch("http://localhost:8081/exercise/" + exerciseID + ".json", {method: "GET"})
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -40,6 +40,25 @@ class ExerciseProvider implements IExerciseProvider {
                 })
             })
 
+    }
+
+    putExercise(exerciseID: number, exercise: Exercise): Promise<Exercise> {
+        return fetch("http://localhost:8081/exercise/" + exerciseID + ".json",
+            {
+                method: "PUT",
+                body: JSON.stringify(exercise) // body data type must match "Content-Type" header
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                return response.json() as Promise<ExerciseDTO>
+            })
+            .then(exDto => {
+                return ExerciseMapper.map(exDto, 0);
+            })
+            .catch(e => e);
     }
 
 }

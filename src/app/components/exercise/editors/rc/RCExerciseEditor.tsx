@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { ExerciseDTO } from "../../../../dtos/exercise/ExerciseDTO";
-import { RCSentenceDTO } from "../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
+import {useEffect, useState} from "react";
+import {ExerciseDTO} from "../../../../dtos/exercise/ExerciseDTO";
+import {RCSentenceDTO} from "../../../../dtos/exercise/todo/rc_sentence/RCSentenceDTO";
 import RCSentenceMapper from "../../../../mappers/exercise/RCSentenceMapper";
-import { NewDraftResponse } from "../../../../models/editor/EditorExerciseControls";
+import {NewDraftResponse} from "../../../../models/editor/EditorExerciseControls";
 import Exercise from "../../../../models/exercise/Exercise";
-import { RCSentence } from "../../../../models/exercise/todo/rc_sentence/RCSentence";
+import {RCSentence} from "../../../../models/exercise/todo/rc_sentence/RCSentence";
 import ExerciseProvider from "../../../../services/exercise_provider/ExerciseProvider";
 import Navigation from "../../common/nav/Navigation";
 import TodosPagination from "../../common/pagination/TodosPagination";
@@ -13,29 +13,38 @@ import styles from "./RCExerciseEditor.module.css";
 import Todo from "../../../../models/exercise/todo/Todo";
 import MockExerciseProvider from "../../../../services/exercise_provider/MockExerciseProvider";
 
-function ExerciseEditor() {
+interface Props {
+    exerciseId: number;
+}
+
+function ExerciseEditor(props: Props) {
 
     //////////////////////////////////////////////
     ///                  Hooks                 ///
     //////////////////////////////////////////////
-    const [exercise, setExercise] = useState<Exercise>(Exercise.builder().build());
-    const [excerciseNumber, setExcerciseNumber] = useState<number>(exercise.selected);
+    const [exercise, setExercise] = useState<Exercise>(new Exercise(-1,"",0,[]));
+    const [excerciseNumber, setExcerciseNumber] = useState<number>(0);
 
     useEffect(() => {
         console.log("useEffect");
-        new MockExerciseProvider().getExercise(90987890)
-            .then(fe => setExercise(oldExercise => {
-                console.log(fe);
-                return fe;
-            }));
-    }, [])
+        if (props.exerciseId !== -1) {
+            new ExerciseProvider().getExercise(props.exerciseId)
+                .then(fe => setExercise(oldExercise => {
+                    if(fe==null){
+                        console.error("Warning, invalid exercise selected");
+                        return oldExercise;
+                    }
+                    return fe;
+                }));
+        }
+    }, [props.exerciseId])
 
     //////////////////////////////////////////////
     ///                Callback                ///
     //////////////////////////////////////////////
     function createNewDraft(type: Todo.Type): NewDraftResponse {
         setExercise(ex => _createNewDraftByType(ex, type));
-        return { message: "ok", success: true };
+        return {message: "ok", success: true};
     }
 
     function setStageTodoChangesByOrder(todoOrder: number, todoToEdit: RCSentenceDTO) {
@@ -47,7 +56,11 @@ function ExerciseEditor() {
     ///                   JSX                  ///
     //////////////////////////////////////////////
 
-    let rtn = <div className="container"><div className="row"><div className="col"><h1>Loading...</h1></div></div></div>
+    let rtn = <div className="container">
+        <div className="row">
+            <div className="col"><h1>Loading...</h1></div>
+        </div>
+    </div>
     // [Convention] Exercise with id == -1: not initialized
     if (exercise.id !== -1) {
         rtn = (<div>
@@ -105,4 +118,5 @@ function ExerciseEditor() {
         return e;
     }
 }
+
 export default ExerciseEditor;
