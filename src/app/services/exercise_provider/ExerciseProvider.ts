@@ -1,11 +1,11 @@
 import Exercise from "../../models/exercise/Exercise";
-import { ExerciseDTO } from "../../dtos/exercise/ExerciseDTO";
+import {ExerciseDTO} from "../../dtos/exercise/ExerciseDTO";
 import IExerciseProvider from "./IExerciseProvider";
 import ExerciseMapper from "../../mappers/exercise/ExerciseMapper";
 
 class ExerciseProvider implements IExerciseProvider {
     getExercise(exerciseID: number): Promise<Exercise> {
-        return fetch("http://localhost:8081/exercise/4", { method: "GET" })
+        return fetch("http://localhost:8081/exercise/4", {method: "GET"})
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -20,10 +20,12 @@ class ExerciseProvider implements IExerciseProvider {
     }
 
     getExercises(): Promise<Exercise[]> {
-        return fetch("http://localhost:8081/exercises", { method: "GET" })
+
+        return fetch("http://localhost:8081/exercises.json", {method: "GET"})
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    // Response == 404 etc..
+                    throw new Error("Connection error");
                 }
 
                 return response.json() as Promise<ExerciseDTO[]>
@@ -37,8 +39,9 @@ class ExerciseProvider implements IExerciseProvider {
                         .setTodosFromDtos(e.todos).build()
                 })
             })
-            .catch(e => e);
+
     }
 
 }
+
 export default ExerciseProvider;
